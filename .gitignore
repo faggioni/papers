@@ -1,0 +1,60 @@
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+# =========================
+#	Folders
+#==========================
+/.idea
+# =========================
+# Operating System Files
+# =========================
+*.pdf
+*.aux
+*.out
+*.gz
+*.acn
+*.acr
+*.alg
+*.bbl
+*.blg
+*.dvi
+*.toc
+*.out
+*.log
+*.bbl
+*.blg
+*.lof
+*.pyc
+*.xml
+*.iml
+*.lot
+*.autosave
+
+faggioni\.txt
+
+faggioni\.txt\.pub
+
+presentation/presentation\.nav
+
+*.snm
+
+*.nav
+
+*.bcf
+
+*.ps
