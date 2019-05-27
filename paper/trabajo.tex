@@ -1,0 +1,3925 @@
+\documentclass[12pt]{book}
+%OpenAny as a argunment on documentclass	, Avoid Chapters to start in odd pages
+\usepackage[latin1]{inputenc}
+\usepackage[spanish,es-noquoting]{babel}
+%\usepackage[dvips]{graphicx}
+\usepackage[eps]{graphicx}
+\usepackage{titling}
+\usepackage{vmargin}
+\usepackage{url}
+\usepackage{textcomp}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+\usepackage{float}
+\usepackage[T1]{fontenc}
+\usepackage{epstopdf}
+\usepackage{apacite}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{multicol}
+%\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{calc}
+\usepackage{everypage}
+\usepackage{adjustbox}
+\usepackage{multirow}
+\usepackage{lscape}
+\usepackage{makecell}
+\usepackage{rotating}
+\usepackage[table,xcdraw]{xcolor}
+%\usepackage{draftwatermark}
+%\SetWatermarkText{$\mathbf{Borrador \# 1}$}
+%\SetWatermarkScale{3}
+%\SetWatermarkHorCenter{0.65\paperwidth}
+%\SetWatermarkVerCenter{0.6\paperheight}
+%\SetWatermarkAngle{45}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{pstricks-add}
+\usepackage{pstricks}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{arydshln} %Dash Matrices
+\usepackage{titlesec}
+\usepackage{mathrsfs} %Laplace Transform L
+\usepackage[toc,page]{appendix} %Apendix
+\usepackage{verse}
+%text in top of letters
+\usepackage{stackrel}
+%Symbols and Abbreviations Table
+\usepackage{enumitem}
+\newlist{abbrv}{itemize}{1}
+\setlist[abbrv,1]{label=,labelwidth=1in,align=parleft,itemsep=0.1\baselineskip,leftmargin=!}
+%Center Caption in Tables
+\usepackage[justification=centering]{caption}
+%Footnote in Tabular
+\usepackage{tablefootnote}
+%Signatures
+\usepackage{tabularx}
+
+%Definitions Numbering in Appendix
+\usepackage{chngcntr}
+	
+%Arial Font
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\setpapersize{USletter}
+%Setting Margins
+\setmarginsrb{35mm}{35mm}{35mm}{30mm}{0pt}{0mm}{0pt}{0mm}
+
+%Interlineado
+\renewcommand{\baselinestretch}{1.5}
+
+%Sangria
+\usepackage{parskip}
+\setlength{\parindent}{0.75cm}
+
+%columns Separation
+\setlength{\columnsep}{2cm}
+
+%Fancy Header Setup
+\rhead{}
+\lhead{}
+\chead{\bfseries \nouppercase{\leftmark}}
+
+%Fancy Header Resumen and Introduction
+\fancypagestyle{blank_header}{\chead{}}
+
+%Footer's Margins
+\headsep = 30pt
+\footskip = 25pt
+\renewcommand{\headrulewidth}{0.5pt}
+%Real solution to the spacing between header and text
+\fancyheadoffset{1cm}
+\pagestyle{fancy}
+
+%Fix Appendices Chapter Name
+\addto\captionsspanish{%
+\renewcommand\appendixpagename{Apéndice}
+\renewcommand\appendixtocname{Apéndices}
+}
+
+	
+%Setting Theorem and Definition Environment
+\newtheorem{theorem}{Teorema}
+\newtheorem{definition}{Definición}
+\newtheorem*{definition*}{Definición}
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+\pagenumbering{roman}
+\renewcommand{\listfigurename}{List of plots}
+\renewcommand{\listtablename}{Tables}
+%OJO mathtools and fancyheader dan problemas al trabajar juntos
+
+%Max Column Size in Matrixes
+\setcounter{MaxMatrixCols}{20}
+
+
+%Circuit Builders
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usetikzlibrary{decorations.pathreplacing}
+%Signature Box
+
+%Specify the longest signaturekey here:
+\newcommand{\sigwidth}{\widthof{\footnotesize xDatum/Unterschrift\ Ausbildungsleiterx}}
+%Define a signaturbox of 2.5 cm in height with a mandatory argument of the signature
+\newcommand{\signaturehere}[1]{%
+	\parbox[b][2.5cm][b]{\sigwidth}{%
+		%\footnotesize%Everything in footnotesize
+		\centering% 
+		\rule[-3pt]{\linewidth}{0.4pt}\\[0ex]%
+		{#1}%
+	}}
+
+\newcommand{\signatureherejury}[1]{%
+	\parbox[b][4cm][b]{4.5cm}{%
+		\centering% 
+		\rule[-3pt]{\linewidth}{0.4pt}\\[0ex]%
+		{#1}%
+	}
+}
+
+%FancyHeader Index Fix
+
+\fancypagestyle{noIndex}{%
+	\renewcommand{\headrulewidth}{0pt}%
+	\renewcommand{\footrulewidth}{0pt}%
+	\fancyhf{}%
+	\renewcommand{\headrulewidth}{0.5pt}
+}
+
+
+
+
+\begin{document}
+	 
+	\thispagestyle{empty}
+		\begin{center}
+		  	\includegraphics[width=5cm,height=3cm,keepaspectratio]{unimet}\\
+		 	Universidad Metropolitana\\
+		 	Facultad de Ingeniería\\
+		 	Escuela de Ingeniería Eléctrica\\
+		\end{center}
+	
+		\begin{center}
+		  	\vspace{5cm}
+		  	
+		  	\begin{center}
+		  		\textbf{{\Large  Consideraciones óptimas en el Diseño de Controladores de dos grados de libertad mediante un enfoque polinómico}} 
+		  	\end{center}
+		  	
+		\end{center}
+		\vspace{3cm}
+	
+		\vfill
+		\begin{center}
+		      	Miguel Antonio Faggioni Nuñez
+		\end{center}
+
+		\begin{center}
+		      	Tutor Académico: Pedro Antonio Teppa Garrán
+		\end{center}
+
+		\begin{center}
+		  	Caracas, Noviembre de 2.017
+		\end{center}
+	\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%		ABBREVIATIONS INDEX 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+	\thispagestyle{empty}
+	\chapter*{Lista de Símbolos y Abreviaciones}
+	
+		\begin{abbrv}
+			\item[LQR] 							Linear Quadratic Regulator
+			\item[LQG] 							Linear Quadratic Gaussian
+			\item[LQG/LTR]						Linear Quadratic Gaussian Loop Transfer Recovery
+			\item[ADRC]							Active Disturbance Rejection Control
+			\item[$H_\infty$] 					$H_\infty
+			$ Métodos de Control
+			\item[$H_2$]						$H_2$ Métodos de Control
+			\item[LQRY]							LQR con ponderación a la salida
+			\item[LQRd/dtY]						LQR con ponderación a la derivada de la salida
+			\item[$\partial(N(s))$]				Grado del polinomio $N(s)$
+			\item[$\stackbin{(i)}{x}$] 			I-ésima derivada de $x(t)$ con respecto al tiempo
+			
+			\item[SISO] 						Single-Input Single-Output
+			
+			\item[MIMO] 						Multiple-Input Multiple Output
+			
+			\item[$\mathbb{R}$] 				Cuerpo de Los Números Reales
+			
+			\item[$\mathbb{C}$] 				Cuerpo de Los Números Complejos
+			
+			\item[$\mathbf{C(X,Y)}$] 			Conjunto de funciones continuas de $\mathbf{X}$ en $\mathbf{Y}$, donde $\mathbf{X,Y}$ son Espacios Topológicos
+		\end{abbrv}
+		\thispagestyle{plain}{}
+
+	\newpage	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%		RESUME		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%	\thispagestyle{noIndex}
+	\vspace{2cm}
+	\addcontentsline{toc}{chapter}{Resumen}
+	\thispagestyle{blank_header}
+	\begin{center}
+		\textbf{Consideraciones óptimas en el Diseño de Controladores de dos grados de libertad mediante un enfoque polinómico}
+	\end{center}
+	
+	\vspace{1cm}
+	
+	\begin{flushright} 
+		Autor: Miguel Faggioni \\
+		Tutor: Prof. Pedro Teppa Ph.D \\
+		Caracas, Noviembre 2.017
+	\end{flushright}
+	
+	\begin{center}
+		\textbf{RESUMEN}
+	\end{center}
+	
+	Los controladores de dos grados de libertad han sido desarrollados dentro de las descripciones externas de los sistemas continuos y sus técnicas de diseño son limitadas a metodologías algebraicas asociadas a la localización de polos. A su vez, estrategias de diseños como el Regulador Óptimo Cuadrático han sido objeto de estudio dentro de descripciones internas de sistemas de control, en particular, las variables de estados.
+	
+	En el presente trabajo se establecen mecanismos de obtención de controladores de dos grados de libertad bajo técnicas de diseño óptimas de modelos internos. Adicionando como punto importante una cuota de robustez al sistema de control.
+	
+	Se presenta una metodología de diseño, la cual es verificada mediante el estudios de diferentes plantas con distinta naturaleza física, así como su posterior simulación y presentación de resultados.
+	
+	
+	\noindent \textbf{Palabras Claves}: Controladores de dos Grados de Libertad, Regulador Óptimo Cuadrático, LQR, Vínculo controladores de dos grados de libertad y Mo\-delo en Variables de Estado, Sistemas Robustos, Rechazo a Perturbaciones, Seguimiento.
+	
+	\newpage
+	\shipout\null	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%		CHAPTER I	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\clearpage
+	\pagenumbering{arabic}
+	\setcounter{page}{1}
+	\onehalfspace
+	\chapter{Consideraciones Óptimas y Controladores de 2 grados de Libertad}	
+
+	
+	\section{Antecedentes y Planteamiento del Problema}
+	
+	El presente trabajo de investigación planteará el desarrollo de metodologías de diseño de controladores de dos grados de libertad, incorporando técnicas de optimización bien estudiadas y afianzadas en lo que a la práctica de la ingeniería de control se refiere, así como también de métodos polinómicos de diseño, los cuales resultan muy intuitivos y sencillos de implementar. Más aún, este trabajo permitirá establecer un puente entre dos metodologías que aparentemente se hayan disjuntas, pero que poseen múltiples similitudes, las mismas son los modelos en espacio de estado y los controladores de dos grados de libertad. Se plantearán las condiciones necesarias para poder intercambiar modelos sin distinción alguna, así como también permitirá ampliar aún más el espectro de uso del controlador LQR (\textit{Linear Quadratic Regulator}) dentro de la teoría de control.
+	
+	
+	\subsection{Antecedentes del Problema}
+	
+	Según \citeA{dorf}, un esquema de Control realimentado elemental tiene el siguiente esquema:
+
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=14cm,height=8cm,keepaspectratio]{drafy2-fig1-esquemaretroalimentacion}
+			\caption{Esquema de Control Realimentado Elemental\label{fig:elemental control system}}
+			\centering Fuente: Elaboración Propia
+		\end{center}
+	\end{figure}
+	
+	Para el sistema de control de la Figura \ref{fig:elemental control system}, pueden tenerse diferentes objetivos de desempeño, el mismo autor engloba estos requerimientos de la sigui\-ente forma:
+	\begin{quotation}
+		
+		``Las especificaciones de comportamiento describirán como debería funcionar el sistema en lazo cerrado e incluirán (1) buena regulación frente a perturbaciones, (2) respuesta deseable a las ordenes de la entrada, (3) señales realistas del actuador, (4) baja sensibilidad y (5) robustez.
+		''
+	\end{quotation}
+	
+	Del enunciado anterior se desprenden dos problemas fundamentales de la teoría de control, el \textit{problema de regulación}, esto es la estabilización del lazo de retroalimentación y el rechazo a perturbaciones. Y el  \textit{problema de seguimiento}, es decir, la capacidad del sistema de seguir con exactitud a la salida, una forma preestablecida de la señal de referencia.
+	
+	Bajo la hipótesis de linealidad, el esquema de la Figura \ref{fig:elemental control system} puede ser representado a través del siguiente diagrama de bloques.
+	
+	
+	\begin{figure}[]
+		\begin{center}
+			\includegraphics[width=14cm,height=8cm,keepaspectratio]{drafy2-fig2-bloques}
+			\caption{Sistema de Retroalimentación Lineal\label{linear feedback system}}
+			\centering Fuente: Elaboración Propia
+		\end{center}
+	\end{figure}
+
+	Donde $\boldsymbol{C(s)}$, $\boldsymbol{P(s)}$, $\boldsymbol{F(s)}$, $\boldsymbol{d(s)}$ y $\boldsymbol{n(s)}$ son funciones de transferencia que modelan al controlador, la planta, el sensor, alguna fuente de perturbación y el ruido al que puede estar sometido dicho sensor respectivamente, siendo $\boldsymbol{s}$ la variable compleja de Laplace. Una suposición frecuente es normalizar el sensor de forma que $\boldsymbol{F(s)=1}$. De la figura anterior se puede deducir una expresión para la señal de control $\boldsymbol{u(s)}$, la cual posee la siguiente forma.
+	
+	\begin{equation}
+		\boldsymbol{u(s) = C(s)(y_r(s)-y(s))}
+	\end{equation}
+	
+	Bajo este esquema, el controlador actúa de manera conjunta sobre la señal de referencia y la salida. Por tal razón se dice que la configuración es de un grado de libertad, lo cual refleja el hecho que mediante un solo parámetro (Controlador) se debe realizar ajuste tanto a la respuesta transitoria, como de estado estable. 
+	
+	Este tipo de enfoque pone restricciones sobre la metodología de control ya que, al querer ajustar la respuesta transitoria, se ve modificada la respuesta de estado estacionario y viceversa. 
+	
+	Para subsanar estas limitaciones se plantea una configuración de dos grados de libertad, la cual permite realizar ajustes mediante dos controladores, aumentando la maniobrabilidad y los parámetros para hacer ajustes en la función de transferencia a lazo cerrado. La misma queda ejemplificada mediante el siguiente diagrama de bloques propuesto por \citeA{chen}.
+	
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=14cm,height=8cm,keepaspectratio]{drafy2-fig2-2gdl}
+			\caption{Sistema de Control de Dos Grados de Libertad.}
+			\label{block diagram 2dof}
+			\centering Fuente: Elaboración Propia
+		\end{center}
+	\end{figure}			
+	
+	Tal configuración es más general y flexible porque la señal de control queda expresada mediante la ecuación.
+	
+	\begin{equation}
+		\boldsymbol{u(s) = C_1(s)y_r(s)-C_2(s)y(s)} 
+	\end{equation}
+	
+	Adicionalmente como \citeA{teppa} explican, hoy en día el diseño de sistemas de control es una ciencia precisa que involucra la matemática aplicada y las computadoras de alta velocidad y desempeño. Esto no era así en las etapas iniciales de la teoría de sistemas de control,
+	donde los sistemas estudiados se caracterizaban a través de herramientas como: el análisis de la estabilidad, la respuesta en frecuencia, el lugar geométrico de las raíces, el plano de fase, la función descriptiva, etc. Véase \citeA{ogata}, \citeA{dorf}, \citeA{goodwin}, \citeA{slotine} para más información. Estos métodos ampliamente conocidos y de utilidad práctica, se encontraban res\-tringidos a sistemas de una entrada y una salida (SISO), invariantes en el tiempo y sin restricciones en sus variables. 
+	
+	A pesar de que esta filosofía funcionó con éxito y lo continúa haciendo en distintos escenarios, también es cierto que el proceso de ensayo y error, aunado a la sobre simplificación en el modelo del sistema real, condujo a la ineficacia de tales técnicas frente a sistemas más complejos y con especificaciones más exigentes y restrictivas. Por tal razón, en los inicios de la década de los 60 del siglo pasado, surge la descripción mediante variables de estado, lo que permitió analizar sistemas de una sola entrada y salida (SISO), así como sistemas de múltiples entradas y salidas (MIMO), bajo un mismo esquema (\citeA{chen2}, \citeA{brogan}). Los rápidos avances alcanzados en el desarro\-llo de computadoras cada vez más veloces dieron paso al diseño de métodos directos y algorítmicos que dejan atrás la incertidumbre propia de los métodos de ensayo y error. Es así, como la metodología clásica de diseño de sistemas de control, queda atrás para dar cabida a la pregunta: ¿qué es lo mejor que puede obtenerse con este sistema?. Esto último conlleva a la aparición de la teoría de control óptimo, cuyo punto de partida es un conjunto de ecuaciones de estado que describen el comportamiento dinámico del sistema a ser controlado.
+	 
+	
+	Para un sistema en tiempo continuo, las ecuaciones de estado son un conjunto de ecuaciones diferenciales de primer orden descritas de la siguiente forma.
+	
+	\begin{equation}
+		\boldsymbol{\dot{x} = Ax + Bu}
+	\end{equation}
+	
+	Donde
+	
+	\begin{itemize}
+		\item[\textbullet] $\boldsymbol{x:\mathbb{R}^+ \longrightarrow \mathbb{R}^n}$, es el vector de estado.
+		\item[\textbullet] $\boldsymbol{u:\mathbb{R}^+ \longrightarrow \mathbb{R}^m}$, es el vector de control.
+		\item[\textbullet] $\boldsymbol{A\in\mathbb{R}^{n x n}}$, es la matriz de estado.
+		\item[\textbullet] $\boldsymbol{B\in\mathbb{R}^{n x m}}$, es la matriz de control.
+	\end{itemize}
+	
+	La formulación de cualquier problema de control óptimo requiere la información
+	siguiente: las ecuaciones de estado, un conjunto de restricciones en las variables de estado y de control, así como una función objetivo que es la meta que se desea que el sistema alcance. Un enfoque de control óptimo utilizado en la práctica es el problema LQR, que puede expresarse a través de la resolución del problema de optimización siguiente:
+	
+	\begin{equation}\label{performance index}
+		\boldsymbol{Minimizar: J = \int_0^\infty [x^TQx + u^TRu] dt}
+	\end{equation}
+	
+	\[ \boldsymbol{Sujeto : \dot{x} = Ax + Bu } \]
+	
+	El término $\boldsymbol{x^TQx}$ con $\boldsymbol{Q = Q^T \geq 0}$ penaliza desviaciones con respecto al estado de equilibrio del sistema. A su vez, el termino $\boldsymbol{u^TRu}$ con $\boldsymbol{R = R^T > 0}$ controla el esfuerzo (amplitud) de la señal de control.
+	
+	Bajo este esquema, el objetivo es diseñar un regulador que minimice la función de costo definida en la ecuación \eqref{performance index}, depende del diseñador establecer de forma adecuada la función objetivo $\boldsymbol{J}$, la misma debe ajustarse lo mejor posible a las necesidades de control del sistema (medidas de desempeño a minimizar), en general esto supone tener un conocimiento de la planta a controlar. Adicionalmente dado que por restricciones propias del método las matrices $\boldsymbol{Q}$ y $\boldsymbol{R}$ son definidas positivas, cada termino $\boldsymbol{x^TQx}$ potencia de forma cuadrática los valores de las variables de estado.
+	
+	El LQR es parte fundamental de numeroso métodos de diseño empleados en la actualidad, tales como el LQG, el LQG$/$LTR, el control predictivo, el ADRC y control donde se manipulan las normas del espacio como el ${ H_\infty }$, ${ H_2 }$, por citar algunos de ellos.
+	
+	Por otro lado, el enfoque polinómico como herramienta de diseño presenta mejoras a técnicas clásicas como las redes de adelanto y/o atraso o al lugar geo\-métrico de las raíces. Bajo esta perspectiva el diseño se da de forma intuitiva, ya que dadas las especificaciones de desempeño del sistema, se plantea una función de transferencia a lazo cerrado deseada y la tarea del diseñador es encontrar los polinomios que modifiquen la dinámica del sistema en esa dirección.
+	
+	Un artículo clásico entre la literatura es \textit{Introduction to the Linear Algebraic Method for Control System Desing} \cite{chen}, en el mismo se específica una técnica muy simple para el diseño de controladores por medio polinómicos, además de establecer las condiciones necesarias para poder cumplir con este cometido. Adicionalmente existen otras técnicas como el llamado \textit{Model Matching} que también permiten el diseño sin perjuicio alguno. 
+	
+	\subsection{Planteamiento del Problema}
+	
+	El problema que se requiere resolver en esta investigación consiste en la obtención de un método polinómico para diseñar controladores de dos grados de libertad que incorpore consideraciones óptimas. Adicionalmente un aspecto muy importante en el desarrollo de esta investigación se va a basar en establecer condiciones necesarias para poder tratar la topología de dos grados de libertad como un problema clásico de variables de estado. Esto permitirá desarrollar una estrategia de diseño basada en el método LQR, mediante el uso de técnicas polinómicas de controladores de dos grados de libertad.
+	
+	El diseño de controladores de dos grados de libertad proporciona soluciones a los problemas de regulación y seguimiento empleando información medible del sistema, dado que se apoya en modelos matemáticos entrada $-$ salida. El diseño de controladores a través del método LQR resulta en controladores óptimos para el criterio de desempeño de tipo cuadrático definido mediante la ecuación \eqref{performance index}. Sin embargo, cuando no se disponen de todas las variables de estado (situación frecuente en la práctica) debe considerarse la incorporación de observadores de estado o modificar dicha ecuación para incorporar las salidas del sistema. Esto da origen al problema LQRY o a una variación de este último donde se incluyen las derivadas de la salida LQRd$/$dtY. Para más detalles sobre estos últimos problemas de optimización debe consultarse Teppa et al (2015).
+	
+	
+	
+		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%		CHAPTER IV		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\chapter{Consideraciones Óptimas de Diseño de Controladores}
+	
+		Teniendo en consideración las definiciones y planteamientos desarrollados en los capítulos anteriores, se desarrollará una teoría que permitirá establecer las pautas de diseño que se quiere lograr con la presente investigación.  Partiendo del modelo equivalente en variables de estados del Controlador de dos grados de libertad hasta cerrar el capítulo con un algoritmo que permita diseñar controladores para una planta determinada.
+	
+	
+		\section{Modelo equivalente en variables de estado del Controlador de dos grados de libertad}
+		
+		Analicemos como puede construirse una relación entre la representación de variables de estado y los controladores de dos grados de libertad con el fin de aprovechar dicha conexión en pro de la creación de una estrategia de diseño que aproveche un método de tanta importancia como el LQR.
+		
+		Considere que el sistema es representado a través de su ecuación dife\-rencial ordinaria.
+		
+		 \begin{equation}\label{ode_system_general}
+		 \resizebox{.9 \textwidth}{!}{$				 \stackbin{(n)}{y} + a_1\stackbin{(n-1)}{y} + a_2\stackbin{(n-2)}{y} + \dots + a_{n-1} \stackbin{.}{y} + a_n y = 	b_0 \stackbin{(m)}{u} + b_1 \stackbin{(m-1)}{u} + b_2 \stackbin{(m-2)}{u} + \dots + b_{m-1} \stackbin{.}{u} + b_m u$}
+		 \end{equation}
+		 
+		 Definamos el vector de estados de la siguiente forma
+		 
+		 \begin{equation}\label{state vector}
+		 	\mathbf{x = \begin{bmatrix}
+		 		y \\
+		 		\stackbin{.}{y} \\
+		 		\vdots \\ 
+		 		\stackbin{(n-1)}{y} \\
+		 		u \\
+		 		\stackbin{.}{u}\\
+		 		\vdots \\
+		 		\stackbin{(n_u-1)}{u}
+		 		\end{bmatrix}}_{N\text{x}1}
+		 \end{equation}
+		 
+		 Donde $n_u \ge m$, de lo que se deduce que $N=n_u + n$.
+		 
+		 Tomando
+		 
+		 \begin{equation}
+			 \begin{gathered}
+			 	x_1 = y \\
+			 	x_2 = \stackbin{.}{y}\\
+			 	\vdots \\
+			 	x_n = \stackbin{(n-1)}{y} \\
+			 	x_{n+1} = \stackbin{ }{u} \\
+			 	x_{n+2} = \stackbin{.}{u} \\
+			 	\vdots \\
+			 	x_{n + n_u} = \stackbin{(n_u-1)}{u}
+			 \end{gathered}	 	
+		 \end{equation}
+		 
+		 Derivando con respecto al tiempo y considerando la ecuación \eqref{ode_system_general}, se obtiene 
+		 
+ 		 \begin{equation}
+	 		 \begin{gathered}
+	 		 \stackbin{.}{x}_1 = x_2 \\
+	 		 \stackbin{.}{x}_2 = x_3\\
+	 		 \vdots \\
+	 		 \dot{x}_n = - a_n x_1 - \dots - a_2 x_{n-1} - a_1 x_n + b_0 x_{n+1} + \dots + b_m x_{n+m}   \\
+	 		 \dot{x}_{n+1} = x_{n+2} \\
+	 		 \dot{x}_{n+2} = x_{n+3} \\
+	 		 \vdots \\
+	 		 \dot{x}_{n + n_u} = \stackbin{(n_u)}{u}
+	 		 \end{gathered}	 	
+ 		 \end{equation}
+		 
+		 De esta forma el sistema puede ser representado según la ecuación de estados. 
+
+		 \begin{equation}\label{state equation analog}
+		 \resizebox{.85 \textwidth}{!}{$
+		 \mathbf{\dot{x} = \begin{bmatrix}
+		 	0 & 1 & 0 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & 0 & \dots & 0\\
+		 	0 & 0 & 1 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & 0 & \dots & 0 \\
+		 	\vdots & \vdots & \vdots & \ddots &  & \vdots & \vdots & \vdots &  & \vdots & \vdots &  & \vdots\\
+		 	\vdots & \vdots & \vdots &  & \ddots & \vdots & \vdots & \vdots &  & \vdots & \vdots &  & \vdots\\
+		 	0 & 0 & 0 & 0 & \dots & 1 & 0 & 0 & \dots & 0 & 0 & \ \dots & 0\\
+		 	-a_n & -a_{n-1} & -a_{n-2} & -a_{n-3} & \dots & -a_1 & b_0 & b_1 & \dots & b_m & 0 & \dots & 0 \\
+		 	0 & 0 & 0 & 0 & \dots & 0 & 0 & 1 & \dots & 0 & 0 & \dots & 0 \\
+		 	0 & 0 & 0 & 0 & \dots & 0 & 0 & 0 & \ddots & 0 & 0 & \dots & 0 \\
+		 	0 & 0 & 0 & 0 & \dots & 0 & 0 & 0 & \dots & 1 & 0 & \dots & 0 \\
+		 	0 & 0 & 0 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & 1 & \dots & 0 \\
+		 	0 & 0 & 0 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & 0 & \ddots & 0 \\
+		 	0 & 0 & 0 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & 0 & \dots & 1\\
+		 	0 & 0 & 0 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & 0 & \dots & 0
+		 	\end{bmatrix} \begin{bmatrix}
+		 	y\\
+		 	\stackbin{.}{y}\\
+		 	\vdots \\
+		 	\vdots \\
+		 	\stackbin{(n-2)}{y}\\
+		 	\stackbin{(n-1)}{y}\\
+		 	u \\
+		 	\stackbin{.}{u}\\
+		 	\stackbin{..}{u}\\
+		 	\stackbin{...}{u}\\
+		 	\vdots\\
+		 	\vdots\\
+		 	\stackbin{(n_u - 1)}{u}
+		 	\end{bmatrix} + \begin{bmatrix}
+		 	0\\
+		 	0\\
+		 	0\\
+		 	0\\
+		 	0\\
+			\vdots \\
+		 	\vdots \\
+		 	\vdots \\
+		 	0\\
+		 	0\\
+		 	0\\
+		 	0\\
+		 	1
+		 	\end{bmatrix}} \stackbin{(n_u)}{u}
+			$}
+		 \end{equation}
+		 
+		 \begin{equation}\label{state equation analog_output}
+		 	\mathbf{y} = \begin{bmatrix}
+		 	1 & 0 & 0& \dots & 0 & 0 & 0
+		 	\end{bmatrix} \begin{bmatrix}
+		 	y \\
+		 	\stackbin{.}{y} \\
+		 	\vdots \\ 
+		 	\stackbin{(n-1)}{y} \\
+		 	u \\
+		 	\stackbin{.}{u}\\
+		 	\vdots \\
+		 	\stackbin{(n_u-1)}{u}
+		 	\end{bmatrix}
+		 \end{equation}
+		
+		
+		\section{Vinculo entre Esquema de 2 Grados de Libertad y Descripción Propuesta en Espacio de Estados}
+		
+		Se plantea la siguiente ley del de control
+		
+		\begin{equation}
+			\stackbin{(n_u)}{u} \mathbf{ = -Kx(t) + K_ry_r(t)}
+		\end{equation}		
+		
+		Desarrollando la expresión anterior 
+		
+		\begin{equation}
+			\resizebox{.85 \textwidth}{!}{$
+			u^{n_u} = - \begin{bmatrix}
+				k_{y_0} & k_{y_1} & \dots & k_{y_{n-1}} & k_{u_0} & k_{u_1} & \dots & k_{u_{n_u -1}}
+			\end{bmatrix} \begin{bmatrix}
+			y \\
+			\stackbin{.}{y} \\
+			\vdots \\ 
+			\stackbin{(n-1)}{y} \\
+			u \\
+			\stackbin{.}{u}\\
+			\vdots \\
+			\stackbin{(n_u-1)}{u}
+			\end{bmatrix} + \begin{bmatrix}
+							k_{y_{r_{0}}} & k_{y_{r_{1}}} & \dots & k_{y_{r_{n_r}}} 
+						\end{bmatrix} \begin{bmatrix}
+						y_r \\
+						\stackbin{.}{y_r} \\
+						\vdots \\ 
+						\stackbin{(n-1)}{y_r} \\
+						\end{bmatrix}
+			$}
+		\end{equation}
+		
+		Resolviendo nos queda
+		
+		\begin{equation}
+			u^{n_u} = - \sum_{i=0}^{n-1} k_{y_i} \stackbin{(i)}{y} - \sum_{j=0}^{n_u - 1} k_{u_j} \stackbin{(j)}{u} + \sum_{k=0}^{n_r} k_{y_{r_k}} \stackbin{(k)}{y_r}
+		\end{equation}
+		
+		\begin{equation}
+			u^{n_u} + \sum_{j=0}^{n_u - 1} k_{u_j} \stackbin{(j)}{u} = - \sum_{i=0}^{n-1} k_{y_i} \stackbin{(i)}{y} + \sum_{k=0}^{n_r} k_{y_{r_k}} \stackbin{(k)}{y_r}
+		\end{equation}
+		
+		Aplicando la transformada de Laplace a ambos lados de la igualdad
+		
+		\begin{equation}
+			s^{n_u} U(s) + (\sum_{j=0}^{n_u - 1} k_{u_j} s^j) U(s) = (\sum_{k=0}^{n_r} k_{y_{r_k}} s^k) Y_r(s) - (\sum_{i=0}^{n-1} k_{y_i} s^i) Y(s)
+		\end{equation}
+		
+		
+		\begin{equation}\label{ss_2dof}
+			(s^{n_u} + \sum_{j=0}^{n_u - 1} k_{u_j} s^j) U(s) = (\sum_{k=0}^{n_r} k_{y_{r_k}} s^k) Y_r(s) - (\sum_{i=0}^{n-1} k_{y_i} s^i) Y(s)
+		\end{equation}
+		
+		Haciendo
+		
+		\begin{equation}
+			A(s) = s^{n_u} + \sum_{j=0}^{n_u - 1} k_{u_j} s^j \qquad
+			L(s) = \sum_{k=0}^{n_r} k_{y_{r_k}} s^k \qquad
+			M(s) = \sum_{i=0}^{n-1} k_{y_i} s^i
+		\end{equation}
+		
+		Se obtiene
+		
+		\begin{equation}
+			A(s) U(s) = L(s)Y_r(s) - M(s) Y(s)
+		\end{equation}
+		
+		De la ecuación anterior se obtiene una relación inequívoca entre la representación en espacio de estados propuesta y el esquema de control de Dos Grados de Libertad. 
+		
+		
+		Teniendo en cuenta la figura \ref{block diagram 2dof} y suponiendo que
+		
+		\begin{equation}
+			C_1(s) = \frac{L(s)}{A(s)} \qquad
+			C_2(s) = \frac{M(s)}{A(s)}
+		\end{equation}
+		
+		Podemos obtener la señal de control en el dominio de Laplace 
+		
+		\begin{equation}
+			U(s) = \frac{L(s)}{A(s)} Y_r(s) - \frac{M(s)}{A(s)} Y(s)
+		\end{equation}
+		
+		Así
+		
+		\begin{equation}
+			A(s) U(s) = L(s)Y_r(s) - M(s) Y(s)
+		\end{equation}
+		
+		Como se pudo mostrar de la construcción anterior, existe una relación entre ambos esquemas de representación. Esto permitirá establecer una estrategia de diseño que permita calcular los controladores de dos grados de libertad, haciendo uso de técnicas de diseño avanzadas como LQR.
+			
+		\section{Metodología de Diseño}
+		
+		Aprovechando la relación obtenida se planteará una metodología de control que ofrezca las siguientes propiedades:
+		
+		\begin{itemize}
+			\item[\textbullet] Una respuesta transitoria óptima dentro de las hipótesis del Controlador Óptimo Cuadrático.
+			\item[\textbullet] Seguimiento fiel a las señales de referencia.
+			\item[\textbullet] Robustez del sistema, es decir, rechazo a perturbaciones e imprecisiones en la modelación del sistema.
+		\end{itemize}
+		
+		Logrando estos objetivos obtendremos una metodología diseño que puede ser usada en la práctica de forma regular. Ya que considera simplificaciones en la modelación de la planta, propias de los aspectos operativos de la ingeniería de control. Adicionalmente, garantizaría una respuesta de estado estacionario adecuada, esto es, error de estado estacionario nulo. Finalmente, se obtiene una respuesta transitoria óptima haciendo uso de una herramienta de comprobada validez como lo es el Controlador Óptimo Cuadrático(LQR). 
+		
+		Parte del desarrollo contempla diferenciar el tipo de señal de referencia que el sistema tendrá que manejar, para esto se plantea una estrategia de diseño asociada a cada entrada, por lo que resulta útil separar cada caso convenientemente. Primero se analizará el caso de entradas constantes.		
+		
+		\subsection{Señal de Referencia Constante}\label{step_method}
+			
+			Supongamos que se tiene el sistema descrito en espacio de estados según las ecuaciones \eqref{state equation analog} y \eqref{state equation analog_output}. Así
+			
+			\begin{equation}
+				\begin{gathered}
+					\mathbf{\dot{x} = Ax + B \stackbin{(n_u)}{u}} \\
+					\mathbf{y = Cx}
+				\end{gathered}
+			\end{equation}
+
+			Supongamos que se tiene una señal de referencia tipo contante. Esto es
+			
+			\begin{equation}
+				\mathbf{y_r = k}
+			\end{equation}
+			
+			De esta forma si derivamos con respecto al tiempo tenemos
+			
+			\begin{equation}
+				\mathbf{\dot{y_r} = 0}
+			\end{equation}
+			
+			Sea 
+			
+			\begin{equation}
+				\mathbf{\xi = y - y_r}
+			\end{equation}
+			
+			Entonces
+			
+			\begin{equation}
+				\mathbf{\dot{\xi} = \dot{y} = C \dot{x}}
+			\end{equation}
+			
+			Así mismo
+			
+			\begin{equation}
+				\mathbf{\stackbin{..}{x} = A \stackbin{.}{x}  + B \stackbin{(n_u +1)}{u}}
+			\end{equation}
+			
+			Definiendo las variables
+			
+			\begin{equation}
+				\begin{gathered}
+					\mathbf{v = \dot{x}} \\
+					\mathbf{u_o = \stackbin{(n_u +1)}{u}}
+				\end{gathered}
+			\end{equation}
+			
+			Se define un nuevo espacio de estados a partir de las variables anteriormente definidas, el mismo posee la siguiente forma
+			
+			\begin{equation}
+				\underbrace{\begin{bmatrix}
+					\mathbf{\dot{\xi}} \\ 
+					\mathbf{\dot{v}}
+				\end{bmatrix}}_{\mathbf{\dot{z}}} = \underbrace{\begin{bmatrix}
+				\mathbf{0} & \mathbf{C} \\
+				\mathbf{0} & \mathbf{A}
+				\end{bmatrix}}_{\mathbf{\bar{A}}} \underbrace{\begin{bmatrix}
+					\mathbf{\xi} \\
+					\mathbf{v}
+				\end{bmatrix}}_{\mathbf{z}} + \underbrace{\begin{bmatrix}
+					\mathbf{0} \\
+					\mathbf{B}
+				\end{bmatrix}}_{\mathbf{\bar{B}}} \mathbf{u_0}
+			\end{equation}
+			
+			Tomando como índice de desempeño
+			
+			 \begin{equation}
+				 \mathbf{J = \int_0^\infty [z^TQz + R u_0^2] dt}
+			 \end{equation}
+			
+			Se determina la ley de control, mediante la resolución de la ecuación algebraica de Ricatti vista anteriormente. Así se obtiene la matriz de ganancia correspondiente, dicha matriz puede quedar expresada como sigue
+			
+			\begin{equation}
+				\mathbf{u_0 = -K z = - \begin{bmatrix}
+					\mathbf{K_{\xi}} & \mathbf{K_v}
+					\end{bmatrix}\begin{bmatrix}
+						\mathbf{\xi} \\
+						\mathbf{v}
+					\end{bmatrix} = - K_{\xi} \xi - K_v v} 
+			\end{equation}
+			
+			Integrando a ambos lado de la igualdad se obtiene
+			
+			\begin{equation}
+				\mathbf{\stackbin{(n_u)}{u} = - K_{\xi} \int_0^t (y - y_r) d\tau - K_v \int_0^t v d\tau = - K_{\xi} \int_0^t (y - y_r) d\tau - K_v x}
+			\end{equation}
+			
+			Ahora aplicando la transformada de Laplace obtenemos
+			
+			\begin{equation}
+				s^{n_u} U(s) = - K_{\xi} \frac{1}{s}(Y(s) - Y_r(s)) - K_v X(s)
+			\end{equation}
+			
+			De esta forma
+			
+			\begin{equation}
+				s^{n_u} U(s) = - \frac{K_{\xi}}{s}Y(s) + \frac{K_{\xi}}{s} Y_r(s) - K_v X(s)
+			\end{equation}
+			
+			\begin{equation}
+				s^{n_u} U(s) = - \frac{K_{\xi}}{s}Y(s) + \frac{K_{\xi}}{s} Y_r(s) - \left[ \overline{R}(s) Y(s) + \overline{A}(s) U(s)\right]
+			\end{equation}
+			
+			Finalmente
+			
+			\begin{equation}
+				\underbrace{\left[\overline{A}(s) + s^{n_u}\right]}_{A(s)} U(s)= \underbrace{\frac{K_{\xi}}{s}}_{L(s)}Y_r(s) - \underbrace{\left[\frac{K_{\xi}}{s} + \overline{R}(s)\right]}_{M(s)} Y(s)
+			\end{equation}
+			
+			Donde
+			
+			\begin{equation}\label{2dof_controllers}
+				\begin{gathered}
+					A(s) = \overline{A}(s) + s^{n_u} = a_0 + a_1 s + \dots + a_{n_u - 1} s^{n_u - 1} + s^{n_u} \\
+					L(s) = \frac{K_{\xi}}{s} \\
+					M(s) = \frac{K_{\xi}}{s} + m_0 + m_1 s + \dots + m_{n-2} s^{n-2} +m_{n-1} s^{n-1} 
+				\end{gathered}
+			\end{equation}
+			
+			Así se pudo obtener a partir de técnicas aplicada a la descripción en variables de estados los polinomios asociados al esquema en dos grados de li\-bertad. Aprovechando de esta manera una técnica de gran importancia como lo es LQR. Veamos ahora como de forma análoga podemos establecer el di\-seño de controladores que tengan que obedecer a entradas del tipo rampa.
+
+			\subsection{Señal de Referencia Tipo Rampa}\label{ramp_method}
+			
+			Ahora bien, supongamos nuevamente que se tiene un sistema bajo las mismas hipótesis del caso anterior, adicionando que el sistema va a ser sometido a una entrada tipo  rampa. Sin perdida de generalidad, supongamos que
+			
+			\begin{equation}
+				\mathbf{y_r = t}
+			\end{equation}
+			
+			Ahora tenemos
+			
+			\begin{equation}
+				\mathbf{\stackbin{..}{y_r}} = 0
+			\end{equation}
+			
+			
+			De la misma manera se define
+			
+			\begin{equation}
+			\mathbf{\xi = y - y_r}
+			\end{equation}
+			
+			Así
+			
+			\begin{equation}
+			\mathbf{\stackbin{..}{\xi} = \stackbin{..}{y} = C \stackbin{..}{x}}
+			\end{equation}
+			
+			Como también
+			
+			\begin{equation}
+			\mathbf{\stackbin{...}{x} = A \stackbin{..}{x}  + B \stackbin{(n_u + 2)}{u}}
+			\end{equation}
+
+			Definiendo nuevamente variables de estado auxiliares
+			
+			\begin{equation}
+			\begin{gathered}
+			\mathbf{v = \stackbin{..}{x}} \\
+			\mathbf{u_o = \stackbin{(n_u + 2)}{u}}
+			\end{gathered}
+			\end{equation}
+			Se logra obtener una descripción conveniente, para poder así, aplicar LQR.
+
+			\begin{equation}
+			\underbrace{\begin{bmatrix}
+				\mathbf{\stackbin{.}{\xi}} \\ 
+				\mathbf{\stackbin{..}{\xi}}\\
+				\mathbf{\stackbin{.}{v}}
+				\end{bmatrix}}_{\mathbf{\dot{z}}} = \underbrace{\begin{bmatrix}
+				\mathbf{0} & \mathbf{1} & \mathbf{0} \\
+				\mathbf{0} & \mathbf{0} & \mathbf{C} \\
+				\mathbf{0} & \mathbf{0} & \mathbf{A}
+				\end{bmatrix}}_{\mathbf{\bar{A}}} \underbrace{\begin{bmatrix}
+				\mathbf{\xi} \\
+				\mathbf{\stackbin{.}{\xi}} \\
+				\mathbf{v}
+				\end{bmatrix}}_{\mathbf{z}} + \underbrace{\begin{bmatrix}
+				\mathbf{0} \\
+				\mathbf{0} \\
+				\mathbf{B}
+				\end{bmatrix}}_{\mathbf{\bar{B}}} \mathbf{u_0}
+			\end{equation}
+
+			Teniendo en cuenta el mismo índice de desempeño que en el caso anterior, se puede nuevamente calcular la matriz de ganancia de forma análoga.
+			
+			\begin{equation}
+			\mathbf{u_0 = -K z = - \begin{bmatrix}
+				\mathbf{K_{\xi}} & \mathbf{K_{\dot{\xi}}} & \mathbf{K_v}
+				\end{bmatrix}\begin{bmatrix}
+				\mathbf{\xi} \\
+				\mathbf{\dot{\xi}} \\
+				\mathbf{v}
+				\end{bmatrix} = - K_{\xi} \xi - K_{\dot{\xi}} \dot{\xi} - K_v v} 
+			\end{equation}
+			
+			Integrando dos veces a ambos lados de la ecuación anterior tenemos
+			
+			
+			\begin{equation}
+				\begin{aligned}
+					\mathbf{\stackbin{(n_u)}{u}} &= \mathbf{ - K_{\xi} \int\int \xi - K_{\dot{\xi}} \int\int \dot{\xi} - K_v \int\int v}  \\
+					&= \mathbf{- K_{\xi} \int\int \xi - K_{\dot{\xi}} \int \xi - K_v x}
+				\end{aligned}
+			\end{equation}
+			
+			De esta forma
+			
+			\begin{equation}
+				\mathbf{\stackbin{(n_u)}{u} = \mathbf{- K_{\xi} \int\int (y - y_r) - K_{\dot{\xi}} \int (y - y_r) - K_v x}}
+			\end{equation}
+			
+			Ahora aplicando la transformada de Laplace en la ecuación anterior, podemos razonar de forma análoga  que en el caso anterior. Obteniendo
+						
+			\begin{equation}
+			s^{n_u} U(s) = - K_{\xi} \frac{1}{s^2}(Y(s) - Y_r(s)) - K_{\dot{\xi}} \frac{1}{s} (Y(s) - Y_r(s)) - K_v X(s)
+			\end{equation}
+			
+			Reagrupando de forma adecuada
+			
+			\begin{equation}
+			s^{n_u} U(s) = - \frac{K_{\xi}}{s^2}Y(s) + \frac{K_{\xi}}{s^2} Y_r(s) - \frac{K_{\dot{\xi}}}{s} Y(s) + \frac{K_{\dot{\xi}}}{s} Y_r(s)- K_v X(s)
+			\end{equation}
+			
+			\begin{equation}
+			s^{n_u} U(s) = - \frac{K_{\xi}}{s^2}Y(s) + \frac{K_{\xi}}{s^2} Y_r(s) - \frac{K_{\dot{\xi}}}{s} Y(s) + \frac{K_{\dot{\xi}}}{s} Y_r(s) - \left[ \overline{R}(s) Y(s) + \overline{A}(s) U(s)\right]
+			\end{equation}
+
+			Finalmente
+			
+			\begin{equation}
+			\underbrace{\left[\overline{A}(s) + s^{n_u}\right]}_{A(s)} U(s) = \underbrace{\left[  \frac{K_{\xi}}{s^2} + \frac{K_{\dot{\xi}}}{s} \right]}_{L(s)}Y_r(s) - \underbrace{\left[\frac{K_{\xi}}{s^2} + \frac{K_{\dot{\xi}}}{s} +  \overline{R}(s)\right]}_{M(s)} Y(s)
+			\end{equation}
+
+			Donde
+			
+			\begin{equation}
+				\begin{gathered}
+				A(s) = \overline{A}(s) + s^{n_u} = a_0 + a_1 s + \dots + a_{n_u - 1} s^{n_u - 1} + s^{n_u} \\
+				L(s) = \frac{K_{\xi}}{s^2} + \frac{K_{\dot{\xi}}}{s} \\
+				M(s) = \frac{K_{\xi}}{s^2} + \frac{K_{\dot{\xi}}}{s} + m_0 + m_1 s + \dots + m_{n-2} s^{n-2} +m_{n-1} s^{n-1} 
+				\end{gathered}
+			\end{equation}
+			
+			Nuevamente se logró establecer una expresión cerrada que permite calcular los polinomios de los controladores de dos grados de libertad, a partir de una caracterización interna. Realicemos entonces el análisis en estado estacionario de la metodología propuesta.
+		
+		\section{Respuesta de Estado Estacionario}
+		
+			Veamos cómo se comporta el sistema en régimen estacionario, para esto se analizarán las metodologías propuestas tanto para el caso de entradas constantes, así como para referencias tipo rampa. Se probará en ambos casos que el método da seguimiento a estas entradas, logrando un error de estado estacionario nulo.			
+			
+			\subsection{Señal de Referencia Constante}
+				
+				Partamos de la hipótesis que se tiene como entrada de referencia una señal constante, esto es 
+				
+					\begin{equation}
+						y_r(t) = K 1(t)
+					\end{equation}
+
+				Si la planta es de tipo 1, es claro que cumple con seguimiento a entradas tipo escalón, por lo que se asumirá $N(0) \ne 0$ y $D(0) \ne 0$. Adicionalmente de la ecuación \eqref{2dof_controllers}, se tiene que los polinomios obtenidos por la metodología propuesta tienen la siguiente forma
+				
+				\begin{equation}\label{2dof_controllers_2}
+					\begin{gathered}
+					A(s) = \overline{L}(s) + s^{n_u} = a_0 + a_1 s + \dots + a_{n_u - 1} s^{n_u - 1} + s^{n_u} \\
+					L(s) = \frac{K_{\xi}}{s} \\
+					M(s) = \frac{K_{\xi}}{s} + m_0 + m_1 s + \dots + m_{n-2} s^{n-2} +m_{n-1} s^{n-1} 
+					\end{gathered}
+				\end{equation}
+			
+				Teniendo en cuenta que la función de transferencia a lazo cerrado del esquema de 2 grados de libertad, posee la siguiente estructura
+				
+				\begin{equation}
+					H(s) = \frac{Y(s)}{U(s)} =\frac{N(s)L(s)}{A(s)D(s) + M(s)N(s)}
+				\end{equation}
+				
+				Se hace uso del teorema del valor final, así se puede hallar la respuesta de estado estacionario.
+				
+				\begin{equation}
+					y_{ss}(t) = \lim_{t\to\infty} y(t) = \lim_{s\to0} s Y(s) = \lim_{s\to0} s H(s)Y_r(s)
+				\end{equation}
+				
+				De esta manera
+				
+				\begin{equation}
+					y_{ss}(t) = \lim_{s\to0} s \frac{N(s)L(s)}{A(s)D(s) + M(s)N(s)} \frac{K}{s} = \lim_{s\to0} \frac{K N(s)L(s)}{A(s)D(s) + M(s)N(s)}
+				\end{equation}
+				
+				Por otro lado, se puede reescribir $M(s)$ de la siguiente forma
+				
+				\begin{equation}
+					M(s) = \frac{K_{\xi} + m_0 s + m_1 s^2 + \dots + m_{n-2} s^{n-1} +m_{n-1} s^{n}}{s} 
+				\end{equation}
+				
+				Ahora podemos resolver el limite procediendo
+				
+				\begin{equation}
+					\begin{aligned}
+						y_{ss}(t) &= \lim_{s\to0} \frac{K N(s)L(s)}{A(s)D(s) + M(s)N(s)} \\
+						&= \lim_{s\to0} \frac{K N(s) K_{\xi}}{s\left( A(s)D(s) + \frac{K_{\xi} + m_0 s + m_1 s^2 + \dots + m_{n-2} s^{n-1} +m_{n-1} s^{n}}{s} N(s)\right)}
+					\end{aligned}
+				\end{equation} 
+				
+				\begin{equation}
+					\resizebox{.85 \textwidth}{!}{$
+					y_{ss}(t) = \lim_{s\to0} \frac{K N(s) K_{\xi}}{s A(s)D(s) + \left(K_{\xi} + m_0 s + m_1 s^2 + \dots + m_{n-2} s^{n-1} +m_{n-1} s^{n}\right) N(s)}
+					$}
+				\end{equation}
+				
+				Finalmente
+				
+				\begin{equation}
+					y_{ss}(t) = \frac{K N(0) K_{\xi}}{K_{\xi} N(0)} = K
+				\end{equation}
+				
+				
+				De esta forma se comprueba que la metodología propuesta permite un seguimiento fiel del sistema a entradas tipo constante.
+
+			\subsection{Señal de Referencia Tipo Rampa}
+			
+				En el caso de seguimiento a señales tipo rampa, recordemos que la señal de error se define como
+				
+				\begin{equation}\label{error_definition}
+					e (t) = y_r(t) - y(t)
+				\end{equation}
+				
+				y por ende el error de estado estacionario se determina 
+				
+				\begin{equation}
+					e_{ss} (t) = \lim_{t\to\infty} e(t)
+				\end{equation}
+				
+				Teniendo en cuenta la ecuación \eqref{error_definition} y propiedades inherentes al lazo de retroalimentación podemos obtener un expresión del error en el dominio de Laplace. Veamos que la transformada del error 
+				
+				\begin{equation}
+					\mathscr{L}\{e(t)\} = E(s) = Y_r(s) - Y(s) = Y_r(s) - Y_r(s)H(s)
+				\end{equation} 
+				
+				
+				\begin{equation}
+					E(s) = Y_r(s)(1 - H(s))
+				\end{equation}
+				
+				Aplicando el teorema del valor final nuevamente sobre la señal de error.
+				
+				\begin{equation}
+					e_{ss}(t) = \lim_{s\to0} sE(s) = \lim_{s\to0} sY_r(s)(1 - H(s))
+				\end{equation}
+				
+				Como se dijo anteriormente la señal de referencia es del tipo rampa, sin perdida de generalidad se asumirá dicha señal
+				
+				\begin{equation}
+					y_r(t) = t 1(t) \Rightarrow Y_r(s) = \frac{1}{s^2}
+				\end{equation}
+				
+				Así se procederá a resolver el limite anterior
+				
+				\begin{equation}
+					e_{ss}(t) = \lim_{s\to0} s \frac{1}{s^2} \left( 1 - \frac{N(s)L(s)}{A(s)D(s) + M(s)N(s)}  \right)
+				\end{equation}
+				
+				Teniendo en cuenta que las expresiones de los polinomios asociados a la configuración en 2 grados de libertad, correspondientes a la metodología cuando la referencia es una rampa.
+				
+			\begin{equation}
+				\begin{gathered}
+				A(s) = \overline{A}(s) + s^{n_u} = a_0 + a_1 s + \dots + a_{n_u - 1} s^{n_u - 1} + s^{n_u} \\
+				L(s) = \frac{K_{\xi}}{s^2} + \frac{K_{\dot{\xi}}}{s} = \frac{K_{\xi} + K_{\dot{\xi}}s}{s^2} \\
+				M(s) = \frac{K_{\xi}}{s^2} + \frac{K_{\dot{\xi}}}{s} + m_0 + m_1 s + \dots + m_{n-2} s^{n-2} +m_{n-1} s^{n-1} \\
+				M(s) = \frac{K_{\xi} + K_{\dot{\xi}}s + m_0s^2 + m_1 s^3 + \dots + m_{n-2} s^{n+1} +m_{n-1} s^{n+2}}{s^2}
+				\end{gathered}
+			\end{equation}
+			
+			Se obtiene
+			
+			\begin{equation}
+			\resizebox{.85 \textwidth}{!}{$
+				e_{ss}(t) = \lim_{s\to0} \frac{1}{s} \left( 1 -   \frac{N(s) \frac{K_{\xi} + K_{\dot{\xi}}s}{s^2}}{(\overline{A}(s) + s^{n_u})D(s) + N(s) ( \frac{K_{\xi} + K_{\dot{\xi}}s + m_0s^2 + m_1 s^3 + \dots + m_{n-2} s^{n+1} +m_{n-1} s^{n+2}}{s^2} )}\right)
+				$}
+			\end{equation}
+			
+			\begin{equation}
+			\resizebox{.85 \textwidth}{!}{$
+				e_{ss}(t) = \lim_{s\to0} \frac{1}{s} \left( 1 -   \frac{N(s) (K_{\xi} + K_{\dot{\xi}}s)}{s^2(\overline{A}(s) + s^{n_u})D(s) + N(s) ( K_{\xi} + K_{\dot{\xi}}s + m_0s^2 + m_1 s^3 + \dots + m_{n-2} s^{n+1} +m_{n-1} s^{n+2} )}\right)
+				$}
+			\end{equation}
+			
+			\begin{equation}
+			\resizebox{.85 \textwidth}{!}{$
+				e_{ss}(t) = \lim_{s\to0} \frac{1}{s} \left(   \frac{s^2(\overline{A}(s) + s^{n_u})D(s) + N(s) ( K_{\xi} + K_{\dot{\xi}}s + m_0s^2 + m_1 s^3 + \dots + m_{n-2} s^{n+1} +m_{n-1} s^{n+2} ) - N(s) (K_{\xi} + K_{\dot{\xi}}s) }{s^2(\overline{A}(s) + s^{n_u})D(s) + N(s) ( K_{\xi} + K_{\dot{\xi}}s + m_0s^2 + m_1 s^3 + \dots + m_{n-2} s^{n+1} +m_{n-1} s^{n+2} )}\right)
+			$}
+			\end{equation}
+			
+				\begin{equation}
+				\resizebox{.85 \textwidth}{!}{$
+					e_{ss}(t) = \lim_{s\to0} \frac{1}{s} \left(   \frac{s^2(\overline{A}(s) + s^{n_u})D(s) + N(s) ( m_0s^2 + m_1 s^3 + \dots + m_{n-2} s^{n+1} +m_{n-1} s^{n+2} ) + N(s) ( K_{\xi} + K_{\dot{\xi}}s ) - N(s) (K_{\xi} + K_{\dot{\xi}}s) }{s^2(\overline{A}(s) + s^{n_u})D(s) + N(s) ( K_{\xi} + K_{\dot{\xi}}s + m_0s^2 + m_1 s^3 + \dots + m_{n-2} s^{n+1} +m_{n-1} s^{n+2} )}\right)
+					$}
+				\end{equation}
+				
+				\begin{equation}
+				\resizebox{.85 \textwidth}{!}{$
+					e_{ss}(t) = \lim_{s\to0} \frac{1}{s} \left(   \frac{s^2(\overline{A}(s) + s^{n_u})D(s) + N(s) ( m_0s^2 + m_1 s^3 + \dots + m_{n-2} s^{n+1} +m_{n-1} s^{n+2} ) }{s^2(\overline{A}(s) + s^{n_u})D(s) + N(s) ( K_{\xi} + K_{\dot{\xi}}s + m_0s^2 + m_1 s^3 + \dots + m_{n-2} s^{n+1} +m_{n-1} s^{n+2} )}\right)
+					$}
+				\end{equation}
+	
+				Sacando factor común s
+				
+				\begin{equation}
+				\resizebox{.85 \textwidth}{!}{$
+					e_{ss}(t) = \lim_{s\to0} \frac{1}{s} \left(   \frac{s(s(\overline{A}(s) + s^{n_u})D(s) + N(s) ( m_0s + m_1 s^2 + \dots + m_{n-2} s^{n} +m_{n-1} s^{n+1} ) )}{s^2(\overline{A}(s) + s^{n_u})D(s) + N(s) ( K_{\xi} + K_{\dot{\xi}}s + m_0s^2 + m_1 s^3 + \dots + m_{n-2} s^{n+1} +m_{n-1} s^{n+2} )}\right)
+					$}
+				\end{equation}
+				
+				\begin{equation}
+				\resizebox{.85 \textwidth}{!}{$
+					e_{ss}(t) = \lim_{s\to0} \left(   \frac{s(\overline{A}(s) + s^{n_u})D(s) + N(s) ( m_0s + m_1 s^2 + \dots + m_{n-2} s^{n} +m_{n-1} s^{n+1} ) }{s^2(\overline{A}(s) + s^{n_u})D(s) + N(s) ( K_{\xi} + K_{\dot{\xi}}s + m_0s^2 + m_1 s^3 + \dots + m_{n-2} s^{n+1} +m_{n-1} s^{n+2} )}\right)
+					$}
+				\end{equation}
+				
+				Finalmente
+				
+				\begin{equation}
+					e_{ss}(t) = \lim_{s\to0} \frac{0}{0 + N(0) K_{\xi}} = 0
+				\end{equation}
+				
+				De esta manera se logro demostrar que el error de estado estacionario es 0 para entradas tipo rampa.
+			
+		\section{Algoritmo de Diseño}
+		
+		Habiendo establecido una metodología de diseño que cumple con los objetivos establecidos, más aún, da soluciones robustas al contar con el principio del modelo interno, se plantea el siguiente algoritmo que da solución al pro\-blema de diseño de controladores de 2 grados de libertad considerando LQR como método de optimización. 
+		
+		
+		
+		\begin{table}[h]
+			\centering
+			\caption{Algoritmo de Diseño de Controlador de Dos Grados de Libertad}
+			\label{alg_table}
+			\begin{tabular}{|c|c|}
+				\hline
+			\textbf{Entradas} & \begin{tabular}[c]{@{}c@{}}Sistema Descrito en Espacio de Estados o Función \\ de Transferencia, Matrices Q y R\end{tabular}                          \\ \hline
+				\textbf{Paso 1}   & \begin{tabular}[c]{@{}c@{}}Describir Sistema en Modelo Equivalente en variables  \\ de Estado del Controlador de Dos Grados de Libertad\end{tabular} \\ \hline
+				\textbf{Paso 2}   & 
+				\begin{tabular}[c]{@{}c@{}}Si se quiere seguimiento a Escalón,   \\ aplicar desarrollo expuesto en \ref{step_method}  \end{tabular} \\ \hline                                    
+				\textbf{Paso 3}   & 				\begin{tabular}[c]{@{}c@{}}Si se quiere seguimiento a Rampa,  \\ aplicar desarrollo expuesto en \ref{ramp_method}                   \end{tabular} \\ \hline
+			\end{tabular}
+		\end{table}
+		
+			
+		
+		
+	\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%		CHAPTER IV		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\chapter{Casos Prácticos de Estudio}
+		
+		Analicemos la aplicación de la metodología propuesta en plantas reales y que simulan procesos físicos encontrados en la industria. La intención de esta experimentación es probar la eficiencia del método ante problemas comunes en la ingeniería de control.
+		
+		Para esto serán analizados cuatro sistemas de características muy distintas. En todos los casos se realizará el análisis a lazo abierto, la aplicación de la metodología para entradas constantes y para entradas tipo rampa. Así mismo, se someterá a los sistemas a perturbaciones que traten de desviar la respuesta del sistema a lugares indeseados y se verificará la robustez del diseño de controladores bajo el esquema propuesto.
+
+	\section{Sistema de Tanques Acoplados}
+	
+	En la industria manufacturera, química y farmacéutica es común encontrar procesos en los cuales el control de nivel resulta de gran importancia. Ya sea para garantizar eficiencia y/o seguridad en los procesos. El control de nivel en sistemas de tanques es una de las aplicaciones comunes de la teoría de control.
+	
+	Según \cite{bravo}, entre los procesos industriales que el control de nivel juega un papel fundamental se puede enumerar los siguientes:
+	
+	\begin{itemize}
+		\item [\textbullet] Procesamiento de Alimentos, bebidas y lácteos.
+		\item [\textbullet] Tratamiento de afluentes.
+		\item [\textbullet] Plantas Nucleares de Energía Eléctrica.
+	\end{itemize}
+	
+	La caracterización de este tipo de sistemas recae en el estudio de los fluidos que estarán contenidos en los tanques, así como la propia configuración de los mismos. Muchas de las ecuaciones que modelan este tipo de plantas forman parte de estudios de mecánica de fluidos.
+	
+	En este apartado se estará analizando un sistema de tanque diseñado con fines académicos por la empresa Quanser Consulting, Inc. El mismo cuenta con una serie de variantes que serán tratadas a continuación.
+	
+	
+		
+		\subsection{Descripción Física de la Planta}
+		
+			El sistema de tanques acoplados desarrollado por la empresa Quanser Consulting, Inc está diseñado para realizar experimentaciones de diversos tipos a nivel académico, lo cual resulta de mucha utilidad en clases prácticas en los diversos cursos de control. Así mismo, dado su carácter académico puede ser ensamblado de diversas maneras con el fin de simular diversos escenarios comunes en la práctica industrial.
+		
+			\begin{figure}[h]
+				\begin{center}
+					\includegraphics[width=10cm,height=8cm,keepaspectratio]{quanser_taks}
+					\caption{Sistema de Tanques - Planta Física \label{fig:quanser_tank_system}}
+					\centering Fuente: Quanser Consulting, Inc y \cite{bravo}.
+				\end{center}
+			\end{figure}
+
+			\newpage
+			El manual del fabricante especifica 3 diferentes configuraciones por medio de las cuales los tanques pueden ser ensamblados:
+							
+			\begin{figure}[h]
+				\begin{center}
+					\includegraphics[width=12cm,height=8cm,keepaspectratio]{tanks_configuration}
+					\caption{Sistema de Tanques - Planta Física \label{fig:quanser_tank_system_configs}}
+					\centering Fuente: Quanser Consulting, Inc y \cite{bravo}.
+				\end{center}
+			\end{figure}
+
+			\newpage
+			
+			\begin{itemize}
+				\item[\textbullet] \textbf{Configuración \# 1:} En esta configuración la bomba alimenta al tanque \# 1. El objetivo de esta configuración es diseñar un controlador que regule el nivel sobre el tanque \# 1. El tanque \# 2 no es usado en esta configuración. Sistema SISO.
+				
+				\item[\textbullet] \textbf{Configuración \# 2:} Sistema acoplado, la bomba alimenta al tanque \# 1 y este a su vez mediante un orificio, alimenta al tanque \# 2. Se desea diseñar el control que regule el nivel del tanque \# 2. Sistema SISO.
+				
+				\item[\textbullet] \textbf{Configuración \# 3:} Sistema acoplado, la bomba alimenta al tanque \# 1 y este a su vez mediante un orificio, alimenta al tanque \# 2. Por otro lado el tanque \# 2, puede ser alimentado mediante la misma bomba. Se desea controlar el nivel del tanque \# 2.
+			\end{itemize}
+			
+			En este estudio solo se analizó la configuración \# 3, teniendo la salvedad que la alimentación al tanque \# 2, se usa para simular perturbaciones en el sistema. 
+			
+		\subsection{Modelo Matemático}
+		
+		Veamos cómo se puede modelar la planta teniendo en cuenta que se utilizara la configuración \#3. Para esto se definen las variables que nos servirán de apoyo en esta tarea.
+		
+		\begin{table}[h]
+			\centering
+			\caption{Variables Físicas de la Planta - 	Tanques Acoplados}
+			\label{system_variables_tank_system}
+			\begin{tabular}{|l|c|}
+				\hline
+				\multicolumn{1}{|c|}{Descripción}   & Variable \\ \hline
+					Área Transversal Interna - Tanque \# 1          & $A_1$     \\ \hline
+				Área Transversal Interna - Tanque \# 2          & $A_2$     \\ \hline
+				Área Transversal Interna - Orificio Tanque \# 1 & $a_1$     \\ \hline
+				Área Transversal Interna - Orificio Tanque \# 2 & $a_2$     \\ \hline
+				Nivel - Tanque \# 1                 & $L_1$     \\ \hline
+				Nivel - Tanque \# 2                 & $L_2$     \\ \hline
+				Voltaje Aplicado a la Bomba         & $V_p$     \\ \hline
+				Constante de Flujo de la Bomba         & $K_m$     \\ \hline
+			\end{tabular}
+		\end{table}
+
+		\newpage
+		Analicemos el primer tanque y su dinámica, en principio el caudal de entrada en el mismo está definido por el voltaje aplicado a la bomba y la constante propia de la misma. De esta forma el flujo de entrada queda definido como sigue
+		
+		\begin{equation}
+			F_{in_1} = K_m V_p \quad [{cm}^3/s]
+		\end{equation}
+		
+		Así mismo, la velocidad mediante la cual saldría el fluido en este tanque queda definida por la ecuación de Bernoulli, dejando 
+		
+		\begin{equation}
+			V_{o_1} = \sqrt{2gL_1} \quad [cm/s]
+		\end{equation}
+		
+		De forma que
+		
+		\begin{equation}
+			F_{out_1} = a_1 \sqrt{2gL_1} \quad [{cm}^3/s]
+		\end{equation}
+		
+		Finalmente, la variación de nivel con respecto al tiempo queda expresada por 
+		
+		\begin{equation}
+			\dot{L_1} = \frac{F_{in_1} - F_{out_1}}{A_1} = \frac{K_m}{A_1}V_p - \frac{a_1}{A_1} \sqrt{2gL_1} \quad [cm/s]
+		\end{equation}
+		
+		De forma análoga se puede realizar un análisis para el segundo tanque. Resultando en las siguientes ecuaciones
+		
+		\begin{equation}
+			\begin{gathered}
+				F_{in_2} = F_{out_1} = a_1 \sqrt{2gL_1}  \quad [{cm}^3/s]\\
+				F_{out_2} = a_2 \sqrt{2gL_2} \quad [{cm}^3/s] \\
+				\dot{L_2} = \frac{F_{in_2} - F_{out_2}}{A_2} = \frac{a_1}{A_2} \sqrt{2gL_1} - \frac{a_2}{A_2} \sqrt{2gL_2} \quad [cm/s]
+			\end{gathered}
+		\end{equation}
+		
+		Así el sistema queda descrito por las siguientes ecuaciones de estados.
+		
+		 \begin{equation}\label{state equation_tank_system}
+			 \resizebox{.85 \textwidth}{!}{$
+				 	\begin{bmatrix}
+				 	\dot{L_1} \\ 
+				 	\dot{L_2}	
+				 	\end{bmatrix} = \begin{bmatrix}
+				 	\frac{-a_1}{A_1} \sqrt{2gL_1}  & 0\\
+				 	\frac{a_1}{A_2} \sqrt{2gL_1}  & \frac{-a_2}{A_2} \sqrt{2gL_2}
+				 	\end{bmatrix} \begin{bmatrix}
+				 	L_1 \\
+				 	L_2
+				 	\end{bmatrix} + \begin{bmatrix}
+				 	\frac{K_m}{A_1}\\
+				 	0
+				 	\end{bmatrix} u
+				 	$} 
+		 \end{equation}
+				
+				\begin{equation}
+					 y = \begin{bmatrix}
+					 0 & 1
+					 \end{bmatrix} \begin{bmatrix}
+					 L_1 \\
+					 L_2
+					 \end{bmatrix}
+				\end{equation}				 
+		
+		A simple vista se aprecia la no linealidad que presenta este sistema, como se ha dicho anteriormente, el propósito de este estudio radica en sistemas lineales e invariantes en el tiempo. Dado esto, se debe proceder a linealizar el sistema usando recursos explicados en los apéndices a este trabajo investigativo. Para esto supongamos que el sistema opera de forma nominal en $L_1 = \overline{L_1}$ y $L_2 = \overline{L_2}$.
+		
+		Así las nuevas matrices que describen el sistema quedan expresadas en función de las derivadas parciales siguientes
+		
+		\begin{equation}
+			\overline{A} = \begin{bmatrix}
+			\frac{\partial \dot{L_1}}{\partial L_1} \big|_{L_1 = \overline{L_1},L_2=\overline{L_2}}  & \frac{\partial \dot{L_1}}{\partial L_2} \big|_{L_1 = \overline{L_1},L_2=\overline{L_2}} \\
+			\frac{\partial \dot{L_2}}{\partial L_1} \big|_{L_1 = \overline{L_1},L_2=\overline{L_2}}  & \frac{\partial \dot{L_2}}{\partial L_2} \big|_{L_1 = \overline{L_1},L_2=\overline{L_2}}
+			\end{bmatrix} 
+		\end{equation}
+		
+		\begin{equation}
+			\overline{B} = \begin{bmatrix}
+			\frac{\partial \dot{L_1}}{\partial V_p} \big|_{L_1 = \overline{L_1},L_2=\overline{L_2}} \\
+			\frac{\partial \dot{L_2}}{\partial V_p} \big|_{L_1 = \overline{L_1},L_2=\overline{L_2}}
+			\end{bmatrix} 
+		\end{equation}
+		
+		De esta forma el sistema linealizado queda definido por las siguientes ecuaciones de estado
+		
+		 \begin{equation}\label{state equation_tank_system_lineal}
+		 \resizebox{.85 \textwidth}{!}{$
+			 	\begin{bmatrix}
+			 	\dot{L_1}^* \\ 
+			 	\dot{L_2}^*	
+			 	\end{bmatrix} = \begin{bmatrix}
+			 	\frac{-a_1}{A_1} \sqrt{\frac{g}{2\overline{L_1}}}  & 0\\
+			 	\frac{-a_1}{A_2} \sqrt{\frac{g}{2\overline{L_1}}}  & \frac{-a_1}{A_2} \sqrt{\frac{g}{2\overline{L_2}}}
+			 	\end{bmatrix} \begin{bmatrix}
+			 	L_1^* \\
+			 	L_2^*
+			 	\end{bmatrix} + \begin{bmatrix}
+			 	\frac{K_m}{A_1}\\
+			 	0
+			 	\end{bmatrix} u^*
+			 	$} 
+		 \end{equation}
+		
+		Teniendo esto, podemos puntualizar las características físicas de la planta, recordando que las mismas fueron extraídas del manual del fabricante.
+		
+		\begin{table}[h]
+			\centering
+			\caption{Parámetros Físicos de la Planta - Tanques Acoplados}
+			\label{physical_parameters_tanks}
+			\begin{tabular}{|l|c|c|c|}
+				\hline
+				\multicolumn{1}{|c|}{Variable}                  & Símbolo & Valor   & Unidades      \\ \hline
+				Constante de Flujo - Bomba                      & $K_m$   & 4.60    & ${cm}^3 / sV$ \\ \hline
+				Área Transversal Interna - Tanque \# 1          & $A_1$   & 15.5179 & $cm^2$        \\ \hline
+				Área Transversal Interna - Tanque \# 2          & $A_2$   & 15.5179 & $cm^2$        \\ \hline
+				Área Transversal Interna - Orificio Tanque \# 1 & $a_1$   & 0.47625 & $cm$          \\ \hline
+				Área Transversal Interna - Orificio Tanque \# 2 & $a_2$  & 0.47625 & $cm$          \\ \hline
+				Altura - Tanque \# 1                            &         & 30.00   & $cm$          \\ \hline
+				Altura - Tanque \# 2                            &         & 30.00   & $cm$          \\ \hline
+				Voltaje Máximo de Operación de la Bomba         &         & 22      & $V$           \\ \hline
+				Flujo Máximo - Bomba                            &         & 100     & $cm^3$        \\ \hline
+				Aceleración de Gravedad                         & $g$     & 987.10  & $cm/s^2$      \\ \hline
+			\end{tabular}
+		\end{table}
+		
+		
+		Finalmente, suponiendo que se quiere el sistema operando en los puntos $L_1 = 15$ $cm$, $L_2 = 15$ $cm$. El sistema queda expresado de la siguiente forma en espacio de estados y función de transferencia.
+		
+		 \begin{equation}\label{state equation_tank_system_ss}
+		 \resizebox{.85 \textwidth}{!}{$
+			 	\begin{bmatrix}
+			 	\dot{L_1}^* \\ 
+			 	\dot{L_2}^*	
+			 	\end{bmatrix} = \begin{bmatrix}
+			 	-0.06584859  & 0\\
+			 	0.06584859  & -0.06584859
+			 	\end{bmatrix} \begin{bmatrix}
+			 	L_1^* \\
+			 	L_2^*
+			 	\end{bmatrix} + \begin{bmatrix}
+			 	0.29643\\
+			 	0
+			 	\end{bmatrix} u^*
+			 	$} 
+				\\			 
+		 \end{equation}
+		 
+		 \begin{equation}
+			y = \begin{bmatrix}
+			0 & 1
+			\end{bmatrix} \begin{bmatrix}
+			L_1^* \\
+			L_2^*
+			\end{bmatrix}
+		 \end{equation}
+		
+		\begin{equation}
+			\frac{L_2(s)}{V_p(s)} = \frac{0.0169}{s^2+0.1312s+0.0043}
+		\end{equation}
+		
+		Vale la pena mencionar que todas las simulaciones realizadas para va\-lidar la metodología propuesta, fueron realizadas haciendo uso del paquete Simulink{\textregistered}, parte de la herramienta de cálculo Matlab{\textregistered}.
+				
+		\subsection{Análisis a Lazo Abierto}
+			
+			En este análisis serán tomadas características generales del sistema, como la respuesta al escalón, respuesta a la rampa. Diagramas como Bode y Nyquist, no serán analizados al no ser parte de este estudio la respuesta en frecuencia del sistema.
+			
+			\subsubsection{Respuesta al Escalón Unitario}
+			
+				Como primera aproximación al sistema, se procederá a someter al mismo a entradas tipo constantes, según se aprecia en el siguiente diagrama de bloques.
+			
+				\begin{figure}[h]
+					\begin{center}
+						\includegraphics[width=14cm,height=8cm,keepaspectratio]{tanks_open_loop_system}
+						\caption{Diagrama de Bloques - Respuesta al Escalón \\ Sistema de Tanques - Lazo Abierto\label{tanks_open_loop_system}}
+						\centering Fuente: Elaboración Propia
+					\end{center}
+				\end{figure}
+				
+				El resultado de la simulación se muestra a continuación
+			
+				\begin{figure}[h]
+					\begin{center}
+						\includegraphics[width=14cm,height=8cm,keepaspectratio]{tanks_open_loop_system_sim}
+						\caption{Simulación - Respuesta al Escalón \\ Sistema de Tanques - Lazo Abierto\label{tanks_open_loop_system_sim}}
+						\centering Fuente: Elaboración Propia
+					\end{center}
+				\end{figure}
+				
+				\newpage
+				Como se aprecia, de forma natural el sistema presenta estabilidad ante entradas constantes. Esto es consecuencia directa de la localización de los polos de la función de transferencia, los cuales se posicionan en el plano complejo en $s = -0.0674$ y $s = -0.0638$. Por otro lado, el sistema presenta un error de estado estacionario pronunciado, a su vez que el mismo posee una inercia importante, lo que se traduce en un tiempo de estabilización largo.
+				
+				Pasemos a analizar la respuesta ante entradas tipo rampa.
+				
+			\subsubsection{Respuesta a la Rampa}
+				
+				De igual forma se paso a modelar el sistema, mediante el siguiente diagrama de bloques
+				
+				\begin{figure}[h]
+					\begin{center}
+						\includegraphics[width=14cm,height=8cm,keepaspectratio]{tanks_ramp_blocks}
+						\caption{Diagrama de Bloques - Respuesta a la Rampa \\ Sistema de Tanques - Lazo Abierto\label{tanks_open_loop_system_block_ramp}}
+						\centering Fuente: Elaboración Propia
+					\end{center}
+				\end{figure}
+				
+				
+				\newpage
+				Así se obtuvo la siguiente respuesta del sistema
+				
+				\begin{figure}[H]
+					\begin{center}
+						\includegraphics[width=14cm,height=8cm,clip,keepaspectratio]{tanks_open_loop_system_sim_ramp}
+						\caption{Simulación - Respuesta a la Rampa \\ Sistema de Tanques - Lazo Abierto \label{tanks_open_loop_system_sim_ramp}}
+						\centering Fuente: Elaboración Propia
+					\end{center}
+				\end{figure}
+				
+				\newpage
+				El sistema ante entradas no acotadas debe responder de la misma forma, como se aprecia en la gráfica. Aunque la respuesta del sistema es la deseada, posee nuevamente un error de estado estacionario importante. 
+				
+				
+				
+							
+			\subsection{Diseño de Controladores}
+			
+			Como paso inicial se propone describir el sistema bajo el modelo equiva\-lente en variables de estado del controlador de dos grados de libertad, para esto obtengamos la ecuación diferencial que modela el sistema, partiendo de la función de transferencia
+			
+			\begin{equation}
+				H(s) = \frac{Y(s)}{U(s)} = \frac{0.0169}{s^2 + 0.1312 s + 0.0043}
+			\end{equation}
+			
+			Se puede deducir que el sistema queda representado por la siguiente ecuación diferencial ordinaria
+			
+			\begin{equation}
+				\stackbin{..}{y} + 0.1312 \stackbin{.}{y} + 0.0043 y = 0.0169 u
+			\end{equation}
+			
+			De esta forma el modelo equivalente queda expuesto por las siguientes ecuaciones de estado
+			
+			\begin{equation}\label{ss_equations}
+				\begin{gathered}
+					\mathbf{\dot{x} = Ax + B \stackbin{(n_u)}{u}} \\
+					\mathbf{y = Cx}
+				\end{gathered}
+			\end{equation}
+			
+			\begin{equation}
+				\begin{bmatrix}
+				\stackbin{.}{y} \\
+				\stackbin{..}{y} \\
+				\stackbin{.}{u}  \\
+				\stackbin{..}{u} 
+				\end{bmatrix} = \begin{bmatrix}
+				0 & 1 & 0 & 0 \\
+				-0.0043 & -0.1312 & 0.0169 & 0 \\
+				0 & 0 & 0 & 1 \\
+				0 & 0 & 0 & 0
+				\end{bmatrix} \begin{bmatrix}
+				y \\
+				\stackbin{.}{y} \\
+				u \\
+				\stackbin{.}{u}
+				\end{bmatrix} + \begin{bmatrix}
+					0 \\
+					0 \\
+					0 \\ 
+					1
+				\end{bmatrix} \stackbin{..}{u}
+			\end{equation}
+			
+			\begin{equation}
+				y = \begin{bmatrix}
+				1 & 0 & 0 & 0
+				\end{bmatrix} \begin{bmatrix}
+				y \\
+				\stackbin{.}{y} \\
+				u \\
+				\stackbin{.}{u}
+				\end{bmatrix}
+			\end{equation}
+			
+			Habiendo obtenido el modelo equivalente, se procede con lo expuesto en \ref	{step_method} y \ref{ramp_method}
+			
+			\subsubsection{Entradas Constantes}
+			
+				Veamos como se propone la metodología cuando se tiene que el sistema es sometido a entradas constantes. Para esto se debe reescribir un nuevo sistema auxiliar, definiendo
+				
+				\begin{equation}
+					\xi = y - y_r				
+				\end{equation}
+				
+				Como $y_r$ es constante se tiene que 
+				
+				\begin{equation}
+					\dot{\xi} = \dot{y} = \mathbf{C\dot{x}} 
+				\end{equation}
+				
+				A su vez definiendo 
+				
+				\begin{equation}
+					v = \mathbf{\dot{x}}
+				\end{equation}
+				
+				y derivando a ambos lados de  \ref{ss_equations} obtenemos las siguientes ecuaciones
+				
+				\begin{equation}
+					\begin{gathered}
+						\dot{\xi} = \mathbf{C} v \\
+						\dot{v} = \mathbf{A}v + \stackbin{(n_u + 1)}{u}
+					\end{gathered}
+				\end{equation}
+				
+				Así el sistema auxiliar queda descrito por
+				
+					\begin{equation}
+					\underbrace{\begin{bmatrix}
+						\mathbf{\dot{\xi}} \\ 
+						\dot{v}
+						\end{bmatrix}}_{\mathbf{\dot{z}}} = \underbrace{\begin{bmatrix}
+						\mathbf{0} & \mathbf{C} \\
+						\mathbf{0} & \mathbf{A}
+						\end{bmatrix}}_{\mathbf{\bar{A}}} \underbrace{\begin{bmatrix}
+						\mathbf{\xi} \\
+						v
+						\end{bmatrix}}_{\mathbf{z}} + \underbrace{\begin{bmatrix}
+						\mathbf{0} \\
+						\mathbf{B}
+						\end{bmatrix}}_{\mathbf{\bar{B}}} \mathbf{u_0}
+					\end{equation}
+					
+					Donde 
+					
+					\begin{equation}
+							\mathbf{\bar{A}} = \begin{bmatrix}
+								0 & 1 & 0& 0 & 0 \\
+								0 & 0 & 1 & 0 & 0 \\
+								0 & -0.0043 & -0.1312 & 0.0169 & 0 \\
+								0 & 0 & 0 & 0 & 1 \\ 
+								0 & 0 & 0 & 0 & 0
+							\end{bmatrix} 
+					\end{equation}
+					
+					\begin{equation}
+						\mathbf{\bar{B}} = \begin{bmatrix}
+						0 \\
+						0 \\ 
+						0 \\
+						0 \\ 
+						1
+						\end{bmatrix}
+					\end{equation}
+					
+					
+					Teniendo en cuenta el índice de desempeño
+					
+					 \begin{equation}
+						 \mathbf{J = \int_0^\infty [z^TQz + R u_0^2] dt}
+					 \end{equation}
+					 
+					 
+					Donde por motivos de comodidad y dado que este estudio no contempla la escogencia de las matrices $\mathbf{Q}$ y $\mathbf{R}$, 
+					
+					\begin{equation}
+						\mathbf{Q} = \begin{bmatrix}
+						1 & 0 & 0 & 0 & 0 \\
+						0 & 1 & 0 & 0 & 0 \\
+						0 & 0 & 1 & 0 & 0 \\
+						0 & 0 & 0 & 1 & 0 \\
+						0 & 0 & 0 & 0 & 1
+						\end{bmatrix} \qquad
+						\mathbf{R} = \begin{bmatrix}
+						1
+						\end{bmatrix}
+					\end{equation}
+					
+					De esta forma se obtiene la matriz de ganancia 
+					
+					\begin{equation}
+						\mathbf{K} = \begin{bmatrix}
+							1 & 9.1668 & 31.4918 & 1.7584 & 2.1253						
+						\end{bmatrix}
+					\end{equation}
+					
+					Así podemos obtener los controladores del esquema de dos grado de li\-bertad, los mismos poseen las siguientes funciones de transferencia
+					
+					\begin{equation}
+						\begin{gathered}
+							A(s) = s^2 + 2.1253 s + 1.758 \\
+							L(s) = \frac{1}{s} \\
+							M(s) = \frac{1}{s} (31.4918 s^2 + 9.1668 s + 1)
+						\end{gathered}
+					\end{equation}
+					
+					\subsubsection{Respuesta al Escalón Unitario y a Perturbaciones}
+					
+					Habiendo obtenido los controladores se analizarán los resultados obtenidos a partir de la metodología propuesta. Para esto se tiene el siguiente diagrama de bloques
+					
+					\begin{figure}[h]
+						\begin{center}
+							\includegraphics[width=14cm,height=8cm,keepaspectratio]{tanks_ramp_sim_step_method}
+							\caption{Diagrama de Bloques - Respuesta al Escalón \\ Sistema de Tanques - Lazo Cerrado \label{tanks_system_sim_step_method}}
+							\centering Fuente: Elaboración Propia
+						\end{center}
+					\end{figure}
+					
+					Como se aprecia en la figura, existe dentro del lazo de retroalimentación otra entrada de tipo constante, esto con el fin de simular una perturbación del tipo escalón, la misma aparece a los 250 segundos de haber empezado la misma. La idea es apreciar que el sistema y la metodología propuesta es robusta, es decir, la misma tiene la capacidad de rechazar perturbaciones. Al simular se obtuvo la siguiente respuesta.
+					
+					\newpage
+					
+					\begin{figure}[h]
+						\begin{center}
+							\includegraphics[width=14cm,height=8cm,keepaspectratio]{tanks_ramp_sim_step_method_response}
+							\caption{Simulación - Respuesta al Escalón \\ Sistema de Tanques - Lazo Cerrado \label{tanks_system_sim_step_method_response}}
+							\centering Fuente: Elaboración Propia
+						\end{center}
+					\end{figure}
+					
+					De la figura se tiene, que se mejoró de forma importante la respuesta de estado estacionario, logrando un tiempo de estabilización bastante menor al obtenido a lazo abierto. Esto es logrado por la intervención en la metodología de diseño de la técnica del Controlado Óptimo Cuadrático. Además, se logró obtener un error de estado estacionario nulo. Así mismo, la ser expuesto el sistema a la perturbación, la misma es rechazada en relativo corto tiempo, volviendo el sistema al estado deseado inicial.
+					
+					
+					\subsubsection{Entradas Tipo Rampa}
+					
+						De la misma manera se procederá al diseño del controlador cuando el sistema sera expuesto a entradas tipo rampa. Para esto definimos
+						
+						\begin{equation}
+							\xi = y - y_r
+						\end{equation}
+						
+						Así
+						
+						\begin{equation}
+							\stackbin{..}{\xi} = \stackbin{..}{y} = \mathbf{C \stackbin{..}{x}} 
+						\end{equation}
+						
+						y
+						
+						\begin{equation}
+							\mathbf{\stackbin{...}{x} = A \stackbin{..}{x} + B \stackbin{(n_u + 2)}{u}}
+						\end{equation}
+						
+						Haciendo 
+						
+						\begin{equation}
+							v = \mathbf{\stackbin{..}{x}}
+						\end{equation}
+						
+						Se puede definir el modelo en espacio de estado auxiliar como sigue
+						
+						\begin{equation}
+						\underbrace{\begin{bmatrix}
+							\mathbf{\stackbin{.}{\xi}} \\ 
+							\mathbf{\stackbin{..}{\xi}}\\
+							\mathbf{\stackbin{.}{v}}
+							\end{bmatrix}}_{\mathbf{\dot{z}}} = \underbrace{\begin{bmatrix}
+							\mathbf{0} & \mathbf{1} & \mathbf{0} \\
+							\mathbf{0} & \mathbf{0} & \mathbf{C} \\
+							\mathbf{0} & \mathbf{0} & \mathbf{A}
+							\end{bmatrix}}_{\mathbf{\bar{A}}} \underbrace{\begin{bmatrix}
+							\mathbf{\xi} \\
+							\mathbf{\stackbin{.}{\xi}} \\
+							\mathbf{v}
+							\end{bmatrix}}_{\mathbf{z}} + \underbrace{\begin{bmatrix}
+							\mathbf{0} \\
+							\mathbf{0} \\
+							\mathbf{B}
+							\end{bmatrix}}_{\mathbf{\bar{B}}} \mathbf{u_0}
+						\end{equation}
+						
+						
+						Donde en este caso
+						
+						\begin{equation}
+							\mathbf{\bar{A}} = \begin{bmatrix}
+							0 & 1 & 0 & 0 & 0 & 0 \\
+							0 & 0 & 1 & 0 & 0 & 0 \\
+							0 & 0 & 0 & 1 & 0 & 0 \\
+							0 & 0 & -0.0043 & -0.1312 & 0.0169 & 0 \\
+							0 & 0 & 0 & 0 & 0 & 1 \\
+							0 & 0 & 0 & 0 & 0 & 0
+							\end{bmatrix}
+						\end{equation}
+						
+						\begin{equation}
+							\mathbf{\bar{B}} = \begin{bmatrix}
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							1
+							\end{bmatrix}
+						\end{equation}
+						
+						Aplicando el mismo índice de desempeño que en caso anterior, y tomando las mismas matrices $\mathbf{Q}$ y $\mathbf{R}$. Se calcula la matriz de ganancias $\mathbf{K}$.
+						
+						\begin{equation}
+							\mathbf{K} = \begin{bmatrix}
+								1 & 9.0052 & 39.3457 & 87.2798 & 2.7536 & 2.5509
+							\end{bmatrix}
+						\end{equation}
+						
+						Así los controladores quedan definidos por los polinomios
+						
+						\begin{equation}
+							\begin{gathered}
+								A(s) = s^2 + 2.5509 s + 2.7536 \\
+								L(s) = \frac{9.0052 s + 1}{s^2}\\
+								M(s) = \frac{87.2798 s^3 + 39.3457 s^2 + 9.0052 s + 1}{s^2}
+							\end{gathered}
+						\end{equation}
+						
+				\subsubsection{Respuesta a la Rampa y a Perturbaciones}
+				
+				Igualmente que en en caso anteriormente estudiado se realizará el análisis del sistema a lazo cerrado, para esto se plantea el siguiente esquema de control
+
+				\begin{figure}[h]
+					\begin{center}
+						\includegraphics[width=14cm,height=8cm,keepaspectratio]{tanks_ramp_sim_ramp_method}
+						\caption{Diagrama de Bloques - Respuesta a la Rampa \\ Sistema de Tanques - Lazo Cerrado \label{tanks_system_sim_ramp_method}}
+						\centering Fuente: Elaboración Propia
+					\end{center}				
+				\end{figure}
+				
+				Al igual que en el diseño del controlador anterior, este también será sometido a perturbación dentro del lazo de control, dicha perturbación se hace presente a los 100 segundo de haber empezado la simulación, adicionando que la misma es de la naturaleza análoga a la referencia del sistema, es decir, el sistema es sometido a una entrada del tipo rampa y la perturbación posee esas mismas características. La experimentación dio la siguiente respuesta.
+				
+
+				\begin{figure}[h]
+					\begin{center}
+						\includegraphics[width=14cm,height=8cm,keepaspectratio]{tanks_ramp_sim_ramp_method_response_ramp_ramp}
+						\caption{Simulación - Respuesta a la Rampa \\ Sistema de Tanques - Lazo Cerrado \label{tanks_system_sim_ramp_response}}
+						\centering Fuente: Elaboración Propia
+					\end{center}				
+				\end{figure}
+
+
+				Como se aprecia en la figura, la respuesta del sistema es satisfactoria a nivel de seguimiento, ya que no existe error de estado estacionario. Así mismo, la perturbación es rechazada en muy corto tiempo, mostrando la robustez de la metodología propuesta.
+						
+	\section{Articulación Flexible}
+		
+		La segunda aplicación industrial que fue considerada para este estudio, es una que toca de forma directa a la robótica, como lo es una articulación flexible, la misma de igual manera que en caso del sistema de tanques, es una herramienta académica desarrollada por la empresa Quanser.	
+		
+		\subsection{Descripción Física de la Planta}
+
+			Veamos como es la planta físicamente mediante la siguiente figura.
+			
+			\begin{figure}[h]
+				\begin{center}
+					\includegraphics[width=15cm,height=8cm,keepaspectratio]{flex_joint-good}
+					\caption{Sistema de Articulación Flexible\label{flexible_joint_physical}}
+					\centering Fuente: Quanser
+				\end{center}
+			\end{figure}
+
+
+			Una vista superior de la planta permite tener una mejor idea de lo que se quiere modelar.
+			
+			\begin{figure}[h]
+				\begin{center}
+					\includegraphics[width=12cm,height=6cm,keepaspectratio]{flex_joint_schema}
+					\caption{Esquema - Articulación Flexible\label{flex_joint_schema}}
+					\centering Fuente: Quanser
+				\end{center}
+			\end{figure}		
+			
+			Lo que se pretende en este sistema es controlar a partir del voltaje que se le inyecta a un motor de corriente de directa la apertura angular de este dispositivo. Dicho motor se encuentra localizado debajo de la estructura y mueve el brazo metálico, el cual esta a su vez sujeto a unos resortes que impiden que el movimiento sea libre.
+			
+
+		\subsection{Modelo Matemático}
+			
+			Teniendo en cuenta los trabajos de \citeA{bravo}, \citeA{sendrescu}, \citeA{lopez}, se establece un modelo aproximado para este sistema, el mismo queda expresado mediante las siguientes ecuaciones de estados
+			
+				\begin{equation}\label{state equation_flex_joint}
+					\resizebox{.85 \textwidth}{!}{$
+						\dot{x}(t) = \begin{bmatrix}
+						0 & 0 & 1 & 0 \\
+						0 & 0 & 0 & 1 \\ 
+						0 & \frac{K_{stiff}}{J_{eq}} & -\frac{\left( B_{eq} + \frac{\eta K_m^2K_g^2}{R_a} \right)}{J_{eq}} & 0 \\
+						0 & -\frac{K_{stiff} \left( J_{arm} + J_{eq} \right)}{J_{arm} J_{eq}} & \frac{\left( B_{eq} + \frac{\eta K_m^2K_g^2}{R_a} \right)}{J_{eq}} & 0
+						\end{bmatrix} \begin{bmatrix}
+						\theta(t) \\
+						\alpha(t) \\
+						\dot{\theta}(t)\\
+						\dot{\alpha}(t)
+						\end{bmatrix} + \begin{bmatrix}
+						0 \\
+						0 \\
+						\frac{\eta K_m K_g}{R_a J_{eq}}\\
+						- \frac{\eta K_m K_g}{R_a J_{eq}} 
+						\end{bmatrix} V_{in}(t)
+						$} 
+					\end{equation}
+					
+					\begin{equation}\label{state equation_flex_joint_output}
+					y = \begin{bmatrix}
+					1 & 1 & 0 & 0
+					\end{bmatrix} \begin{bmatrix}
+					\theta(t) \\
+					\alpha(t) \\
+					\dot{\theta}(t)\\
+					\dot{\alpha}(t)
+					\end{bmatrix}
+				\end{equation}		
+				
+			Donde la salida del sistema está dada por $\beta(t) = \theta(t) + \alpha(t)$ y la entrada del mismo es el voltaje aplicado al motor de corriente directa $V_{in}(t)$. Tomando en cuenta los datos expuestos por \citeA{bravo}, de la articulación flexible que forma parte del laboratorio de Control de la Universidad Simón Bolívar, que se describen en la siguiente tabla.
+			
+				\begin{table}[h]
+					\centering
+					\caption{Parámetros Físicos de la Planta - Articulación Flexible}
+					\label{physical_parameters_flex_joint}
+					\begin{tabular}{|l|c|c|c|}
+						\hline
+						Variable                                                              & Símbolo       & Valor   & Unidades     \\ \hline
+						Dimensiones                                                                    &              & 10x8x5  & $cms$        \\ \hline
+						Eficiencia del Motor                                                          & $\eta$        & 0.7395  & $Adimensional$ \\ \hline
+						Momento de Inercia                                                            & $J_{eq}$      & 0.0038  & $kg m^2$     \\ \hline
+						Carga Armadura                                                                & $J_{arm}$     & 0.011   & $kg m^2$     \\ \hline
+						Constante de Stiff                                                            & $K_{stiff}$   & 1.3389  & $Adimensional$ \\ \hline
+						\begin{tabular}[c]{@{}l@{}}Contaste de Amortiguamiento\\ Viscoso\end{tabular} & $B_{eq}$      & 0.04    & $Nms/rad$    \\ \hline
+						Relación de Caja de Cambios                                                   & $K_g$        & 70      & $Adimensional$ \\ \hline
+						Constante Back-emf                                                            & $K_m$        & 0.00768 & $Vs/rad$     \\ \hline
+						Resistencia de Armadura                                                       & $R_a$        & 2.6     & $\omega$     \\ \hline
+					\end{tabular}
+				\end{table}
+			
+			Se puede dar una descripción aproximada del sistema, sustituyendo los valores de la tabla anterior en las ecuaciones \eqref{state equation_flex_joint} y \eqref{state equation_flex_joint_output}, se obtiene las ecuaciones de estado que modelan a esta planta.
+			
+				\begin{equation}\label{state equation_flex_joint_with_values}
+				\resizebox{.85 \textwidth}{!}{$
+					\dot{x}(t) = \begin{bmatrix}[cccc]
+					0 & \phantom{-}0 & \phantom{-}1 & 0 \\
+					0 & \phantom{-}0 & \phantom{-}0 & 1 \\ 
+					0 & \phantom{-}615.50 & -32.16 & 0 \\
+					0 & -828.13 & \phantom{-}32.16 & 0
+					\end{bmatrix} \begin{bmatrix}
+					\theta(t) \\
+					\alpha(t) \\
+					\dot{\theta}(t)\\
+					\dot{\alpha}(t)
+					\end{bmatrix} + \begin{bmatrix}[c]
+					\phantom{-}0 \\
+					\phantom{-}0 \\
+					\phantom{-}40.24 \\
+					-40.24
+					\end{bmatrix} V_{in}(t)
+					$} 
+				\end{equation}
+				
+				\begin{equation}\label{state equation_flex_joint_output_with_values}
+				y = \begin{bmatrix}
+				1 & 1 & 0 & 0
+				\end{bmatrix} \begin{bmatrix}
+				\theta(t) \\
+				\alpha(t) \\
+				\dot{\theta}(t)\\
+				\dot{\alpha}(t)
+				\end{bmatrix}
+				\end{equation}
+			
+				Transformando este sistema a su equivalente en función de transferencia se tiene
+				
+				\begin{equation}\label{flex_joint_tf}
+					\frac{\beta(s)}{V_{in}(s)} = \frac{5.68 \cdot 10^{-14}s^3 + 5.68 \cdot 10^{-13}s^2 + 5.45 \cdot 10^{-12}s + 8556.20}{s^4 + 32.15 s^3 + 828.13 s^2 + 6838.20 s}
+				\end{equation}
+				
+				A efectos de este estudio se simplificará el sistema considerando que algunos coeficientes del numerador son muy pequeños, así la función de transferencia definitiva tiene la siguiente expresión.
+				
+				\begin{equation}\label{flex_joint_tf_simple}
+					\frac{\beta(s)}{V_{in}(s)} = \frac{8556.20}{s^4 + 32.15 s^3 + 828.13 s^2 + 6838.20 s}
+				\end{equation}
+				
+				
+				\subsection{Análisis a Lazo Abierto}
+
+
+					Se procederá de la misma forma que en el caso del sistema de tanques, para esto se someterá este sistema a entradas constantes y de tipo rampa. Vemos en ambos casos los resultados.
+				
+					\subsubsection{Respuesta al Escalón Unitario}
+						
+						En análisis a lazo abierto de la articulación flexible parte del siguiente diagrama de bloques.
+					
+						\begin{figure}[h]
+							\begin{center}
+								\includegraphics[width=14cm,height=8cm,keepaspectratio]{flex_joint_open_loop_system}
+								\caption{Diagrama de Bloques - Respuesta al Escalón \\ Articulación Flexible - Lazo Abierto\label{art_flexible_open_loop_blocks}}
+								\centering Fuente: Elaboración Propia
+							\end{center}
+						\end{figure}
+						
+						Obteniendo la siguiente respuesta.
+						
+						\begin{figure}[H]
+							\begin{center}
+								\includegraphics[width=14cm,height=8cm,keepaspectratio]{flex_joint_open_loop_system_step_sim}
+								\caption{Simulación - Respuesta al Escalón \\ Articulación Flexible - Lazo Abierto\label{art_flexible_open_loop_system_step_sim}}
+								\centering Fuente: Elaboración Propia
+							\end{center}
+						\end{figure}
+						
+						Como se aprecia el sistema es inestable ante entradas constantes, de forma que el error de estado estacionario no es finito en este caso.
+
+						
+						\subsubsection{Respuesta a la Rampa}
+						
+						Se partirá del siguiente diagrama de bloques para la obtención de la res\-puesta a la rampa.
+						
+						
+						\begin{figure}[h]
+							\begin{center}
+								\includegraphics[width=14cm,height=8cm,keepaspectratio]{flex_joint_open_loop_system_sim_ramp}
+								\caption{Diagrama de Bloques - Respuesta a la Rampa \\ Articulación Flexible - Lazo Abierto\label{art_flexible_open_loop_system_ramp_sim}}
+								\centering Fuente: Elaboración Propia
+							\end{center}
+						\end{figure}	
+						
+						La misma queda expresada en la siguiente gráfica.
+						
+						\begin{figure}[h]
+							\begin{center}
+								\includegraphics[width=14cm,height=7cm,keepaspectratio]{flex_joint_open_loop_system_sim_ramp_response}
+								\caption{Simulación - Respuesta a la Rampa \\ Articulación Flexible - Lazo Abierto\label{flex_joint_open_loop_system_sim_ramp_response}}
+								\centering Fuente: Elaboración Propia
+							\end{center}
+						\end{figure}
+						
+
+						La respuesta a la rampa es inestable como era de esperarse, sin embargo, es error de estado estacionario es muy grande teniendo como referencia la rampa unitaria.
+						
+					\subsection{Diseño de Controladores}
+										
+						Recordando la ecuación \eqref{flex_joint_tf_simple}, se tiene que la función de transferencia del sistema tiene la siguiente expresión.
+						
+						\begin{equation}
+						\frac{\beta(s)}{V_{in}(s)} = \frac{8556.20}{s^4 + 32.15 s^3 + 828.13 s^2 + 6838.20 s}
+						\end{equation}
+						
+						Lo que deriva que la expresión del sistema equivalente en variables de estado del controlador de dos grados de libertad sea descrito por las siguientes ecuaciones de estado.
+						
+						\begin{equation}
+						\resizebox{.9 \textwidth}{!}{$
+							\begin{bmatrix}
+							\stackbin{.}{y} \\
+							\stackbin{..}{y} \\
+							\stackbin{...}{y} \\
+							\stackbin{(iv)}{y} \\
+							\stackbin{.}{u} \\
+							\stackbin{..}{u} \\
+							\stackbin{...}{u} \\
+							\stackbin{(iv)}{u}
+							\end{bmatrix} = 
+							\begin{bmatrix}
+							0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+							0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+							0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\ 
+							0 & -6838.20 & -828.13 & -32.15 & 8556.20 & 0 & 0 & 0 \\
+							0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+							0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+							0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+							0 & 0 & 0 & 0 & 0 & 0 & 0 & 0
+							\end{bmatrix} \begin{bmatrix}
+							y \\
+							\stackbin{.}{y} \\
+							\stackbin{..}{y} \\
+							\stackbin{...}{y} \\
+							u \\
+							\stackbin{.}{u} \\
+							\stackbin{..}{u} \\
+							\stackbin{...}{u}
+							\end{bmatrix} + \begin{bmatrix}
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							1
+							\end{bmatrix} \stackbin{(iv)}{u}
+							$}
+						\end{equation}
+						
+						
+						\begin{equation}
+						y = \begin{bmatrix}
+						1 & 0 & 0 & 0 & 0 & 0 & 0 & 0							\end{bmatrix} \begin{bmatrix}
+						y \\
+						\stackbin{.}{y} \\
+						\stackbin{..}{y} \\
+						\stackbin{...}{y} \\
+						u \\
+						\stackbin{.}{u} \\
+						\stackbin{..}{u} \\
+						\stackbin{...}{u}
+						\end{bmatrix}
+						\end{equation}
+						
+						\subsubsection{Entradas Constantes}	
+
+						Realizando cálculos análogos a los expuestos en el estudio del sistema de tanques, podemos obtener el sistema auxiliar que permitirá la obtención de la matriz de ganancias al aplicar LQR. Así, el sistema queda expresa como sigue
+						
+						\begin{equation}
+						\underbrace{\begin{bmatrix}
+							\mathbf{\dot{\xi}} \\ 
+							\dot{v}
+							\end{bmatrix}}_{\mathbf{\dot{z}}} = \underbrace{\begin{bmatrix}
+							\mathbf{0} & \mathbf{C} \\
+							\mathbf{0} & \mathbf{A}
+							\end{bmatrix}}_{\mathbf{\bar{A}}} \underbrace{\begin{bmatrix}
+							\mathbf{\xi} \\
+							v
+							\end{bmatrix}}_{\mathbf{z}} + \underbrace{\begin{bmatrix}
+							\mathbf{0} \\
+							\mathbf{B}
+							\end{bmatrix}}_{\mathbf{\bar{B}}} \mathbf{u_0}
+						\end{equation}
+						
+						\begin{equation}
+							\mathbf{\bar{A}} = 
+							\begin{bmatrix}
+							0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+							0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
+							0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\ 
+							0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
+							0 & 0 & -6838.20 & -828.13 & -32.15 & 8556.20 & 0 & 0 & 0 \\
+							0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+							0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+							0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+							0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0
+							\end{bmatrix}
+						\end{equation}
+						
+						\begin{equation}
+							\mathbf{\bar{B}} = \begin{bmatrix}
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							1
+							\end{bmatrix}
+						\end{equation}
+						
+						Teniendo en consideración matrices análogas en el índice de desempeño que se han aplicado al sistema de tanques. Se calcula la matriz de ganancias del regulador óptimo cuadrático teniendo en consideración el sistema auxiliar.
+						
+						\begin{equation}
+						\resizebox{.85 \textwidth}{!}{$
+							\mathbf{K} = \begin{bmatrix}
+							1 & 4.4610 & 0.9856 & 0.0453 & 0.0013 & 10.5913 & 10.6569 & 10.3454 & 4.6573
+							\end{bmatrix}
+							$}
+						\end{equation}
+						
+						Nuevamente se tiene todo lo necesario para la obtención de los polinomios que definen a los controladores en el esquema de dos grados de libertad. Los mismos se describen a continuación.
+						
+						\begin{equation}
+							\begin{gathered}
+								A(s) = s^4 + 4.6573 s^3 +10.3454 s^2 + 13.6569 s + 10.5913 \\
+								L(s) = \frac{1}{s} \\
+								M(s) = \frac{0.0013 s^4 + 0.0453 s^3 + 0.9856 s^2 + 4.4610 s + 1}{s}
+							\end{gathered}
+						\end{equation}
+											
+						
+						\subsubsection{Respuesta al Escalón Unitario y Perturbaciones}
+						
+							Una vez obtenidos los controladores, se pasará a determinar la respuesta del sistema ante entradas constantes, así mismo, también se procederá a determinar la robustez de sistema ante perturbaciones. Para esto se plantea el siguiente diagrama de bloques.
+
+							\begin{figure}[h]
+								\begin{center}
+									\includegraphics[width=14cm,height=8cm,keepaspectratio]{flex_joint_sim_step_method_blocks}
+									\caption{Diagrama de Bloques - Respuesta al Escalón \\ Articulación Flexible - Lazo Cerrado\label{flex_joint_sim_step_method_blocks}}
+									\centering Fuente: Elaboración Propia
+								\end{center}
+							\end{figure}							
+							
+							
+							En este caso la duración de la simulación es de 50 segundos, a su vez, que la perturbación se hace presente a los 25 segundos teniendo una magnitud de 0.25 unidades.
+
+							\begin{figure}[h]
+								\begin{center}
+									\includegraphics[width=14cm,height=8cm,keepaspectratio]{flex_joint__sim_step_method_response}
+									\caption{Simulación - Respuesta al Escalón \\ Articulación Flexible - Lazo Cerrado\label{flex_joint__sim_step_method_response}}
+									\centering Fuente: Elaboración Propia
+								\end{center}
+							\end{figure}			
+
+							\newpage
+							De la imagen se aprecia, como el sistema es capaz de seguir fielmente la señal de referencia, obteniendo de esta forma un error de estado estacionario nulo. Por otro lado, el sistema también posee la propiedad de rechazar la perturbación en relativo corto tiempo. Analicemos ahora el caso en que el sistema es sujeto a entradas lineales.
+							
+						
+						\subsubsection{Entradas Tipo Rampa}
+						
+							En este caso el sistema auxiliar tiene las siguientes características
+							
+							\begin{equation}
+							\underbrace{\begin{bmatrix}
+								\mathbf{\stackbin{.}{\xi}} \\ 
+								\mathbf{\stackbin{..}{\xi}}\\
+								\mathbf{\stackbin{.}{v}}
+								\end{bmatrix}}_{\mathbf{\dot{z}}} = \underbrace{\begin{bmatrix}
+								\mathbf{0} & \mathbf{1} & \mathbf{0} \\
+								\mathbf{0} & \mathbf{0} & \mathbf{C} \\
+								\mathbf{0} & \mathbf{0} & \mathbf{A}
+								\end{bmatrix}}_{\mathbf{\bar{A}}} \underbrace{\begin{bmatrix}
+								\mathbf{\xi} \\
+								\mathbf{\stackbin{.}{\xi}} \\
+								\mathbf{v}
+								\end{bmatrix}}_{\mathbf{z}} + \underbrace{\begin{bmatrix}
+								\mathbf{0} \\
+								\mathbf{0} \\
+								\mathbf{B}
+								\end{bmatrix}}_{\mathbf{\bar{B}}} \mathbf{u_0}
+							\end{equation}
+							
+							
+							\begin{equation}
+							\mathbf{\bar{A}} = 
+							\begin{bmatrix}
+							0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+							0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+							0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\ 
+							0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
+							0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
+							0 & 0 & 0 & -6838.20 & -828.13 & -32.15 & 8556.20 & 0 & 0 & 0 \\
+							0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+							0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+							0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+							0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0
+							\end{bmatrix}
+							\end{equation}
+							
+							\begin{equation}
+							\mathbf{\bar{B}} = \begin{bmatrix}
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							1
+							\end{bmatrix}
+							\end{equation}
+							
+							Teniendo las mismas consideraciones que en los casos anteriores, obtenemos la matriz de ganancias $\mathbf{K}$
+							
+							\begin{equation}
+							\resizebox{.85 \textwidth}{!}{$
+								\mathbf{K} = \begin{bmatrix}
+								1 & 5.0849 & 12.428 & 1.8916 & 0.0801 & 0.0023 & 21.19 & 21.1626 & 13.5165 & 5.2946 
+								\end{bmatrix}
+								$}
+							\end{equation}
+						
+						
+							Finalmente los polinomios de los controladores quedan definidos como sigue.
+							
+							\begin{equation}
+								\begin{gathered}
+									A(s) = s^4 + 5.2946 s^3 + 13.5165 s^2 + 21.1626 s + 21.19 \\
+									L(s) = \frac{5.0849 s + 1}{s^2} \\
+									M(s) = \frac{0.0023 s^5 + 0.0801 s^4 + 1.8916 s^3 + 12.428 s^2 + 5.089 s + 1}{s^2}
+								\end{gathered}
+							\end{equation}
+						
+						\subsubsection{Respuesta a la Rampa y a Perturbaciones}
+						
+							Veamos el diagrama de bloques asociado a esta simulación	
+
+							\begin{figure}[h]
+								\begin{center}
+									\includegraphics[width=14cm,height=8cm,keepaspectratio]{flex_joint_sim_ramp_method_blocks}
+									\caption{Diagrama de Bloques - Respuesta a la Rampa \\ Articulación Flexible - Lazo Cerrado\label{flex_joint_sim_ramp_method_blocks}}
+									\centering Fuente: Elaboración Propia
+								\end{center}
+							\end{figure}				
+							
+							\newpage
+							Así como en el estudio de entradas constantes, la perturbación se hace presente a los 25 segundos de la simulación. En este caso, la perturbación tiene la misma magnitud que la entrada. 
+							
+							
+							
+							\begin{figure}[h]
+								\begin{center}
+									\includegraphics[width=14cm,height=8cm,keepaspectratio]{flex_joint__sim_ramp_method_response}
+									\caption{Simulación - Respuesta a la Rampa \\ Articulación Flexible - Lazo Cerrado\label{flex_joint__sim_ramp_method_response}}
+									\centering Fuente: Elaboración Propia
+								\end{center}
+							\end{figure}		
+							
+							Como se aprecia en la gráfica, la repuesta del sistema es satisfactoria. En primera instancia, se pudo corregir el comportamiento en estado estacionario del sistema, así como su respuesta transitoria. Ante la perturbación los controladores son capaces de rechazarla de forma adecuada.
+
+	\section{Levitación Magnética}
+	
+		El tercer de estudio esta tomado de \citeA{gazdos}, el cual es un modelo a escala de un sistema de levitación magnética. El mismo fue desarrollado por la empresa TQ Education and Training Ltd (Modelo CE 152), para aplicaciones de carácter académico. A continuación se presenta el mismo.
+		
+			\begin{figure}[h]
+				\begin{center}
+					\includegraphics[width=12cm,height=6cm,keepaspectratio]{lev_mag-good}
+					\caption{Sistema de Levitación Magnética\label{mag_levitation_phy}}
+					\centering Fuente: TQ Education and Training Ltd
+				\end{center}
+			\end{figure}
+			
+		\subsection{Descripción Física de la Planta}
+		
+			
+		La planta consta de una bobina y una esfera metálica, la cual interactúa con la fuerza magnética producto del campo magnético de la bobina con el fin de controlar la posición vertical de la esfera. Posee un sensor inductivo lineal para tal fin, adicionalmente cuenta con conversores analógicos-digitales para el procesamiento de datos.
+		
+		\subsection{Modelo Matemático}
+		
+			Tomando en consideración el trabajo realizado por los autores anteriormente citados, los cuales establecen que el sistema posee como modelo la siguiente ecuación diferencia no lineal
+			
+			\begin{equation}
+				\frac{m_k}{k_{AD}k_x} \stackbin{..}{y} - \frac{k_{f_v}}{k_{AD}k_x} \stackbin{.}{y} = \frac{k_{DA}^2 k_i^2k_c}{\left( \frac{y - k_{AD}y_0}{k_{AD}k_x} - x_0 \right)^2} u^2 - m_k g
+			\end{equation} 
+			
+			Donde $y$ denota la posición vertical, $u$ es la entrada del sistema, la cual es proporcional al voltaje del conversor Digital-Analógico. El resto de las variables se describen en la siguiente tabla.
+
+			\begin{table}[h]
+				\centering
+				\caption{Parámetros Físicos de la Planta - Levitación Magnética}
+				\label{mag_lev_variables}
+				\begin{tabular}{|l|c|c|c|}
+					\hline
+					Variable                              & Símbolo   & Valores         & Unidades                                                                                                                              \\ \hline
+					Ganancia de Conversor A/D             & $k_{AD}$  & 0.20            & $UM / V$                                                                                                                              \\ \hline
+					Ganancia de Conversor D/A             & $k_{DA}$  & 20              & $V / UM$                                                                                                                              \\ \hline
+					Constante de Amortiguación            & $k_{f_v}$ & 0.02            & $N s/m$                                                                                                                               \\ \hline
+					Ganancia del Sensor de Posición       & $k_x$     & 821             & $V/m$                                                                                                                                 \\ \hline
+					Ganancia del Amplificador de Potencia & $k_i$     & 0.30            & $A / V$                                                                                                                               \\ \hline
+					Constante de la Bobina                & $k_c$     & 1.769 . $10^-6$ & $N m^2 / A^2$                                                                                                                         \\ \hline
+					Masa de la Esfera                     & $m_k$     & 8.27 . $10^-3$  & $kg$                                                                                                                                  \\ \hline
+					Compensación de la Bobina             & $x_0$     & 7.6 . $10^-3$   & $m$                                                                                                                                   \\ \hline
+					Aceleración de Gravedad               & $g$       & 9.81            & $m / s$                                                                                                                               \\ \hline
+					Compensación del Sensor de Posición   & $y_0$     & 0.0183          & $V$                                                                                                                                   \\ \hline
+						Posición de la Esfera                 & $y(t)$    &                 & $UM$\tablefootnote{Voltaje convertido por la tarjeta de adquisición de datos en una escala de $\pm$ 1 - Unidad de Máquina $UM$}   \\ \hline
+					Señal de Entrada                      & $u(t)$    &                 & $UM$  \\ \hline                                                                                                                                 
+				\end{tabular}
+			\end{table}
+
+
+			
+			
+			Teniendo esto en cuenta podemos representar el sistema en espacio de estados tomando a $x_1$ como la posición de la esfera y $x_2$ como su velocidad. Así se tiene las siguientes ecuaciones.
+			
+			\begin{equation}
+				\begin{gathered}
+					\dot{x_1} = x_2 \\
+					\dot{x_2} = \frac{k_{f_v}}{k_{AD}k_x} x_2 + \frac{k_{AD} k_x k_{DA}^2 k_i^2 k_c}{mk \left( \frac{x_1 - k_{AD} y_0}{k_{AD} k_x} - x_0 \right)^2} u^2 - k_{AD} k_x g
+				\end{gathered}
+			\end{equation}
+			
+			Linealizando el sistema de la misma manera que en los casos anteriores, teniendo en cuenta el punto de operación donde la fuerza magnética es igual al peso de la esfera (denotado por $\left( u_s,y_s \right)$). se obtiene las siguientes ecuaciones de estado.
+			
+			\begin{equation}
+				\begin{bmatrix}
+				\dot{x_1} \\
+				\dot{x_2}
+				\end{bmatrix} = \begin{bmatrix}
+					0 & 1 \\
+					\frac{2g}{k_{AD} k_i u^s \sqrt{\frac{k_c}{m_k g}}} & \frac{k_{f_v}}{m_k}
+				\end{bmatrix} \begin{bmatrix}
+					x_1 \\
+					x_2
+				\end{bmatrix} + \begin{bmatrix}
+					0 \\
+					\frac{2 k_{AD} k_x g}{u^s} 
+				\end{bmatrix}	u
+			\end{equation}
+			
+			\begin{equation}
+				y = \begin{bmatrix}
+					1 & 0
+				\end{bmatrix} \begin{bmatrix}
+					x_1 \\ 
+					x_2
+				\end{bmatrix}
+			\end{equation}
+			
+			Análogamente, el sistema queda representado por medio de su función de transferencia como sigue
+			
+			\begin{equation}
+				H(s) = \frac{b_0}{s^2 + a_1 s +a_0}
+			\end{equation}
+			
+			Donde
+			
+			\begin{equation}
+				b_0 = \frac{2 k_{AD} k_x g}{u^s} \qquad
+				a_1 = - \frac{k_{f_v}}{m_k} \qquad
+				a_0 = - \frac{2g}{k_{AD} k_i u^s \sqrt{\frac{k_c}{m_k g}}}
+			\end{equation}
+			
+			Considerando 3 puntos de operación, representados por $P_1$, $P_2$ y $P_3$. Donde $P_2$ describe el sistema operando justo en la mitad del espacio entre la bobina y la base del equipo y $P_1$, $P_3$ a una distancia que representa el $\pm$ 30\% por encima y por debajo del punto de operación $P_2$, la planta queda descrita por las siguientes funciones de transferencias.
+			
+			\begin{equation}\label{maglev_tfs}
+				\begin{gathered}
+					H_1(s) = \frac{28231}{s^2 - 2.418 s -6134} \\
+					H_2(s) = \frac{18400}{s^2 - 2.418 s -3998} \\
+					H_3(s) = \frac{13638}{s^2 - 2.418 s -2963}
+				\end{gathered}
+			\end{equation}
+			
+			Este caso el estudio se centrará en el cálculo de los controladores suponiendo que el punto de operación es $P_2$, es decir, que la función de transferencia del sistema está dada por $H_2$. Sin embargo, con el fin de demostrar la robustez del sistema de control y por ende de la metodología propuesta, se analizará las prestaciones de los controladores ante modificaciones importantes en el modelo de la planta dado su punto de operación.
+			
+			Primero de pasará a la síntesis de los controladores según sea el caso, es decir, si la entrada es escalón o rampa, luego, se realizará el análisis de forma análoga que en los dos casos anteriormente estudiados. Finalmente, se modificará los coeficientes de la planta usando los puntos de operación $P_1$ y $P_3$, para así determinar que bajo estas nuevas condiciones los controladores son capaces de aún corregir las impresiones propias de la planta.
+			
+			
+		\subsection{Análisis a Lazo Abierto}
+		
+			\subsubsection{Respuesta al Escalón Unitario y Rampa Unitaria}
+			
+				Teniendo en cuenta la función de transferencia del sistema, es decir
+				
+				\begin{equation}
+					H_2(s) = \frac{18400}{s^2 -2.418 s -3998}
+				\end{equation}
+			
+				Se puede apreciar que los polos están ubicados en 
+				
+				\begin{equation}
+					s_1 = 64.45\qquad
+					s_2 = -62.03
+				\end{equation}
+				
+				Lo que se traduce en la inestabilidad del sistema al existir un polo en el semi plano derecho del plano complejo. La gráfica en este caso es innecesaria y será omitida.
+			
+			\subsection{Diseño de Controladores}
+				
+				Partiendo de la función de transferencia $H_2(s)$ se calcula el sistema equivalente de dos grados de libertad, estando definido por las siguientes ecuaciones de estados.
+				
+				\begin{equation}
+					\begin{bmatrix}
+					\stackbin{.}{y} \\
+					\stackbin{..}{y} \\
+					\stackbin{.}{u} \\
+					\stackbin{..}{u} 
+					\end{bmatrix} = \begin{bmatrix}
+						0 & 1 & 0 & 0 \\
+						3998 & 2.418 & 18400 & 0 \\
+						0 & 0 & 0 & 1 \\
+						0 & 0 & 0 & 0 
+					\end{bmatrix} \begin{bmatrix}
+					y \\
+					\stackbin{.}{y} \\
+					u \\
+					\stackbin{.}{u} 
+					\end{bmatrix} + \begin{bmatrix}
+					0 \\
+					0 \\
+					0 \\
+					1
+					\end{bmatrix}\stackbin{..}{u}
+				\end{equation}
+				
+				\begin{equation}
+					y = \begin{bmatrix}
+					1 & 0 & 0 & 0
+					\end{bmatrix} \begin{bmatrix}
+					y \\
+					\stackbin{.}{y} \\
+					u \\
+					\stackbin{.}{u} 
+					\end{bmatrix}
+				\end{equation}
+				
+				
+			\subsubsection{Entradas Constantes}	
+			
+				Siguiendo la metodología, se tiene el siguiente sistema auxiliar
+			
+				\begin{equation}
+				\underbrace{\begin{bmatrix}
+					\mathbf{\dot{\xi}} \\ 
+					\dot{v}
+					\end{bmatrix}}_{\mathbf{\dot{z}}} = \underbrace{\begin{bmatrix}
+					\mathbf{0} & \mathbf{C} \\
+					\mathbf{0} & \mathbf{A}
+					\end{bmatrix}}_{\mathbf{\bar{A}}} \underbrace{\begin{bmatrix}
+					\mathbf{\xi} \\
+					v
+					\end{bmatrix}}_{\mathbf{z}} + \underbrace{\begin{bmatrix}
+					\mathbf{0} \\
+					\mathbf{B}
+					\end{bmatrix}}_{\mathbf{\bar{B}}} \mathbf{u_0}
+				\end{equation}
+				
+				\begin{equation}
+					\mathbf{\bar{A}} = 
+					\begin{bmatrix}
+					0 & 1 & 0 & 0 & 0 \\
+					0 & 0 & 1 & 0 & 0 \\
+					0 & 3998 & 2.418 & 18400 & 0 \\
+				    0 & 0 & 0 & 0 & 1 \\
+					0 & 0 & 0 & 0 & 0 
+					\end{bmatrix}
+				\end{equation}
+				
+				\begin{equation}
+					\mathbf{\bar{B}} = \begin{bmatrix}
+					0 \\
+					0 \\
+					0 \\
+					0 \\
+					1
+					\end{bmatrix}
+				\end{equation}
+			
+				Así el vector de ganancia $\mathbf{K}$ se determina aplicando LQR al sistema auxi\-liar.
+				
+				\begin{equation}
+					\mathbf{K} = \begin{bmatrix}
+						1 & 1982 & 32 & 9112.7 & 135
+					\end{bmatrix}
+				\end{equation}
+				
+				Finalmente los controladores quedan expresado a partir de los siguientes polinomios.
+				
+				\begin{equation}
+					\begin{gathered}
+						A(s) = s^2 + 135 s + 9112.7 \\
+						L(s) = \frac{1}{s} \\ 
+						M(s) = \frac{32 s^2 + 1982 s + 1}{s}
+					\end{gathered}
+				\end{equation}
+			
+			
+			\subsubsection{Respuesta al Escalón Unitario y Perturbaciones sobre el punto de \newline Operación $P_2$}
+				
+				Veamos nuevamente como responde el sistema ante el escalón unitario, partiendo del siguiente diagrama de bloques.
+				
+				\begin{figure}[h]
+					\begin{center}
+						\includegraphics[width=14cm,height=8cm,keepaspectratio]{maglev_sim_step_method_blocks_h2}
+						\caption{Diagrama de Bloques - Respuesta al Escalón \\ Levitación Magnética - Lazo Cerrado - $P_2$\label{maglev_sim_step_method_blocks_h2}}
+						\centering Fuente: Elaboración Propia
+					\end{center}
+				\end{figure}
+				
+				Al realizar la simulación se obtuvo la siguiente respuesta del sistema.				
+				
+				
+				\begin{figure}[h]
+					\begin{center}
+						\includegraphics[width=14cm,height=8cm,keepaspectratio]{maglev__sim_step_method_response_h2}
+						\caption{Simulación - Respuesta al Escalón \\ Levitación Magnética - Lazo Cerrado - $P_2$\label{maglev__sim_step_method_response_h2}}
+						\centering Fuente: Elaboración Propia
+					\end{center}
+				\end{figure}
+				\newpage
+				Como en los casos anteriores, es notable las prestaciones que ha mostrado el diseño de los controladores, nuevamente el error de estado estacionario se ha mantenido a raya, logrando así un seguimiento fiel a la señal de referencia. Así mismo, se ha logrado rechazar la perturbación en un tiempo bastante aceptable.
+				
+			\subsubsection{Respuesta al Escalón Unitario y Perturbaciones sobre el punto de \newline Operación $P_1$}
+			
+				Como se dijo anteriormente, para este caso en particular plantearon unas pruebas adicionales con el fin de poder verificar como esta metodología es robusta a nivel de variaciones en el modelo de la planta. Para esto se someterá a los controladores anteriormente diseñados a modelos que escapan un poco del punto de operación inicial. Se supondrá en este ítem, que la planta ahora no opera en el punto $P_2$, sino que se encuentra operando en $P_1$, haciendo referencia a la ecuación \eqref{maglev_tfs}, esto se traduce en que ahora la planta queda modelada por la siguiente función de transferencia.
+				
+				\begin{equation}
+						H_1(s) = \frac{28231}{s^2 - 2.418 s - 6134}
+				\end{equation}
+				
+				Considerando lo anterior, se plantea el siguiente diagrama de bloques.
+				
+				\begin{figure}[h]
+					\begin{center}
+						\includegraphics[width=14cm,height=8cm,keepaspectratio]{maglev_sim_step_method_blocks_h1}
+						\caption{Diagrama de Bloques - Respuesta al Escalón \\ Levitación Magnética - Lazo Cerrado - $P_1$\label{maglev_sim_step_method_blocks_h1}}
+						\centering Fuente: Elaboración Propia
+					\end{center}
+				\end{figure}
+				
+				Al ejecutar la simulación se obtuvo el siguiente resultado.
+				
+				\begin{figure}[h]
+					\begin{center}
+						\includegraphics[width=14cm,height=8cm,keepaspectratio]{maglev__sim_step_method_response_h1}
+						\caption{Simulación - Respuesta al Escalón \\ Levitación Magnética - Lazo Cerrado - $P_1$\label{maglev__sim_step_method_response_h1}}
+						\centering Fuente: Elaboración Propia
+					\end{center}
+				\end{figure}
+				
+				Si somos cuidadosos, se aprecia que la gráfica es muy parecida a la expuesta en la figura  \ref{maglev__sim_step_method_response_h2}, logrando una respuesta satisfactoria, tanto en estado estacionario como transitorio.
+				
+			
+			\subsubsection{Respuesta al Escalón Unitario y Perturbaciones sobre el punto de \newline Operación $P_3$}			
+			
+				De forma análoga, se analizará el comportamiento del sistema ahora operando en el punto $P_3$, para esto consideremos la siguiente función de transferencia.
+				
+				\begin{equation}
+					H_3(s) = \frac{13638}{s^2 -2.418s -2963}
+				\end{equation}
+				
+				Así mismo, se configuró el siguiente diagrama de bloques
+				
+				\begin{figure}[h]
+					\begin{center}
+						\includegraphics[width=14cm,height=8cm,keepaspectratio]{maglev_sim_step_method_blocks_h3}
+						\caption{Diagrama de Bloques - Respuesta al Escalón \\ Levitación Magnética - Lazo Cerrado - $P_3$\label{maglev_sim_step_method_blocks_h3}}
+						\centering Fuente: Elaboración Propia
+					\end{center}
+				\end{figure}
+				
+				Lo que produjo el siguiente resultado.
+
+				\begin{figure}[h]
+					\begin{center}
+						\includegraphics[width=14cm,height=8cm,keepaspectratio]{maglev__sim_step_method_response_h3}
+						\caption{Simulación - Respuesta al Escalón \\ Levitación Magnética - Lazo Cerrado - $P_3$\label{maglev__sim_step_method_response_h3}}
+						\centering Fuente: Elaboración Propia
+					\end{center}
+				\end{figure}
+				
+				\newpage
+				Nuevamente la metodología ha mostrado robustez al permitir mantener una respuesta similar para 3 puntos de operación distintos. Primero se logró corregir los efectos de la perturbación y ofrece un error de estado estacionario nulo, pero más aún, la respuesta en los 3 casos es muy similar.
+				
+				Esta propiedad es muy importante en la práctica, ya que permitiría garantizar un buen desempeño del sistema ante no solo perturbaciones, sino ante modificaciones en el modelo físico, ya sea por cambios externos o propiedades intrínsecas en el sistema.
+				
+			
+			\subsubsection{Entradas Tipo Rampa}
+			
+			Bajo el mismo esquema se diseñará y se pondrá a prueba la metodología ante entradas tipo rampa. Veamos así, que el modelo auxiliar en variables de estado que definido de la siguiente forma.
+			
+			\begin{equation}
+			\underbrace{\begin{bmatrix}
+				\mathbf{\stackbin{.}{\xi}} \\ 
+				\mathbf{\stackbin{..}{\xi}}\\
+				\mathbf{\stackbin{.}{v}}
+				\end{bmatrix}}_{\mathbf{\dot{z}}} = \underbrace{\begin{bmatrix}
+				\mathbf{0} & \mathbf{1} & \mathbf{0} \\
+				\mathbf{0} & \mathbf{0} & \mathbf{C} \\
+				\mathbf{0} & \mathbf{0} & \mathbf{A}
+				\end{bmatrix}}_{\mathbf{\bar{A}}} \underbrace{\begin{bmatrix}
+				\mathbf{\xi} \\
+				\mathbf{\stackbin{.}{\xi}} \\
+				\mathbf{v}
+				\end{bmatrix}}_{\mathbf{z}} + \underbrace{\begin{bmatrix}
+				\mathbf{0} \\
+				\mathbf{0} \\
+				\mathbf{B}
+				\end{bmatrix}}_{\mathbf{\bar{B}}} \mathbf{u_0}
+			\end{equation}
+			
+			Donde 
+			
+			\begin{equation}
+			\mathbf{\bar{A}} = 
+			\begin{bmatrix}
+			0 & 1 & 0 & 0 & 0 & 0 \\
+			0 & 0 & 1 & 0 & 0 & 0 \\
+			0 & 0 & 0 & 1 & 0 & 0 \\
+			0 & 0 & 3998 & 2.418 & 18400 & 0 \\
+			0 & 0 & 0 & 0 & 0 & 1 \\
+			0 & 0 & 0 & 0 & 0 & 0 
+			\end{bmatrix}
+			\end{equation}
+			
+			\begin{equation}
+			\mathbf{\bar{B}} = \begin{bmatrix}
+			0 \\
+			0 \\
+			0 \\
+			0 \\
+			0 \\
+			1
+			\end{bmatrix}
+			\end{equation}
+			
+			Así la matriz de ganancias y controladores quedan definidos como sigue.
+			
+			\begin{equation}
+				\mathbf{K} = \begin{bmatrix}
+					1 & 2.70 & 2003 & 32.30 & 9204.40 & 135.70
+				\end{bmatrix}
+			\end{equation}
+			
+			\begin{equation}
+				\begin{gathered}
+					A(s) = s^2 +135.70 s + 9204.40 \\
+					L(s) = \frac{2.70 s + 1}{s^2} \\
+					M(s) = \frac{32.30 s^3 + 2003 s^2 + 2.70 s + 1}{s^2}
+				\end{gathered}
+			\end{equation}	
+			
+			\subsubsection{Respuesta a la Rampa y a Perturbaciones}
+				
+				De la misma forma que en el caso del estudio de la respuesta del escalón unitario, se analizaran los 3 puntos de operación para los controladores bajo entradas tipo rampa, partiendo del punto de operación nominal.
+				
+ 			\subsubsection{Respuesta a la Rampa y Perturbaciones sobre el punto de Operación $P_2$}
+ 			
+	 			El análisis del sistema en el punto de operación $P_2$ parte del siguiente diagrama de bloques.
+	 			
+	 			\begin{figure}[h]
+	 				\begin{center}
+	 					\includegraphics[width=14cm,height=8cm,keepaspectratio]{maglev_sim_ramp_method_blocks_h2}
+	 					\caption{Diagrama de Bloques - Respuesta a la Rampa \\ Levitación Magnética - Lazo Cerrado - $P_2$\label{maglev_sim_ramp_method_blocks_h2}}
+	 					\centering Fuente: Elaboración Propia
+	 				\end{center}
+	 			\end{figure}
+
+	 			Lo que se tradujo en el siguiente resultado.
+	 			
+	 			\begin{figure}[h]
+	 				\begin{center}
+	 					\includegraphics[width=14cm,height=6cm,keepaspectratio]{maglev__sim_ramp_method_response_h2}
+	 					\caption{Simulación - Respuesta a la Rampa \\ Levitación Magnética - Lazo Cerrado - $P_2$\label{maglev__sim_ramp_method_response_h2}}
+	 					\centering Fuente: Elaboración Propia
+	 				\end{center}
+	 			\end{figure}
+	 			
+	 			\newpage
+	 			Como todos los casos estudiados hasta ahora, la respuesta del sistema ha sido satisfactoria, logrando obtener un alto desempeño desde el análisis transitorio, de estado estacionario y de robustez.
+ 			
+ 			\subsubsection{Respuesta a la Rampa y Perturbaciones sobre el punto de Operación $P_1$}
+ 			
+ 			Tomando en consideración este punto de operación se tiene el siguiente diagrama de bloques.
+
+ 			\begin{figure}[h]
+ 				\begin{center}
+ 					\includegraphics[width=14cm,height=8cm,keepaspectratio]{maglev_sim_ramp_method_blocks_h1}
+ 					\caption{Diagrama de Bloques - Respuesta a la Rampa \\ Levitación Magnética - Lazo Cerrado - $P_1$\label{maglev_sim_ramp_method_blocks_h1}}
+ 					\centering Fuente: Elaboración Propia
+ 				\end{center}
+ 			\end{figure}
+	 		
+ 			Obteniendo como respuesta.
+
+ 			\begin{figure}[H]
+ 				\begin{center}
+ 					\includegraphics[width=14cm,height=8cm,keepaspectratio]{maglev__sim_ramp_method_response_h1}
+ 					\caption{Simulación - Respuesta a la Rampa \\ Levitación Magnética - Lazo Cerrado - $P_1$\label{maglev__sim_ramp_method_response_h1}}
+ 					\centering Fuente: Elaboración Propia
+ 				\end{center}
+ 			\end{figure}
+ 			
+ 			
+ 			Como se aprecia en la figura, al igual que en el caso del escalón unitario, se logró sortear error cometidos por la imprecisión en el punto de operación en la planta. A la planta operar en un punto distinto al nominal, los controladores lograron corregir tanto a nivel transitorio como de estado estacionario, con una respuesta similar que en el caso nominal.
+ 			
+ 			
+ 			\subsubsection{Respuesta a la Rampa y Perturbaciones sobre el punto de Operación $P_3$}
+ 			
+ 			Finalmente para analizar el punto de operación $P_3$, se tiene el siguiente sistema
+ 			
+ 			\begin{figure}[h]
+ 				\begin{center}
+ 					\includegraphics[width=14cm,height=8cm,keepaspectratio]{maglev_sim_ramp_method_blocks_h3}
+ 					\caption{Diagrama de Bloques - Respuesta a la Rampa \\ Levitación Magnética - Lazo Cerrado - $P_3$\label{maglev_sim_ramp_method_blocks_h3}}
+ 					\centering Fuente: Elaboración Propia
+ 				\end{center}
+ 			\end{figure}
+
+ 			El paquete Simulink{\textregistered} mostró el siguiente resultado.
+ 			
+ 			\begin{figure}[h]
+ 				\begin{center}
+ 					\includegraphics[width=14cm,height=6cm,keepaspectratio]{maglev__sim_ramp_method_response_h3}
+ 					\caption{Simulación - Respuesta a la Rampa \\ Levitación Magnética - Lazo Cerrado - $P_3$\label{maglev__sim_ramp_method_response_h3}}
+ 					\centering Fuente: Elaboración Propia
+ 				\end{center}
+ 			\end{figure}
+ 			
+ 			Por último, la simulación muestra que nuevamente los controladores logran una respuesta satisfactoria ante esta modificación en el modelo de la planta. El error de estado estacionario se mantuvo en cero y el rechazo de la perturbación se logró en un tiempo razonable. 
+ 			
+ 	\section{Motor de Corriente Continua}
+ 	
+	 	Para finalizar, se contempla el estudio de un sistema de naturaleza prácticamente eléctrica y que de hecho es analizado prácticamente en todos los cursos de Control. Se plantea el control de velocidad de un motor de corriente continua de excitación separada por corriente de armadura. para este estudio se tomó el modelo expuesto por \citeA{Asarkar}, luego de que los autores realizaran el estudio de determinación de parámetros físicos de la planta.
+
+			\subsection{Descripción Física de la Planta}
+				
+				Dado que en este caso lo parámetros físicos del sistema son incógnitas por descubrir por los autores anteriormente citados, no se tiene mucha información a la planta, sin embargo, se poseen los datos de placas del motor, entre lo que se pueden reportar los siguientes:
+				
+				\begin{table}[h]
+					\centering
+					\caption{Parámetros Físicos de la Planta - Motor DC}
+					\label{system_variables_dc_motor}
+					\begin{tabular}{|l|c|c|}
+						\hline
+						Variable   & Valor & Unidades   \\ \hline
+						Voltage Nominal  & 220   & $V$  \\ \hline
+						Corriente Nominal  & 19 & $A$   \\ \hline
+						Velocidad de Giro & 1500 & $RPM$\\ \hline
+					\end{tabular}
+				\end{table}
+				
+			\subsection{Modelo Matemático}
+				
+				Para estudiar la dinámica del motor de corriente continua se debe realizar un análisis tanto de la parte eléctrica, como su comportamiento mecánico ante la presencia de carga. Así mismo, se debe tener en cuenta las ecuaciones propias del circuito eléctrico como las leyes de Newton que definen este sistema. Veamos el siguiente diagrama que ayudara a entender la planta en cuestión.
+			
+				\begin{figure}[h!]
+					\begin{center}
+						\begin{circuitikz}[american]
+							%	\draw [help lines] (-1,-2) grid (12,5);
+							
+							% electrical equivalent circuit		
+							\draw (0,3) to [open, v_=$v_a(t)$] (0,0);
+							\draw (0,3) to[R, i>^=$i_a(t)$, l=$R_a$,o-] (3,3);
+							\draw (3,3) to[L, l=$L_a$] (4,3);
+							\draw (4,3) -- (5,3);
+							\draw (5,3) to [V, v_=$ $] (5,0);
+							\draw (0,0) to [short,o-] (5,0);
+							
+							%Field Circuit
+							\draw (6,3) to [short,-o] (9,3);
+							\draw (6,3) to [L, l=$L_f$] (6,5);
+							\draw (6,5) to [R,i<=$i_f(t)$, l=$R_f$,-o] (9,5);
+							\draw (9,5) to [open, v^=$v_f(t)$] (9,3);
+							
+							
+							
+							% drive - Motor
+							\draw[fill=black] (4.85,0.85) rectangle (5.15,2.15);
+							\draw[fill=white] (5,1.5) ellipse (.45 and .45);
+							\draw (5,1.5) node {$E_a$};
+							\draw (5.3,2.5) node {$+$};
+							\draw (5.3,0.5) node {$-$};
+							
+							% transmission gear one
+							\draw[fill=black!50] (6.7,1.49)
+							ellipse (.08 and 0.33);
+							\draw[fill=black!50, color=black!50] (6.7,1.82)
+							rectangle (6.5,1.16);
+							\draw[fill=white] (6.5,1.49)
+							ellipse (.08 and 0.33);
+							\draw (6.5,1.82) -- (6.7,1.82);
+							\draw (6.5,1.16) -- (6.7,1.16);
+							
+							% shaft drive -> transmission
+							\draw[fill=black] (5.45,1.45) rectangle (6.5,1.55);
+							
+							% momentum arrow of drive -> transmission
+							\draw[line width=0.7pt,<-] (5.8,1) arc (-30:30:1);
+							
+							% transmission gear two
+							\draw[fill=black!50] (6.7,0.40)
+							ellipse (.13 and 0.67);
+							\draw[fill=black!50, color=black!50] (6.7,1.07)
+							rectangle (6.5,-0.27);
+							\draw[fill=white] (6.5,0.40)
+							ellipse (.13 and 0.67);
+							\draw (6.5,1.07) -- (6.7,1.07);
+							\draw (6.5,-0.27) -- (6.7,-0.27);
+							
+							% transmission gear three
+							\draw[fill=black!50] (6.85,1.14)
+							ellipse (.08 and 0.3);
+							\draw[fill=black!50, color=black!50] (6.85,1.44)
+							rectangle (6.65,0.84);
+							\draw[fill=white] (6.65,1.14)
+							ellipse (.08 and 0.3);
+							\draw (6.65,1.44) -- (6.86,1.44);
+							\draw (6.65,0.84) -- (6.86,0.84);
+							
+							% transmission shaft from gear two to moment of inertia
+							\draw[fill=black] (6.84,0.38) rectangle (7.8,0.48);
+							
+							% moment of inertia
+							\draw[fill=white] (8.5,0.42)
+							ellipse (.15 and 0.4);
+							\draw[fill=white, color=white] (7.9, 0.82)
+							rectangle (8.49, 0.02);
+							\draw (7.8,0.42) ellipse (.15 and 0.4);
+							\draw (7.8,0.82) -- (8.5,0.82);
+							\draw (7.8,0.02) -- (8.5,0.02);
+							
+							% momentum arrow between transmission and moment of inertia
+							\draw[line width=0.7pt,<-] (7.2,-0.07) arc (-30:30:1);
+							
+							% shaft right from moment of inertia
+							\draw[fill=black] (8.65,0.38) rectangle (10.9,0.48);
+							
+							% brake shoe
+							\draw[fill=black] (9.55,{0.53+0.00})
+							-- +(-0.2,0.3) -- +(0.5,0.3) -- +(0.3,0.0);
+							\draw[fill=black] (9.55,{0.33-0.00})
+							-- +(-0.2,-0.3) -- +(0.5,-0.3) -- +(0.3,0.0);
+							
+							% momentum arrow (left hand side of brake shoe)
+							\draw[line width=0.7pt,<-] (9.05,-0.07) arc (-30:30:1);
+							
+							% spring
+							\draw [domain=0:{-4.5*pi}, variable=\t, samples=200,
+							line width=1pt]
+							plot( {10.52+0.4 + 0.15*(\t*0.1)*cos(\t r)},
+							{0.40 + 0.15*(\t*0.3)*sin(\t r)});
+							
+							% momentum arrow (left hand side of spring)
+							\draw[line width=0.7pt,<-] (10.4,-0.07) arc (-30:30:1);
+							
+							% spring wall mount
+							\draw[fill=black]
+							(10.9,{1.03-0.2}) rectangle (10.95,{1.03+0.2});
+							\foreach \x in {0,...,5}
+							\draw[line width=0.8pt]
+							({10.55+0.4},{1.03-0.18+\x*0.07}) -- +(0.1,0.05);
+							
+							% descriptions inside graphic
+							\draw (5.85,2.2) node {$\omega_r$};
+							\draw (7.29,1.11) node {$T_m$};
+							\draw (8.25,0.44) node {$J$};
+							\draw (9.05,1.15) node {$J$};
+							\draw (10.4,1.15) node {$B$};
+							%				\draw (6.6,-0.5) node {$v$};
+							
+							% descriptions of subsystems under graphic
+							\draw [decorate,decoration={brace,amplitude=10pt},
+							xshift=0pt, yshift=0pt]
+							(5.5,-0.75) -- (-0.5,-0.75)
+							node[black,midway,yshift=-20pt]
+							{Subsistema Eléctrico};
+							\draw [decorate,decoration={brace,amplitude=10pt},
+							xshift=0pt, yshift=0pt]
+							(11.4,-0.75) -- (6,-0.75)
+							node[black,midway,yshift=-20pt]
+							{Subsistema Mecánico};
+						\end{circuitikz}
+						\caption{Modelo Físico del Motor DC de Excitación Separada \label{dc_motor_schema}}
+						\centering Fuente: Elaboración Propia
+					\end{center}
+				\end{figure}
+				
+				Así las variables de este sistema quedan resumidas en la siguiente tabla.
+				
+				\begin{table}[H]
+					\centering
+					\caption{Variables Físicas de la Planta - Motor DC}
+					\label{physical_parameters_dc_motor_table}
+					\begin{tabular}{|l|c|c|}
+						\hline
+						\multicolumn{1}{|c|}{Variable}                  & Símbolo 	& Unidades    \\ \hline
+						Voltaje de Armadura		                        & $v_a$   	& $V$ 		\\ \hline
+						Voltaje Interno de la Máquina                   & $E_a$   	& $V$         \\ \hline
+						Corriente de Armadura				            & $i_a$   	& $A$         \\ \hline
+						Resistencia de Armadura 						& $R_a$   	& $\Omega$     \\ \hline
+						Inductancia de Armadura							& $L_a$   	& $H$          \\ \hline
+						Par Mecánico o de Carga                         & $T_m$   	& $N.m$          \\ \hline
+						Momento de Inercia                              & $J$     	& $kg / m^2$    \\ \hline
+						Coeficiente de Fricción del Motor               & $B$     	& $N.m / rad/s$           \\ \hline
+						Constante de Par                                & $K_t$   	&                \\ \hline
+						Contante de Fuerza contra Electromotriz         & $K_b$   	& $V / rad /s $      \\ \hline
+						Velocidad Angular del Eje                       & $\omega_r$  & $rad /s $      \\ \hline
+					\end{tabular}
+				\end{table}
+			
+			
+			Teniendo en consideración las ecuaciones del circuito eléctrico del motor se obtiene
+			
+			\begin{equation}
+				\begin{gathered}
+					V_a(t) = R_a i_a(t) + L_a \frac{d}{dt} i_a(t) + E_a(t) \\
+					E_a(t) = K_b \omega_r(t) \\
+					T_m(t) = K_t I_a(t)
+				\end{gathered}
+			\end{equation}
+			
+			Igualando las ecuaciones eléctricas con las leyes de Newton de Momento se obtiene
+			
+			\begin{equation}
+				\begin{gathered}
+					J \frac{d}{dt} \omega_r(t) + B \omega_r(t) = K_t i_a(t) - T_m \\ 
+					L_a \frac{d}{dt} i_a(t) + R_a i_a(t) = V_a - K_b w_r(t)				
+				\end{gathered}
+			\end{equation}
+			
+			Así el sistema queda representado por la siguiente ecuación de estados
+			
+			\begin{equation}
+				\begin{gathered}
+					\begin{bmatrix}
+						\dot{\omega_r} \\
+						\dot{i_a}
+						\end{bmatrix} = \begin{bmatrix}
+						-\frac{B}{J} & \frac{K_t}{J} \\
+						-\frac{K_b}{L_a} & -\frac{R_a}{L_a}
+						\end{bmatrix} \begin{bmatrix}
+						w_r \\
+						i_a
+						\end{bmatrix} + \begin{bmatrix}
+						0 \\
+						\frac{1}{L_a}
+					\end{bmatrix} V_a \\
+					y = \omega_r = \begin{bmatrix}
+						1 & 0
+					\end{bmatrix} \begin{bmatrix}
+						\omega_r \\
+						i_a
+					\end{bmatrix}
+				\end{gathered}
+			\end{equation}
+			
+			Finalmente la función de transferencia de esta planta puede ser expresada por
+			
+			\begin{equation}
+				\frac{\omega_r(s)}{V_a(s)} = \frac{K}{(Js + B)(L_a s + R_a) + K^2}
+			\end{equation}
+			
+			\citeA{Asarkar}, determinaron experimentalmente los valores de los parámetros físicos de la planta, es importante notar que la identificación de sistemas no forma parte del presente estudio, sin embargo, es una práctica común en el análisis de sistemas dinámicos, dado que de forma regular no se cuenta con la información necesaria para abordar un caso de estudio. Luego de realizar el análisis, los autores determinaron que la función de transferencia de este motor de corriente continua posee la siguiente expresión.
+			
+			\begin{equation}\label{tf_dc_motor}
+				\begin{gathered}
+					H(s) = \frac{\omega(s)}{V_a(s)} = \frac{1.3908}{0.0134 s^2 +1.4021 s + 1.9477} \\
+					H(s) = \frac{\omega(s)}{V_a(s)} = \frac{103.791}{s^2 +104.634 s + 145.351}
+				\end{gathered}
+			\end{equation}
+			
+			
+			
+			\subsection{Análisis a Lazo Abierto}
+			
+			
+				\subsubsection{Respuesta al Escalón Unitario}
+				
+						Luego de determinar la función de transferencia del sistema, podemos empezar a desarrollar el estudio del mismo. Para esto se presenta el siguiente diagrama de bloques.
+						
+						\begin{figure}[h]
+							\begin{center}
+								\includegraphics[width=14cm,height=8cm,keepaspectratio]{dc_motor_step_open_loop_diagram}
+								\caption{Diagrama de Bloques - Respuesta al Escalón \\ Motor DC - Lazo Abierto\label{dc_motor_open_loop_system}}
+								\centering Fuente: Elaboración Propia
+							\end{center}
+						\end{figure}
+						
+						\newpage
+						
+						Resultando en la siguiente simulación
+						
+						\begin{figure}[h]
+							\begin{center}
+								\includegraphics[width=14cm,height=8cm,keepaspectratio]{dc_motor_open_loop_system_sim}
+								\caption{Simulación - Respuesta al Escalón \\ Motor DC - Lazo Abierto\label{dc_motor_open_loop_system_sim}}
+								\centering Fuente: Elaboración Propia
+							\end{center}
+						\end{figure}
+						
+						El sistema es estable de forma natural, los polos se ubican en el semi-plano izquierdo de los números complejos, particularmente en $s_1 = -139.593$ y $s_2 = -1.0412$. Sin embargo, el mismo presenta un error de estado estacionario considerable.
+						
+				\subsubsection{Respuesta a la Rampa}
+				
+					De la misma forma, se plantea en este caso el siguiente diagrama de bloques
+					
+					\begin{figure}[h]
+						\begin{center}
+							\includegraphics[width=14cm,height=8cm,keepaspectratio]{dc_motor_ramp_open_loop_diagram}
+							\caption{Diagrama de Bloques - Respuesta a la Rampa \\ Motor DC - Lazo Abierto\label{dc_motor_ramp_open_loop_diagram}}
+							\centering Fuente: Elaboración Propia
+						\end{center}
+					\end{figure}	
+					
+					\newpage
+					La misma queda expresada en la siguiente gráfica
+					
+					\begin{figure}[h]
+						\begin{center}
+							\includegraphics[width=14cm,height=8cm,keepaspectratio]{dc_motor_open_loop_system_ramp_sim}
+							\caption{Simulación - Respuesta a la Rampa \\ Motor DC	 - Lazo Abierto\label{dc_motor_open_loop_system_ramp_sim}}
+							\centering Fuente: Elaboración Propia
+						\end{center}
+					\end{figure}
+					
+					Como se aprecia en la gráfica, el sistema en cuestión no ofrece un buen seguimiento ante entradas tipo rampa. Por otro lado, como era de esperarse se tiene que el sistema no es estable.
+					
+					
+			\subsection{Diseño de Controladores}
+			
+				Para iniciar el proceso de diseño, se tiene que considerar la ecuación \ref{tf_dc_motor} que describe a la planta, la misma queda definida a continuación.
+				
+					\begin{equation}
+						H(s) = \frac{\omega(s)}{V_a(s)} = \frac{103.791}{s^2 +104.634 s + 145.351}
+					\end{equation}
+				
+				
+				Como establece la metodología, se debe representar el sistema en el modelo de estado equivalente a la topología de dos grados de libertad. La misma queda expresada a continuación
+				
+				\begin{equation}
+					\begin{bmatrix}
+						\stackbin{.}{y} \\
+						\stackbin{..}{y} \\
+						 u \\
+						\stackbin{..}{u}
+					\end{bmatrix} = \begin{bmatrix}
+						0 & 1 & 0 & 0 \\
+						-145.351 & -104.634 & 103.791 & 0 \\
+						0 & 0 & 0 & 1 \\
+						0 & 0 & 0 & 0						
+					\end{bmatrix} \begin{bmatrix}
+						y 		\\
+						\dot{y} \\
+						u 		\\
+						\dot{u}
+					\end{bmatrix} + \begin{bmatrix}
+						0 \\
+						0 \\
+						0 \\
+						1
+					\end{bmatrix} \stackbin{..}{u}
+				\end{equation}
+				
+				\subsubsection{Entradas Constantes}
+				
+					Consideremos el modelo auxiliar asociado a entradas de referencia del tipo constante. Lo cual que da expresado como sigue					
+					
+					\begin{equation}
+					\underbrace{\begin{bmatrix}
+						\mathbf{\dot{\xi}} \\ 
+						\dot{v}
+						\end{bmatrix}}_{\mathbf{\dot{z}}} = \underbrace{\begin{bmatrix}
+						\mathbf{0} & \mathbf{C} \\
+						\mathbf{0} & \mathbf{A}
+						\end{bmatrix}}_{\mathbf{\bar{A}}} \underbrace{\begin{bmatrix}
+						\mathbf{\xi} \\
+						v
+						\end{bmatrix}}_{\mathbf{z}} + \underbrace{\begin{bmatrix}
+						\mathbf{0} \\
+						\mathbf{B}
+						\end{bmatrix}}_{\mathbf{\bar{B}}} \mathbf{u_0}
+					\end{equation}
+					
+					Donde
+					
+						\begin{equation}
+							\mathbf{\bar{A}} = 
+							\begin{bmatrix}
+							0 & 1 & 0 & 0 & 0 \\
+							0 & 0 & 1 & 0 & 0 \\
+							0 & -145.351 & -104.634 & 103.791 & 0 \\
+							0 & 0 & 0 & 0 & 1 \\
+							0 & 0 & 0 & 0 & 0 
+							
+							\end{bmatrix}
+							\end{equation}
+							
+							\begin{equation}
+							\mathbf{\bar{B}} = \begin{bmatrix}
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							1
+							\end{bmatrix}
+						\end{equation}
+
+					Calculando de la misma manera que en los ejemplos anteriores la matriz de ganancias mediante LQR, se obtiene 
+					
+					\begin{equation}
+						\mathbf{\bar{K}} = \begin{bmatrix}
+										1 & 0.653 & 0.0063 & 2.197 & 2.322
+						\end{bmatrix}
+					\end{equation}
+					
+					Así los controladores quedan definidos por los siguientes polinomios
+					
+					\begin{equation}
+						\begin{gathered}
+						A(s) = s^2 + 2.322 s + 2.197 \\
+						L(s) = \frac{1}{s} \\
+						M(s) = \frac{0.0063 s^2 + 0.653 s + 1}{s}
+						\end{gathered}
+					\end{equation}
+					
+				\subsubsection{Respuesta al Escalón Unitario y Perturbaciones}
+				
+					Habiendo definido los controladores, se pasará a la comprobación de su comportamiento en el sistema de estudio, para lo cual se preparó la simulación correspondiente mediante el siguiente diagrama.
+					
+					\begin{figure}[h]
+						\begin{center}
+							\includegraphics[width=14cm,height=8cm,keepaspectratio]{dc_motor_step_close_loop_diagram}
+							\caption{Diagrama de Bloques - Respuesta al Escalón \\ Motor DC - Lazo Cerrado\label{dc_motor_step_close_loop_diagram}}
+							\centering Fuente: Elaboración Propia
+						\end{center}
+					\end{figure}							
+					
+					
+					En este caso la duración de la simulación es de 60 segundos, a su vez, que la perturbación se hace presente a los 30 segundos teniendo una magnitud de 1 unidad.
+					
+					\begin{figure}[h]
+						\begin{center}
+							\includegraphics[width=14cm,height=8cm,keepaspectratio]{dc_motor_step_close_loop_sim}
+							\caption{Simulación - Respuesta al Escalón \\ Motor DC - Lazo Cerrado\label{dc_motor_step_close_loop_sim}}
+							\centering Fuente: Elaboración Propia
+						\end{center}
+					\end{figure}			
+					
+					
+				Nuevamente el método resulta importante y logra controlar de forma perfecta tanto la respuesta transitoria como de estado estacionario del sistema. Se aprecia que el seguimiento es fiel a la entrada de referencia, así como presenta un rechazo activo a las perturbación en relativo corto tiempo.
+					
+				\subsubsection{Entradas Tipo Rampa}
+				
+					Veamos el análisis para entradas tipo rampa, partiendo del sistema auxiliar asociado
+				
+					\begin{equation}
+					\underbrace{\begin{bmatrix}
+						\mathbf{\stackbin{.}{\xi}} \\ 
+						\mathbf{\stackbin{..}{\xi}}\\
+						\mathbf{\stackbin{.}{v}}
+						\end{bmatrix}}_{\mathbf{\dot{z}}} = \underbrace{\begin{bmatrix}
+						\mathbf{0} & \mathbf{1} & \mathbf{0} \\
+						\mathbf{0} & \mathbf{0} & \mathbf{C} \\
+						\mathbf{0} & \mathbf{0} & \mathbf{A}
+						\end{bmatrix}}_{\mathbf{\bar{A}}} \underbrace{\begin{bmatrix}
+						\mathbf{\xi} \\
+						\mathbf{\stackbin{.}{\xi}} \\
+						\mathbf{v}
+						\end{bmatrix}}_{\mathbf{z}} + \underbrace{\begin{bmatrix}
+						\mathbf{0} \\
+						\mathbf{0} \\
+						\mathbf{B}
+						\end{bmatrix}}_{\mathbf{\bar{B}}} \mathbf{u_0}
+					\end{equation}
+					
+					Tales que.
+					
+						\begin{equation}
+							\mathbf{\bar{A}} = 
+							\begin{bmatrix}
+							0 & 1 & 0 & 0 & 0 & 0\\
+							0 & 0 & 1 & 0 & 0 & 0\\
+							0 & 0 & 0 & 1 & 0 & 0\\
+							0 & 0 & -145.351 & -104.634 & 103.791 & 0 \\
+							0 & 0 & 0 & 0 & 0 & 1 \\
+							0 & 0 & 0 & 0 & 0 & 0 
+							
+							\end{bmatrix}
+							\end{equation}
+							
+							\begin{equation}
+							\mathbf{\bar{B}} = \begin{bmatrix}
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							0 \\
+							1
+							\end{bmatrix}
+						\end{equation}
+						
+					De forma análoga obtenemos la matriz de ganancias asociada a este sistema.
+					
+					\begin{equation}
+						\mathbf{K} = \begin{bmatrix}
+							1 & 4.021 & 2.346 & 0.0224 & 3.740 & 2.912
+						\end{bmatrix}
+					\end{equation}		
+					
+					Así pues, quedan definido los controladores
+					
+					\begin{equation}
+						\begin{gathered}
+							A(s) = s^2 + 2.912 s + 3.740 \\
+							L(s) = \frac{4.021 s +  1}{s^2} \\
+							M(s) = \frac{0.0224 s^3 + 2.346 s^2 + 4.021 s + 1}{s^2}
+						\end{gathered}
+					\end{equation}
+					
+					\subsubsection{Respuesta a la Rampa y a Perturbaciones}
+					
+						Finalmente, se verá como se comporta el sistema ante entradas tipo rampa en presencia de los controladores. Para esto se establece el siguiente diagrama de bloques.
+						
+							\begin{figure}[h]
+								\begin{center}
+									\includegraphics[width=14cm,height=8cm,keepaspectratio]{dc_motor_ramp_close_loop_diagram}
+									\caption{Diagrama de Bloques - Respuesta a la Rampa \\ Motor DC - Lazo Cerrado\label{dc_motor_ramp_close_loop_diagram}}
+									\centering Fuente: Elaboración Propia
+								\end{center}
+							\end{figure}							
+							
+							Como en el estudio de las entradas constantes la duración de la simulación es de 60 segundos, a su vez, que la perturbación se hace presente a los 30 segundos teniendo como pendiente la unidad.
+							
+							\begin{figure}[h]
+								\begin{center}
+									\includegraphics[width=14cm,height=8cm,keepaspectratio]{dc_motor_ramp_close_loop_sim}
+									\caption{Simulación - Respuesta a la Rampa \\ Motor DC - Lazo Cerrado\label{dc_motor_ramp_close_loop_sim}}
+									\centering Fuente: Elaboración Propia
+								\end{center}
+							\end{figure}	
+							
+							Finalmente como se aprecia en la gráfica, se logro como en todos los casos estudiados en el presente trabajo los dos objetivos que a priori se desea en los sistemas de control. El seguimiento ante la entrada tipo rampa es perfecto, y el rechazo a perturbaciones se logro de forma expedita.	
+					
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%		CHAPTER V		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\chapter{Conclusiones y Recomendaciones}
+	
+	\begin{itemize}
+		\item[\textbullet] La metodología probó ser efectiva para sistemas de distintas naturalezas, se procuró ser lo bastante amplio en este particular con el fin de que no quedaran dudas de la efectividad del algoritmo propuesto.
+	\end{itemize}	
+	
+		\begin{itemize}
+			\item[\textbullet] Entre las características notables de este método, es que permite la utilización de técnicas de control asociadas a descripciones internas (Espacio de Estados) a descripciones externas (Función de Transferencia y Ecuación Diferencial), esto sin el uso de observadores de estados asocia\-dos. 
+		\end{itemize}
+
+		\begin{itemize}
+			\item[\textbullet] 	El ítem anterior cobra mayor fuerza cuando la metodología logra la obtención de un modelo interno haciendo uso solo de información medible del sistema (Entrada y Salida), y no información interna como los estados propiamente dichos. Esto resulta en la omisión de los observadores, los cuales son de requerimiento común en la práctica al no contar con todos los estados para la retroalimentación.
+		\end{itemize}
+		
+		\begin{itemize}
+			\item[\textbullet] El método propuesto gana importancia al establecer controladores óptimos para sistemas cuya representación es externa. Esto es, el cálculo de los polinomios asociados a los controlares que ofrecen una dinámica transitoria óptima.
+		\end{itemize}		
+		
+		\begin{itemize}
+			\item[\textbullet] La metodología no solo resulta óptima a nivel transitorio, sino que ofrece robustez en el sentido que permite el rechazo a perturbaciones y garantiza una respuesta deseada ante imprecisiones en el modelado de la planta.
+		\end{itemize}		
+	
+	Entre algunas de las recomendaciones o propuestas adicionales al presente trabajo se tienen las siguientes:
+	
+	\begin{itemize}
+		\item[\textbullet] Uno de los puntos débiles de técnicas de optimización como LQR es la correcta elección de las matrices asociadas $\mathbf{Q}$ y $\mathbf{R}$. Estas matrices pena\-lizan variables de estados y la propia entrada del sistema. Es común que el diseñador, dada su experiencia y tomando en consideración la planta y los requerimientos de diseño asigne valores arbitrarios a dichas matrices. Por lo que se recomienda la realización de un estudio que permita obtener una metodología para la elección de estas matrices, dejando de lado las improvisaciones que en este particular se pueden observar.
+	\end{itemize}
+
+	\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%		REFERENCES		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\newpage
+	\pagestyle{empty}
+	\bibliographystyle{apacite}
+	\bibliography{biblio}
+	\nocite{*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%		APENDDIX	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+	
+-	\begin{appendices}
+			\pagestyle{fancy}			
+		\chapter{Transformada de Laplace y Otras Definiciones}
+		
+			En las secciones por venir se presenta de forma general y sucinta un conjunto de nociones de base vinculadas al trabajo investigativo. No se tiene la pretensión de ser original ni exhaustivo, el objetivo es tan solo reunir una va\-riedad suficiente compacta de resultado para hacerles referencia en caso de necesidad. El lector interesado podrá consultar \cite{ogata}, \cite{chen}, \cite{dorf}, \cite{kuo}, entre otros autores expuestos en la biblio\-grafía del presente trabajo.
+			
+			\vspace{0.5cm}
+			\begin{definition}
+				Se define la transformada de Laplace de la función temporal $f(t)$ como
+				\[
+					F(s) = \mathscr{L}\{f(t)\} = \int_{0}^{\infty} f(t) e^{-s\tau} d\tau
+				\]
+			\end{definition}
+			
+			Donde $\mathscr{L}\{f(t)\}$ es la notación abreviada de la transformación integral de Laplace.
+			
+			El resultado de la transformada de Laplace es una función en variable compleja $s$, denotada por $F(s)$.
+			
+			Algunas de las propiedades mas importantes de la transformada de Laplace se presentan a continuación:
+			
+			\begin{enumerate}
+				\item Linealidad: Si $a$ y $b$ son escalares, se tiene
+				
+				\[
+					\mathscr{L}\{af(t)+bg(t)\} = a \mathscr{L}\{f(t)\} + b \mathscr{L}\{g(t)\} = a F(s) + b G(s)
+				\]
+				
+				\item Traslación en el tiempo:
+				
+				\[
+					\mathscr{L}\{f(t - a)\} = e^{-as}F(s)
+				\]
+				
+				\item Traslado  en $s$:
+				
+				\[
+					\mathscr{L}\{e^{-at}f(t)\} = F(s+a)
+				\]
+				
+				\item Derivación:
+				
+				\[
+					\mathscr{L}\{\frac{d}{dt}f(t)\} = s F(s) - f(0)
+				\]
+				
+				\item Derivación de orden $n$:
+				\[
+					\mathscr{L}\{\frac{d^n}{dt^n}f(t)\} = s^nF(s) - s^{n-1}f(0) - \dots - s \frac{d^{n-2}}{dt^{n-2}}f(0) - \frac{d^{n-1}}{dt^{n-1}}f(0)
+				\]
+				
+				\item Integración:
+				
+				\[
+					\mathscr{L}\{\int_{0}^{\tau} f(\tau) d\tau\} = \frac{F(s)}{s}
+				\]
+				
+				\item Integración de Orden n:
+				
+				\[
+					\mathscr{L}\{\int_{0}^{\tau} \dots \int_{0}^{\tau} f(\tau) d\tau\} = \frac{F(s)}{s^n}
+				\]
+				
+				\item Tiempo Inicial:
+				
+				\[
+					\lim_{\tau \to 0} f(\tau) = \lim_{s \to \infty} sF(s)
+				\]
+				
+				\item Tiempo Final:
+				
+				\[
+					\lim_{\tau \to \infty} f(\tau) = \lim_{s \to 0} sF(s)
+				\]
+			\end{enumerate}
+			
+			\vspace{0.5cm}
+			\begin{definition} \label{transfer function}
+				La función de transferencia se define como el cociente de la transformada de Laplace de la salida entre la entrada, esto es
+				\[
+				H(s) = \frac{Y(s)}{U(s)}
+				\]
+			\end{definition}
+			
+			\vspace{0.5cm}
+			\begin{definition}\label{system order}
+				
+				Sea el sistema descrito mediante la siguiente función de trans\-ferencia:
+				\[
+				H(s) = \frac{Y(s)}{U(s)} = \frac{b_0 s^m + b_1 s^{m-1} + b_2 s^{m-2} + \dots + b_{m-1}s + b_m}{a_0 s^n + a_1 s^{n-1} + a_2 s^{n-2} + \dots + a_{n-1}s + a_n}
+				\]
+				
+				\noindent  donde $a_0 \ne 0$, decimos entonces que el sistema es de orden $n$. Es decir, la potencia más alta del denominador en una función de transferencia define el orden del sistema.
+				
+			\end{definition}
+			
+			\vspace{0.5cm}
+			\begin{definition}\label{polynomial order}
+				Sea 
+				\[
+				P(s) = \sum_{i=0}^{n} a_i s^i
+				\]
+				polinomio sobre el cuerpo $\mathbb{R}$, donde $a_n \ne 0$, entonces decimos que el polinomio es de grado n y se denotará como $\partial(P(s)) = n$.
+			\end{definition}
+			
+			\vspace{0.5cm}
+			\begin{definition}\label{proper transfer function}
+				Sea 
+				\[
+				H(s) = \frac{N(s)}{D(s)}
+				\]
+				función de transferencia, se dice que es propia si y solo sí $\partial(N(s)) \le \partial(D(s))$.
+			\end{definition}
+			
+			\vspace{0.5cm}
+			\begin{definition}\label{stricly proper transfer function}
+				Sea 
+				\[
+				H(s) = \frac{N(s)}{D(s)}
+				\]
+				función de transferencia, se dice que es estrictamente propia si y solo sí \newline $\partial(N(s)) < \partial(D(s))$.
+			\end{definition}
+			
+			\vspace{0.5cm}
+			\begin{definition} \label{coprimes in rings}
+				Sea R un anillo euclidiano, a,b $\in$ R se dicen primos relativos o coprimos si su máximo común divisor es una unidad de R.
+			\end{definition}
+			
+			\vspace{0.5cm}
+			\begin{definition} \label{proper system}
+				Sea el sistema con descripción externa, se dice que el mismo es propio a lazo cerrado si y solo sí para todo par de Entradas/Salidas, el sistema es propio.
+			\end{definition}
+			
+			\vspace{0.5cm}
+			\begin{definition} \label{totally proper system}
+				Sea el sistema con descripción externa, se dice que el mismo es totalmente estable si y solo sí para todo par de Entradas/Salidas, el sistema es estable. Es decir, los polos a lazo cerrado se encuentran en el semi-plano izquierdo del plano complejo.
+			\end{definition}
+			
+			\vspace{0.5cm}
+			\begin{definition} \label{positive_matrix}
+				Se dice que $\mathbf{A} \in \mathbb{R}^{nxn}$ es positiva definida si y solo sí $\mathbf{x^T A x} > 0$ $\forall \mathbf{x} \in \mathbb{R}^{nx1}$.
+			\end{definition}
+			
+			\vspace{0.5cm}
+			\begin{definition} \label{stable_matrix}
+				Se dice que $\mathbf{A} \in \mathbb{R}^{nxn}$ es estable si y solo sí $\mathbf{A}$ posee autovalores en el Semi-Plano Izquierdo de $\mathbb{C}$.
+			\end{definition}
+			
+			
+			\vspace{0.5cm}
+			\begin{definition} \label{plant_type}
+				Sea un sistema descrito por su función de transferencia tal que esta puede ser escrita de la siguiente forma
+				
+				\begin{equation*}
+					H(s) = \frac{N(s)}{s^n D_0(s)}
+				\end{equation*}				
+				Entonces diremos que esta planta es de tipo $n$. Es decir, el tipo de la planta queda definido por los polos que posee en el origen.
+			\end{definition}
+			
+				
+		
+		
+		\chapter{Resultados Notables}
+		
+		\begin{theorem} \label{taylor_theorem}
+			\textbf{(Taylor)} Sea una función $x(t)$ definida en el intervalo $\left[a,b\right]$, con valores sobre un espacio de Banach $\mathbf{X}$, supongamos que $x(t)$ posee derivadas continuas en $\left[a,b\right]$ hasta de orden $n+1$, Así se obtiene
+			
+			\[
+			x(b) - x(a) = x^{'}(a)(b-a) + \frac{1}{2} x^{''}(a)(b-a)^2 + \dots + \frac{1}{n!}x^{(n)} (a)(b-a)^n + Q_n
+			\]	
+			
+			Cuyo resto $Q_n$ puede ser escrito de la siguiente forma
+			
+			\[
+			Q_n = \frac{1}{n!} \int_a^b x^{(n+1)}(t)(b-t)^n dt
+			\]
+			
+		\end{theorem}
+		
+		\vspace{0.5cm}
+		\begin{theorem}\label{implementability condition}
+			\textbf{(Condición de Implementabilidad)} Considere una planta cuya función de transferencia es propia $G(s)$ y $G_0(s)$ la función de transferencia a lazo cerrado deseada, entonces $G_0(s)$ es implementable si y solo sí $G_0(s)$ es estable y $G_0(s)$/$G(s)$ es 
+			estable y propia.
+		\end{theorem}
+		
+		\vspace{0.5cm}
+		\begin{theorem} \label{suma de definidas positivas}
+			Sean $A,B \in \mathbb{R}^{nxn}$ definidas positivas, entonces $A+B$ es definida positiva.
+		\end{theorem}
+		
+		\begin{proof}
+			Sean $A,B \in \mathbb{R}^{nxn}$ definidas positivas y $v \in \mathbb{R}^{nx1}$.
+			\begin{equation*}
+			v^{t}(A+B)v = (v^{t}A + v^{t}B)v = (v^{t}Av + v^{t}Bv) = (v^{t}Av) + (v^{t}Bv)
+			\end{equation*} 
+			Haciendo uso de las hipótesis queda demostrado el teorema.
+		\end{proof}
+		
+		\vspace{0.5cm}
+		\begin{theorem}\label{ogata A.12.15}
+			Sea el sistema en variables de estado descrito a continuación
+			
+			\begin{equation*}
+			\mathbf{\dot{x} = Ax + bu}
+			\end{equation*}
+			
+			Donde $\mathbf{A}$ es no singular, entonces si el estado de equilibrio $\mathbf{x = 0}$ del sistema es asintóticamente estable (es decir, $\mathbf{A}$  es estable) se tiene que existe una matriz $\mathbf{P}$ definida positiva tal que
+			
+			\begin{equation*}
+			\mathbf{A^TP + PA = -Q}
+			\end{equation*}
+			Donde $\mathbf{Q}$ es definida positiva	
+		\end{theorem}
+		
+		\begin{proof}
+			La ecuación diferencial matricial
+			
+			\begin{equation*}
+			\mathbf{\dot{x} = A^TX + XA, \quad \quad X(0) = Q}
+			\end{equation*}
+			
+			tiene solución
+			
+			\begin{equation*}
+			\mathbf{X = e^{(A^Tt)}Qe^{At}}
+			\end{equation*}
+			
+			Integrando a ambos lados de esta ecuación diferencia matricial desde $t=0$ a $t=\infty$, se obtiene
+			
+			\begin{equation*}
+			\mathbf{X(\infty) - X(0) = A^T (\int_0^\infty X dt) + (\int_o^\infty X dt) A}
+			\end{equation*}
+			
+			Considerando que $\mathbf{A}$ es una matriz estable y por lo tanto $\mathbf{X(\infty) = 0}$, se obtiene
+			
+			\begin{equation*}
+			\mathbf{-X(0) = -Q = A^T (\int_0^\infty X dt) + (\int_o^\infty X dt) A}
+			\end{equation*}
+			
+			Si hacemos
+			
+			\begin{equation*}
+			\mathbf{P = \int_0^\infty X dt = \int_0^\infty e^{(A^Tt)}Qe^{At} dt}
+			\end{equation*}
+			
+			Si se observa de cerca los elementos de $\mathbf{e^{At}}$ son sumas finitas de términos como $e^{\lambda_i}$, $te^{\lambda_i}$, $\dots$, $t^{m_i -1}e^{\lambda_it}$, donde los $\lambda_i$ son los valores propios de $\mathbf{A}$ y $m_i$ es la multiplicidad de $\lambda_i$. Como $\lambda_i$ se encuentra en el semi-plano izquierdo de los complejos se tiene que
+			
+			\begin{equation*}
+			\mathbf{\int_0^\infty e^{(A^Tt)Qe^{At}}dt}
+			\end{equation*} 
+			
+			Existe. Entonces
+			
+			\begin{equation*}
+			\mathbf{P^T = \int_0^\infty e^{(A^Tt)Qe^{At}}dt = P}
+			\end{equation*}
+			
+			Por lo tanto, $\mathbf{P}$ es definido positiva. Ahora verifiquemos que es definida positiva. Consideremos
+			
+			\begin{equation*}
+			\begin{aligned}
+			\mathbf{x^TPx = x^T (\int_0^\infty e^{(A^Tt)}Qe^{(At)}dt)x} \\
+			= \mathbf{\int_0^\infty (e^{(At)}x)^TQ(e^{(At)}x) dt}
+			\end{aligned}
+			\end{equation*}
+			
+			Lo que nos deja
+			
+			\begin{equation*}
+			\begin{cases}
+			\mathbf{\int_0^\infty e^{(A^Tt)}Qe^{(At)}dt > 0}  & \mathbf{x > 0} \\
+			\mathbf{\int_0^\infty e^{(A^Tt)}Qe^{(At)}dt = 0}  & \mathbf{x = 0} 
+			\end{cases}
+			\end{equation*}
+			
+			Por lo tanto $\mathbf{P}$ es definida positiva.
+			
+		\end{proof}
+		
+		
+		
+		\chapter{Relación entre Ecuación Diferencial y Función de Transferencia}
+		
+		Un sistema representado por medio de ecuaciones diferenciales es un buen punto de partida y es prácticamente la primera aproximación que se tiene de la planta a evaluar. Sin embargo, como se dijo anteriormente, existen diversas estrategias de diseño que aprovechan la facilidad y prácticidad de la descripción del sistema por medio de la función de transferencia, que hace necesario tender un puente entre ambas descripciones. Se tendrá una forma sencilla de obtener dicho vinculo.
+		
+		Supongamos que el sistema esta descrito por la Ecuación Diferencial Ordinaria
+		
+		\begin{equation} \label{edo_link}
+		\resizebox{.9 \textwidth}{!}{$				 a_0 \stackbin{(n)}{y} + a_1\stackbin{(n-1)}{y} + a_2\stackbin{(n-2)}{y} + \dots + a_{n-1} \stackbin{.}{y} + a_n y = 	b_0 \stackbin{(m)}{u} + b_1 \stackbin{(m-1)}{u} + b_2 \stackbin{(m-2)}{u} + \dots + b_{m-1} \stackbin{.}{u} + b_m u$}
+		\end{equation}	
+		
+		Recodemos que para obtener la caracterización de un sistemas, se asume todas las condiciones iniciales idénticas a $0$, de esta forma apliquemos la transformada de Laplace a la ecuación diferencial \eqref{edo_link}.
+		
+		\begin{equation} \label{laplace_dev}
+		\begin{gathered}
+		a_0 (s^n Y(s) - s^{n-1} \stackbin{}{y(t_0)} - \dots - s \stackbin{(n-2)}{y(t_0)} - \stackbin{(n-1)}{y(t_0)}) + \\
+		a_1 (s^{n-1} Y(s) - s^{n-2} \stackbin{}{y(t_0)} - \dots - s \stackbin{(n-3)}{y(t_0)} - \stackbin{(n-2)}{y(t_0)}) \\
+		+\\
+		\vdots \\
+		+ \\
+		a_nY(s) \\
+		= \\ 
+		b_0 (s^m U(s) - s^{m-1} \stackbin{}{u(t_0)} - \dots - s \stackbin{(m-2)}{u(t_0)} - \stackbin{(m-1)}{u(t_0)}) + \\
+		b_1 (s^{m-1} U(s) - s^{m-2} \stackbin{}{u(t_0)} - \dots - s \stackbin{(m-3)}{u(t_0)} - \stackbin{(m-2)}{u(t_0)}) \\
+		+ \\
+		\vdots \\
+		+ \\
+		b_mU(s)
+		\end{gathered}
+		\end{equation}
+		
+		Como se dijo anteriormente que 
+		
+		
+		\begin{equation}
+		\resizebox{.9 \textwidth}{!}{$				 \stackbin{(n-1)}{y(t_0)} = \stackbin{(n-2)}{y(t_0)} = \dots = \stackbin{.}{y(t_0)} = y(t_0) = \stackbin{(m-1)}{u(t_0)} = \stackbin{(m-2)}{u(t_0)} = \dots = \stackbin{.}{u(t_0)} = u(t_0) = 0$}
+		\end{equation}
+		
+		De esta forma la ecuación \eqref{laplace_dev}, queda expresada como se presenta a continuación
+		
+		\begin{equation}
+		\begin{gathered}
+		a_0 s^n Y(s) + a_1 s^{n-1} Y(s) + \dots + a_{n-1} s Y(s) + a_n Y(s) \\
+		= \\
+		b_0 s^m U(s) + b_1 s^{m-1} U(s) + \dots + b_{m-1} s U(s) + b_m U(s)
+		\end{gathered}
+		\end{equation}
+		
+		Finalmente
+		
+		\begin{equation}
+		\begin{gathered}
+		(a_0 s^n + a_1 s^{n-1} + \dots + a_{n-1} s + a_n) Y(s)\\
+		= \\
+		(b_0 s^m + b_1 s^{m-1} + \dots + b_{m-1} s + b_m) U(s)
+		\end{gathered}
+		\end{equation}
+		
+		\begin{equation}
+		H(s) = \frac{Y(s)}{U(s)} = \frac{b_0 s^m + b_1 s^{m-1} + \dots + b_{m-1} s + b_m}{a_0 s^n + a_1 s^{n-1} + \dots + a_{n-1} s + a_n}
+		\end{equation}
+		
+		Este resultado es de gran utilidad en la practica, ya que permite obtener de manera directa la función de transferencia a partir de la ecuación diferencial ordinaria (y viceversa) que modela la planta, así como sus propiedades estructurales (polos, ceros, estabilidad, entre otros).
+		
+			\chapter{Transformación entre Modelos Matemáticos}
+			
+			En general, una primera aproximación al análisis de un sistema, parte del estudio de los fenómenos físicos que se encuentran interactúando en la planta. Dado esto, es común tener como primer modelo matemático del sistema un conjunto de ecuaciones diferenciales cuyas variables pueden o no estar interrelacionadas.
+			
+			Partiendo de esto, se construyen las ecuaciones de estado que describirán el sistema, sin embargo, si se quiere analizar el sistema bajo un modelo de entrada-salida se tiene que tender un puente entre ambas descripciones.
+			
+			Supongamos que se tiene un sistema descrito por sus ecuaciones de estados
+			
+			\begin{equation}
+			\mathbf{\dot{x} = A x + B}u				
+			\end{equation}
+			
+			\begin{equation}
+			\mathbf{y = C x + D}u
+			\end{equation}
+			
+			Aplicando la transformada de Laplace se obtiene
+			
+			\begin{equation}
+			s \mathbf{X(s)} - \mathbf{X(0)} = A \mathbf{X(s)} + \mathbf{B} U(s) 
+			\end{equation}
+			
+			\begin{equation}\label{output}
+			Y(s) = \mathbf{C} \mathbf{X(s)} + \mathbf{D} U(s) 
+			\end{equation}
+			
+			Como $\mathbf{X(0) = 0}$, se tiene
+			
+			\begin{equation}
+			s \mathbf{X(s)} - \mathbf{A X(s)} = \mathbf{B} U(s)
+			\end{equation}
+			
+			Así
+			
+			\begin{equation}
+			\begin{gathered}
+			(s \mathbf{I} - \mathbf{A}) \mathbf{X(s)} = \mathbf{B} U(s) \\
+			\mathbf{X(s)} = (s \mathbf{I} - \mathbf{A})^{-1}\mathbf{B} U(s)
+			\end{gathered}
+			\end{equation}
+			
+			Igualando con la ecuación \eqref{output} 
+			
+			\begin{equation}
+			Y(s) = \mathbf{C}(s \mathbf{I} - \mathbf{A})^{-1}\mathbf{B} U(s) + \mathbf{D} U(s)
+			\end{equation}
+			
+			Finalmente
+			
+			\begin{equation}
+			H(s) = \mathbf{C}(s \mathbf{I} - \mathbf{A})^{-1}\mathbf{B}+ \mathbf{D}
+			\end{equation}
+			
+			De esta manera se tiene una forma conveniente de trasladar un sistema descrito en espacio de estados a su análogo en función de transferencia.
+			
+			
+			\chapter{Espacio de Estados}
+			
+					Gran parte de las definiciones que a continuación se expondrán fueron tomadas de \citeA{ogata}, \citeA{dorf} y \citeA{kuo}. Así como de diferentes autores como \citeA{herstein}, \citeA{chen}. 
+					\newline
+					\begin{definition}\label{state}
+						El \textbf{Estado} de un sistema dinámico es el conjunto de variables más pequeño (llamadas variables de estado), de forma que el conocimiento de estas variables en $t=t_0$, junto con el conocimiento de la entrada para $t \ge t_0$, determinan completamente el comportamiento del sistema en cualquier instante $t \ge t_0$.
+					\end{definition}
+					
+					Esta definición no excluye a sistema de naturaleza no física, la misma puede ser aplicable a sistemas económicos, biológicos, sociales, entre otros. Desde un punto de vista cualitativo, de esta definición se desprende que el estado, no es más que un conjunto de variables tales que sabiendo su comportamiento y la función de entrada del sistema, así como con las ecuaciones que definen la dinámica del sistemas se puede saber la salida y sus valores futuros.
+					\newline
+					\begin{definition} \label{state variables}
+						Las \textbf{variables de estado} en un sistema dinámico, son las re\-presentaciones que constituyen el menor numero de variables que determinan el estado completo del sistema de estudio. 
+					\end{definition}
+					
+					De esta forma se puede establecer que las variables de estado, describen la res\-puesta futura de un sistema, a partir del estado presente, las señales de excitación y las ecuaciones que describen la dinámica del sistema.		
+					\newline
+					
+					\begin{definition} \label{state space}
+						El espacio n-dimensional cuyos ejes de coordenadas están formados por el eje $x_1$, $x_2$, $\dots$ , $x_n$, donde $x_1$, $x_2$, $\dots$ , $x_n$ son las variables de estado, se denomina \textbf{espacio de estados}.
+					\end{definition}
+					
+					Sea un sistema de tipo MIMO, donde $u_1(t)$, $u_2(t)$, $u_3(t)$, $\dots$, $u_r(t)$ son las entradas del sistema e $y_1(t)$, $y_2(t)$, $y_3(t)$, $\dots$, $y_m(t)$ las salidas. Se definen $x_1(t)$, $x_2(t)$, $x_3(t)$, $\dots$, $x_n(t)$ variables de estados. Entonces el sistema puede ser representado de la siguiente forma.
+					
+					\begin{equation}
+					\begin{aligned}
+					\stackbin{.}{x_1} &= f_1(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t) \\
+					\stackbin{.}{x_2} &= f_2(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t) \\
+					\stackbin{.}{x_3} &= f_3(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t) \\
+					&\mathrel{\makebox[\widthof{}]{\vdots}} \\
+					\stackbin{.}{x_n} &= f_n(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t) \\
+					\end{aligned}
+					\end{equation}
+					
+					Adicionalmente las salidas del sistemas se obtienen mediante
+					
+					\begin{equation}
+					\begin{aligned}
+					\stackbin{.}{y_1} &= g_1(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t) \\
+					\stackbin{.}{y_2} &= g_2(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t) \\
+					\stackbin{.}{y_3} &= g_3(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t) \\
+					&\mathrel{\makebox[\widthof{}]{\vdots}} \\
+					\stackbin{.}{y_n} &= g_n(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t) \\
+					\end{aligned}
+					\end{equation}
+					
+					Si definimos
+					
+					\begin{equation}
+					\begin{aligned}
+					\mathbf{x(t)} = \begin{bmatrix}
+					x_1(t) \\
+					x_2(t) \\
+					x_3(t) \\
+					\vdots \\ 
+					x_n(t)
+					\end{bmatrix}, && \mathbf{f(x,u,t)} = \begin{bmatrix}
+					f_1(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t) \\
+					f_2(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t) \\
+					f_3(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t) \\
+					\vdots \\ 
+					f_n(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t)
+					\end{bmatrix}
+					\end{aligned}
+					\end{equation}
+					
+					\begin{equation}
+					\begin{aligned}
+					\mathbf{y(t)} = \begin{bmatrix}
+					y_1(t) \\
+					y_2(t) \\
+					y_3(t) \\
+					\vdots \\ 
+					y_n(t)
+					\end{bmatrix}, && \mathbf{g(x,u,t)} = \begin{bmatrix}
+					g_1(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t) \\
+					g_2(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t) \\
+					g_3(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t) \\
+					\vdots \\ 
+					g_n(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t)
+					\end{bmatrix}
+					\end{aligned}
+					\end{equation}
+					
+					\begin{equation}
+					\mathbf{u(t)} = \begin{bmatrix}
+					u_1(t) \\
+					u_2(t) \\
+					u_3(t) \\
+					\vdots \\ 
+					u_r(t)
+					\end{bmatrix}			
+					\end{equation}
+					
+					De las ecuaciones anteriores se puede caracterizar el sistema como sigue
+					
+					\begin{equation}\label{general linear system}
+					\begin{aligned}
+					\mathbf{\dot{x(t)} = f(x,u,t)} \\
+					\mathbf{y(t) = g(x,u,t)}\\
+					\end{aligned}
+					\end{equation}
+					
+					Si las funciones vectoriales $\mathbf{f}$ y/o $\mathbf{g}$ involucran explícitamente la variable tiempo, el sistema se dice variable en el tiempo, linealizando las ecuaciones \eqref{general linear system}, alrededor del estado de operación, se tienen las siguiente ecuaciones de estado y de salidas linealizadas:
+					
+					\begin{equation}
+					\begin{aligned}
+					\mathbf{\dot{x(t)} = A(t)x(t) + B(t)u(t)} \\
+					\mathbf{y(t) = C(t)x(t) + D(t)u(t)}
+					\end{aligned}
+					\end{equation}
+					
+					Donde $\mathbf{A(t)}$ se denomina matriz de estados, $\mathbf{B(t)}$ matriz de entrada, $\mathbf{C(t)}$ matriz de salida y $\mathbf{D(t)}$ matriz de transición directa. En caso de que las funciones $\mathbf{f}$ y $\mathbf{g}$ no involucren a la variable tiempo directamente, el sistema se dice invariante en el tiempo. En este caso las ecuaciones de estado quedan expresada de la siguiente forma:
+					
+					\begin{equation}
+					\begin{aligned}
+					\mathbf{\dot{x(t)} = Ax(t) + Bu(t)} \\
+					\mathbf{y(t) = Cx(t) + Du(t)}
+					\end{aligned}
+					\end{equation}
+					
+					Donde las matrices del sistemas son a coeficientes contantes, este será el caso en este estudio. El sistema queda representado por el siguiente diagrama de bloques.
+					
+					\begin{figure}[h]
+						\begin{center}
+							\includegraphics[width=14cm,height=8cm,keepaspectratio]{cap2-esquema-retro-unitario-spa-state}
+							\caption{Diagrama de bloques del sistema de control lineal en tiempo continuo representado en el espacio de estados\label{block-diagram-state-space}}
+							\centering Fuente: Elaboración Propia
+						\end{center}
+					\end{figure}
+					
+					\newpage
+					Una de las características de la representación en el espacio de estados es que para un sistema cualquiera, esta descripción no es única, por lo que para un mismo escenario se pueden tener diferentes alternativas. 
+					
+			\section{Controlabilidad}
+			
+				\vspace{0.5cm}
+				\begin{definition} \label{controlability}
+					Se dice que un sistema es controlable en el tiempo $t_0$ si se puede transferir desde cualquier estado inicial $\mathbf{x}(t_0)$ a cualquier otro estado, mediante un vector de control sin restricciones, en un intervalo de tiempo finito.
+				\end{definition}
+				
+				\vspace{0.5cm}
+				\begin{definition} \label{controlability_matrix}
+					Sea un sistema descrito por la ecuación de estados
+					\[
+						\mathbf{\dot{x} = Ax + Bu}
+					\]
+					Definimos $\mathcal{C}$ la matriz de controlabilidad de la siguiente forma
+					
+					\[
+						\mathcal{C} = \begin{bmatrix}[c:c:c:c]
+							\mathbf{B} & \mathbf{A^{2}B} & \dots & \mathbf{A^{n-1}B}
+						\end{bmatrix}
+					\]
+				\end{definition}		
+				
+				\vspace{0.5cm}
+				\begin{definition} \label{controlability_condition}
+					Sea un sistema definido en variables de estados se dice que el sistema es controlable si y solo sí, la matriz de controlabilidad asociada es de rango completo. Esto es,	 los vectores columnas son linealmente independientes.
+				\end{definition}
+							
+			\section{Observabilidad}
+			
+				\vspace{0.5cm}
+				\begin{definition} \label{observability}
+					Se dice que un sistema es observable en el tiempo $t_0$ si el estado $\mathbf{x}(t_0)$ se puede determinar a partir de la observación de $\mathbf{y}(t)$ en un intervalo de tiempo finito.
+				\end{definition}
+				
+				\vspace{0.5cm}
+				\begin{definition} \label{observability_matrix}
+					Sea un sistema descrito por la ecuación de estados
+					\[
+					\mathbf{\dot{x} = Ax + Bu}
+					\]
+					Definimos $\mathcal{O}$ la matriz de observabilidad de la siguiente forma
+					
+					\[
+					\mathcal{O} = \begin{bmatrix}
+					\mathbf{C} \\
+					\hdashline
+					\mathbf{CA} \\
+					\hdashline
+					\vdots \\
+					\hdashline
+					\mathbf{C A^{n-1}}
+					\end{bmatrix}
+					\]
+				\end{definition}		
+				
+				\begin{definition} \label{observability_condition}
+					Sea un sistema definido en variables de estados, se dice que el sistema es observable si y solo si, la matriz de observabilidad asociada es de rango completo. Esto es,	 los vectores columnas son linealmente independientes.
+				\end{definition}	
+		
+		\chapter{Linealización de Sistemas No Lineales}
+		
+		Hay ocasiones en que los sistemas de estudio por su propia naturaleza, quedan modelados por ecuaciones diferenciales que no son lineales e inclusive no son a coeficientes constantes, resultando en sistemas en los cuales el principio de superposición y escalamiento no son aplicables, este tipo de sistemas deben ser tratados con técnicas mas especializadas y de diferente índole. Sin embargo, bajo ciertas hipótesis se puede tratar al sistema como uno lineal, teniendo ciertas consideraciones.
+		
+		Para poder realizar dichas concesiones se debe recordar ciertas propiedades de las funciones continuas, en particular, el desarrollo de Taylor (Ver Apéndice - Teorema \ref{taylor_theorem}). A modo de ejemplo, supongamos un sistema no lineal cuya salida $y$ en una función de dos entradas $x_1$ y $x_2$, tal que
+		
+		\begin{equation}
+		y = f(x_1,x_2)
+		\end{equation}
+		
+		De esta forma se puede expandir dicha función mediante series de Taylor, alrededor del punto de operación $x_1 = \bar{x_1}$ y $x_2 = \bar{x_2}$ como sigue
+		
+		\begin{equation} \label{taylor_series_2_variables}
+		\begin{gathered}
+		y = f(\bar{x_1},\bar{x_2}) + \left[ \frac{\partial f}{\partial x_1} (x_1 - \bar{x_1}) + \frac{\partial f}{\partial x_2} (x_2 - \bar{x_2}) \right] \\
+		+ \frac{1}{2!} \left[ \frac{{\partial}^2 f}{\partial x^2_1}(x_1 - \bar{x_1})^2 + 2 \frac{{\partial f}^2}{\partial x_1 \partial x_2}(x_1 - \bar{x_1})(x_2 - \bar{x_2}) + \frac{{\partial}^2 f}{\partial x^2_2}(x_2 - \bar{x_2})^2 \right] + \dots
+		\end{gathered}
+		\end{equation}
+		
+		Las derivadas parciales de orden superior (mayor a 1) pueden ser omitidas. Dejándonos el sistema expresado en función de las derivadas parciales de primer orden. Así el sistema queda expresado
+		
+		\begin{equation}
+		\begin{gathered}
+		y - \bar{y} = K_1(x_1 - \bar{x_1}) + K_2(x_2 - \bar{x_2})				
+		\end{gathered}
+		\end{equation}
+		
+		Donde
+		
+		\begin{equation}
+		\begin{gathered}
+		\bar{y} = f(\bar{x_1},\bar{x_2}) \\
+		K_1 = \frac{\partial f}{\partial x_1}
+		\Bigg|_{x_1 = \bar{x_1},x_2 = \bar{x_2}}\\
+		K_2 = \frac{\partial f}{\partial x_2}
+		\Bigg|_{x_1 = \bar{x_1},x_2 = \bar{x_2}}
+		\end{gathered}
+		\end{equation}
+		
+		De esta forma podemos generalizar este método para un sistema descrito en espacio de estados.
+		
+		Supongamos 
+		
+		\begin{equation}
+		\begin{aligned}
+		\stackbin{.}{x_1} &= f_1(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t) \\
+		\stackbin{.}{x_2} &= f_2(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t) \\
+		\stackbin{.}{x_3} &= f_3(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t) \\
+		&\mathrel{\makebox[\widthof{}]{\vdots}} \\
+		\stackbin{.}{x_n} &= f_n(x_1, x_2, \dots, x_n; u_1, u_2, \dots, u_r; t) \\
+		\end{aligned}
+		\end{equation}
+		
+		Así mismo supongamos que se desea que el sistema mantenga una trayectoria nominal $\mathbf{x_0}(t)$, la cual corresponde a una entrada nominal  $\mathbf{u_0}(t)$, así podemos expandir en una serie de Taylor alrededor de $\mathbf{x}(t) = \mathbf{x_0}(t)$. Suponiendo que se descartan los términos de orden superior el sistema puede ser expresado como
+		
+		\begin{equation}\label{taylor_expansion_general}
+		\stackbin{.}{x_i} = f_i(\mathbf{x_0},\mathbf{u_0}) + \sum_{j=1}^n \frac{\partial f_i(\mathbf{x},\mathbf{u})}{\partial x_j} \Bigg|_{\mathbf{x_0},\mathbf{u_0}} (x_j - x_{0j}) + \sum_{j=1}^r \frac{\partial f_i(\mathbf{x},\mathbf{u})}{\partial u_j} \Bigg|_{\mathbf{x_0},\mathbf{u_0}} (r_j - r_{0j})
+		\end{equation}
+		
+		en donde $i=1,2,3,\dots,n$. Sea
+		
+		\begin{equation}
+		\begin{gathered}
+		\Delta x_i = x_i - x_{0i} \\
+		\Delta r_j - r_j - r_{0j}
+		\end{gathered}
+		\end{equation}
+		
+		Entonces
+		
+		\begin{equation}
+		\begin{gathered}
+		\Delta \stackbin{.}{x_i} = \stackbin{.}{x_i} - \stackbin{.}{x_{0i}}
+		\end{gathered}
+		\end{equation}
+		
+		Ya que
+		
+		\begin{equation}
+		\stackbin{.}{x_{0i}} = f_i(\mathbf{x_0},\mathbf{u_0})
+		\end{equation}
+		
+		Así la ecuación \eqref{taylor_expansion_general} puede ser reescrita como 
+		
+		\begin{equation}\label{taylor_expansion_general_new}
+		\Delta \stackbin{.}{x_i} = \sum_{j=1}^n \frac{\partial f_i(\mathbf{x},\mathbf{u})}{\partial x_j} \Bigg|_{\mathbf{x_0},\mathbf{u_0}} \Delta \stackbin{.}{x_j} + \sum_{j=1}^r \frac{\partial f_i(\mathbf{x},\mathbf{u})}{\partial u_j} \Bigg|_{\mathbf{x_0},\mathbf{u_0}} \Delta u_j
+		\end{equation}
+		
+		Esta ultima expresión puede ser escrita en forma matricial de la siguiente manera
+		
+		\begin{equation}
+		\mathbf{\Delta \dot{x}} = \mathbf{\bar{A} \Delta x + \bar{B} \Delta u}
+		\end{equation}
+		
+		En donde
+		
+		\begin{equation}\label{linear_matrices_A}
+		\mathbf{\bar{A}} = \begin{bmatrix}
+		\frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} & \dots & \frac{\partial f_1}{\partial x_n}\\
+		\frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2} & \dots & \frac{\partial f_2}{\partial x_n}\\
+		\vdots & \vdots & \ddots & \vdots\\
+		\frac{\partial f_n}{\partial x_1} & \frac{\partial f_n}{\partial x_2} & \dots & \frac{\partial f_n}{\partial x_n}\\
+		\end{bmatrix} 
+		\end{equation}
+		
+		\begin{equation}\label{linear_matrices_B}
+		\mathbf{\bar{B}} = \begin{bmatrix}
+		\frac{\partial f_1}{\partial u_1} & \frac{\partial f_1}{\partial u_2} & \dots & \frac{\partial f_1}{\partial u_r}\\
+		\frac{\partial f_2}{\partial u_1} & \frac{\partial f_2}{\partial u_2} & \dots & \frac{\partial f_2}{\partial ur}\\
+		\vdots & \vdots & \ddots & \vdots\\
+		\frac{\partial f_n}{\partial u_1} & \frac{\partial f_n}{\partial u_2} & \dots & \frac{\partial f_n}{\partial u_r}\\
+		\end{bmatrix} 
+		\end{equation}
+		
+		De esta forma se tiene una expresión cerrada para el calculo de los sistemas linealizados en espacios de estados.
+		
+		Es importante tener en cuenta que este proceso de linealización es valida sobre un punto de operación en particular. Si se quisiera que el sistema opere bajo otro punto nominal, el proceso de linealización debe ser realizado nuevamente. Hay que tener especial cuidado en este particular, ya que el sistema puede tener distintas representaciones como consecuencia de la dependencia del punto de operación en el proceso antes descrito. Así mismo, posibles desviaciones mínimas en el punto de operación pudieran ocasionar grandes imprecisiones en la descripción de la planta dada la naturaleza no lineal de la misma. Por lo que el ingeniero debe estar al tanto de estos aspectos, para poder así decidir trabajar con el modelo linealizado o por otro lado con el modelo no lineal y así aplicar técnicas propias de este tipo de sistemas.
+		
+
+	\end{appendices}
+
+\end{document}
