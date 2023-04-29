@@ -1,0 +1,744 @@
+\documentclass[12pt]{book}
+%OpenAny as a argunment on documentclass	, Avoid Chapters to start in odd pages
+\usepackage[latin1]{inputenc}
+\usepackage[spanish,es-noquoting]{babel}
+%\usepackage[dvips]{graphicx}
+\usepackage[eps]{graphicx}
+\usepackage{titling}
+\usepackage{vmargin}
+\usepackage{url}
+\usepackage{textcomp}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+\usepackage{float}
+\usepackage[T1]{fontenc}
+\usepackage{epstopdf}
+\usepackage{apacite}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{multicol}
+%\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{calc}
+\usepackage{everypage}
+\usepackage{adjustbox}
+\usepackage{multirow}
+\usepackage{lscape}
+\usepackage{makecell}
+\usepackage{rotating}
+\usepackage[table,xcdraw]{xcolor}
+%\usepackage{draftwatermark}
+%\SetWatermarkText{$\mathbf{Borrador \# 1}$}
+%\SetWatermarkScale{3}
+%\SetWatermarkHorCenter{0.65\paperwidth}
+%\SetWatermarkVerCenter{0.6\paperheight}
+%\SetWatermarkAngle{45}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{pstricks-add}
+\usepackage{pstricks}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{arydshln} %Dash Matrices
+\usepackage{titlesec}
+\usepackage{mathrsfs} %Laplace Transform L
+\usepackage[toc,page]{appendix} %Apendix
+\usepackage{verse}
+%text in top of letters
+\usepackage{stackrel}
+%Symbols and Abbreviations Table
+\usepackage{enumitem}
+\newlist{abbrv}{itemize}{1}
+\setlist[abbrv,1]{label=,labelwidth=1in,align=parleft,itemsep=0.1\baselineskip,leftmargin=!}
+%Center Caption in Tables
+\usepackage[justification=centering]{caption}
+%Footnote in Tabular
+\usepackage{tablefootnote}
+%Signatures
+\usepackage{tabularx}
+
+%Definitions Numbering in Appendix
+\usepackage{chngcntr}
+
+%Arial Font
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\setpapersize{USletter}
+%Setting Margins
+\setmarginsrb{35mm}{35mm}{35mm}{30mm}{0pt}{0mm}{0pt}{0mm}
+
+%Interlineado
+\renewcommand{\baselinestretch}{1.5}
+
+%Sangria
+\usepackage{parskip}
+\setlength{\parindent}{0.75cm}
+
+%columns Separation
+\setlength{\columnsep}{2cm}
+
+%Fancy Header Setup
+\rhead{}
+\lhead{}
+\chead{\bfseries \nouppercase{\leftmark}}
+
+%Fancy Header Resumen and Introduction
+\fancypagestyle{blank_header}{\chead{}}
+
+%Footer's Margins
+\headsep = 30pt
+\footskip = 25pt
+\renewcommand{\headrulewidth}{0.5pt}
+%Real solution to the spacing between header and text
+\fancyheadoffset{1cm}
+\pagestyle{fancy}
+
+%Fix Appendices Chapter Name
+\addto\captionsspanish{%
+	\renewcommand\appendixpagename{Apï¿½ndice}
+	\renewcommand\appendixtocname{Apï¿½ndices}
+}
+
+
+%Setting Theorem and Definition Environment
+\newtheorem{theorem}{Teorema}
+\newtheorem{definition}{Definiciï¿½n}
+\newtheorem*{definition*}{Definiciï¿½n}
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+\pagenumbering{roman}
+\renewcommand{\listfigurename}{List of plots}
+\renewcommand{\listtablename}{Tables}
+%OJO mathtools and fancyheader dan problemas al trabajar juntos
+
+%Max Column Size in Matrixes
+\setcounter{MaxMatrixCols}{20}
+
+
+%Circuit Builders
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usetikzlibrary{decorations.pathreplacing}
+%Signature Box
+
+%Specify the longest signaturekey here:
+\newcommand{\sigwidth}{\widthof{\footnotesize xDatum/Unterschrift\ Ausbildungsleiterx}}
+%Define a signaturbox of 2.5 cm in height with a mandatory argument of the signature
+\newcommand{\signaturehere}[1]{%
+	\parbox[b][2.5cm][b]{\sigwidth}{%
+		%\footnotesize%Everything in footnotesize
+		\centering% 
+		\rule[-3pt]{\linewidth}{0.4pt}\\[0ex]%
+		{#1}%
+}}
+
+\newcommand{\signatureherejury}[1]{%
+	\parbox[b][4cm][b]{4.5cm}{%
+		\centering% 
+		\rule[-3pt]{\linewidth}{0.4pt}\\[0ex]%
+		{#1}%
+	}
+}
+
+%FancyHeader Index Fix
+
+\fancypagestyle{noIndex}{%
+	\renewcommand{\headrulewidth}{0pt}%
+	\renewcommand{\footrulewidth}{0pt}%
+	\fancyhf{}%
+	\renewcommand{\headrulewidth}{0.5pt}
+}
+
+\begin{document}
+		
+	\begin{center}
+		\vspace{5cm}
+		\begin{center}
+			\textbf{{\Large Asignación - Control Multivariable }} 
+		\end{center}		
+	\end{center}
+	
+	
+	
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%		 PROBLEM # 1			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{enumerate}
+		\item 
+			Sea el sistema representado por la siguiente función de transferencia
+				\begin{equation}
+					G(s) = 
+					\begin{bmatrix}
+						\frac{360 e^{-0.3s}}{3s+1} & \frac{180e^{-0.4s}}{2.5s + 1} \\
+						\frac{130}{1.5s + 1} & \frac{-16}{s + 1}
+					\end{bmatrix}
+				\end{equation}
+			Determinemos el arreglo de ganancia relativa del sistema. Para esto recordemos que 
+				\begin{equation}
+					\varLambda = K .* (K^{-1})^{T}
+				\end{equation}
+			Donde el operador $.*$ es el producto termino a termino de matrices y $K$ es la matriz de ganancias DC del sistema.
+			
+			De esta manera
+		 
+			\begin{equation}
+				K = 
+				\begin{bmatrix}
+					360 & 180 \\
+					130 & -16
+				\end{bmatrix}
+			\end{equation}
+			
+			De esta manera
+			
+			\begin{equation}
+				\varLambda = 
+					\begin{bmatrix}
+						0.1975 & 0.8025 \\
+						0.8025 & 0.1975
+					\end{bmatrix}
+			\end{equation}
+			
+			Recordemos que el criterio establece que deben emparejarse aquellas entradas y salidas tales que su coeficiente de ganancia relativa este más cercano a 1, evitando en lo posible aquellos emparejamientos donde este indicador posee valores negativos. Teniendo en cuenta el resultado anterior se puede concluir que los emparejamientos deben darse de la siguiente manera.
+			
+			\begin{equation}
+				\begin{aligned}
+					u_2(t) \longrightarrow y_1(t) \\
+					u_1(t) \longrightarrow y_2(t)
+				\end{aligned}
+			\end{equation}
+			
+			
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%		 PROBLEM # 2			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%			
+	
+	
+	
+		\item 
+		
+			Considere el sistema representado por la función de transferencia
+				\begin{equation}
+					G(s) = 
+					\begin{bmatrix}
+					\frac{1}{10s+1} & \frac{-0.20}{5s + 1} \\
+					\frac{1}{20s + 1} & \frac{0.80}{10s + 1}
+					\end{bmatrix}
+				\end{equation}
+			
+			Implementemos una estrategia de control multilazo para este sistema. Primero que nada veamos el comportamiento del sistema a lazo abierto. Para lo que se procede a la simulación del sistema
+			
+				\begin{figure}[h]
+					\begin{center}
+						\includegraphics[width=14cm,height=8cm,keepaspectratio]{openloop}
+						\caption{Sistema a Lazo Abierto.\label{openloop}}
+					\end{center}
+				\end{figure}
+			
+			Internamente el subsistema queda representado por el siguiente diagrama de bloques
+			\newpage
+			
+				\begin{figure}[h]
+					\begin{center}
+						\includegraphics[width=14cm,height=8cm,keepaspectratio]{systemp2}
+						\caption{Sistema a Lazo Abierto.\label{systemp2}}
+					\end{center}
+				\end{figure}
+			
+			
+			La respuesta a lazo abierto queda	
+
+				\begin{figure}[h]
+					\begin{center}
+						\includegraphics[width=12cm,height=6cm,keepaspectratio]{olstepresponse}
+						\caption{Respuesta al escalón Lazo a Abierto.\label{olstepresponse}}
+					\end{center}
+				\end{figure}			
+			\newpage	
+			
+			Teniendo en cuenta esta repuesta se procedió a realizar el cálculo del arreglo de ganancia relativa, así
+			
+			\begin{equation}
+				K = \begin{bmatrix}
+						1 & -0.20 \\
+						1 & 0.80
+					\end{bmatrix}
+			\end{equation}
+			
+			De esta manera
+			
+			\begin{equation}
+				\varLambda = \begin{bmatrix}
+								0.8 & 0.2 \\
+								0.8 & 0.2
+							\end{bmatrix}
+			\end{equation}
+			
+			Asi se puede inferir que los emparejamientos quedan dispuesto como se propone en el problema. Es decir,
+			
+			\begin{equation}
+				\begin{aligned}
+					u_1(t) \longrightarrow y_1(t) \\
+					u_2(t) \longrightarrow y_2(t)
+				\end{aligned}
+			\end{equation}
+			
+			Así se propone el siguiente esquema
+			\begin{figure}[h]
+				\begin{center}
+					\includegraphics[width=13cm,height=6.5cm,keepaspectratio]{2controladores}
+					\caption{Sistema a Lazo Cerrado.\label{2controladores}}
+				\end{center}
+			\end{figure}
+			
+			\newpage
+			Es importante tener en cuenta que se implementaron controlares PI, haciendo la sintonización de los mismo con técnicas clases. Los mismos poseen las siguientes funciones de transferencias
+			
+			\begin{equation}
+				\begin{aligned}
+					C_1(s) = 11.25 + \frac{0.90}{s} \\ 
+					C_2(s) = 21.20 + \frac{1.70}{s}
+				\end{aligned}
+			\end{equation}
+			
+			
+			
+			\begin{figure}[ht]
+				\begin{center}
+					\includegraphics[width=14cm,height=8cm,keepaspectratio]{2respuestaconcontroladores}
+					\caption{Respuesta al escalón.\label{2respuestaconcontroladores}}
+				\end{center}
+			\end{figure}
+		
+			Se corrigió el estado transitorio y de estado estacionario del sistema.
+			
+		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%		 PROBLEM # 3			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			%PROBLEM # 3	
+			\item 
+				Consideremos el sistema mecánico que se presenta a continuación
+					\begin{equation}
+						\begin{aligned}
+							y_1(s) &= \frac{B(k_2 + k_3)s + k_4(k_2+K_3) + k_1(k_2 + k_3) + k_2 k_3 }{ \delta(s) } u_1(s) + \frac{k_1 k_2}{\delta(s)}u_2(s) \\
+							y_2(s) &= \frac{k_2}{\delta(s)} u_1(s) + \frac{B k_1 s + k_1(k_2 + k_4)}{ \delta(s)} u_2(s)
+						\end{aligned}	
+					\end{equation}
+					
+				Estaremos analizando el sistema bajo bajo dos variantes, es decir, en primera instancia los parámetros que definen el sistema tendrán unos valores numéricos que en un segundo análisis serán modificados. Así empecemos suponiendo que
+				
+				\begin{equation}
+					\begin{aligned}
+						B &= k_1 = k_2 = k_3 = 1 \\
+						k_4  &= 10
+					\end{aligned}
+				\end{equation}
+				
+				Sustituyendo los parámetros, las funciones de transferencia que modelan la planta quedan definidas como se presentan a continuación
+				
+				\begin{equation}
+					\begin{aligned}
+						y_1(s) &= \frac{2s + 23}{2s + 21} u_1(s) + \frac{1}{2s + 21} u_2(s) \\
+						y_2(s) &= \frac{1}{2s + 21} u_1(s) + \frac{s+11}{2s + 21} u_2(s)
+					\end{aligned}
+				\end{equation}
+				
+				Veamos el arreglo de ganancia relativa para asi poder establecer los posibles emparejamiento a nivel de la estructura de control mas conveniente para este caso.
+				
+				\begin{equation}
+					\begin{aligned}
+						K = \begin{bmatrix}
+								\frac{23}{21} & \frac{1}{21} \\
+								\frac{1}{21} & \frac{11}{21}
+							\end{bmatrix} 
+					\end{aligned}
+				\end{equation}
+				
+				\begin{equation}
+					\begin{aligned}					
+						\varLambda = K .* {K^{-1}}^T = \begin{bmatrix}
+						1.0040 & -0.0040 \\
+						-0.0040 & 1.0040
+						\end{bmatrix} 
+					\end{aligned}
+				\end{equation}
+				
+				
+				Del arreglo se puede decir que la suposición dada por el problema posee gran validez y sentido. Lo que permitiría controlar esta planta emparejando la entradas y la salidas de la siguiente forma
+				
+				\begin{equation}
+					\begin{aligned}
+						u_1(t) \longrightarrow y_1(t) \\
+						u_2(t) \longrightarrow y_2(t)
+					\end{aligned}
+				\end{equation}
+				
+				Procederemos con la estructura de control establecida por el problema. Veamos los diagramas de bloques correspondientes al sistema de control planteado
+				
+				\begin{figure}[ht]
+					\begin{center}
+						\includegraphics[width=14cm,height=8cm,keepaspectratio]{3asystem}
+						\caption{Sistema a Lazo Abierto.\label{3asystem}}
+					\end{center}
+				\end{figure}
+			
+				\begin{figure}[ht]
+					\begin{center}
+						\includegraphics[width=14cm,height=8cm,keepaspectratio]{3asubsys}
+						\caption{Sistema a Lazo Abierto - Subsistema.\label{3asubsys}}
+					\end{center}
+				\end{figure}
+				
+				Como se ha venido trabajando, se diseñaron controlares PI que permitan estabilizar la planta y corregir problemas de esta estacionario. Asi se sintonizaron los controlares que en este caso solo cuentan con la parte integrativa
+				
+				\begin{equation}
+					\begin{aligned}
+						C_1(s) = \frac{9.50}{s} \\
+						C_2(s) = \frac{19.50}{s}
+					\end{aligned}
+				\end{equation}
+				
+				En  la figura que se muestra a continuación se muestra el diagrama de bloques del sistema a lazo cerrado.
+				
+				\begin{figure}[ht]
+					\begin{center}
+						\includegraphics[width=14cm,height=8cm,keepaspectratio]{3acloseloop}
+						\caption{Sistema a Lazo Abierto - Subsistema.\label{3acloseloop}}
+					\end{center}
+				\end{figure}
+			
+				De esta manera se procedió con la simulación arrogando los siguientes resultados
+				
+				\begin{figure}[ht]
+					\begin{center}
+						\includegraphics[width=12cm,height=6cm,keepaspectratio]{3acloseloopresponse}
+						\caption{Respuesta al Escalón.\label{3acloseloopresponse}}
+					\end{center}
+				\end{figure}
+			\newpage
+			Como se aprecia en la figura, la estrategia de control es muy efectiva tanto en regulación, como seguimiento.
+				
+			%)Segunda Parte	
+			De la misma manera, realicemos el análisis de la planta cambiando sus parámetros
+			
+			\begin{equation}
+				\begin{aligned}
+					B &= k_1 = k_2 = k_3 = 1 \\
+					k_4  &= 0.1
+				\end{aligned}
+			\end{equation}
+			
+			Así la planta que representada por las siguientes ecuaciones
+			
+			\begin{equation}
+				\begin{aligned}
+					y_1(s) = \frac{2s + 3.2}{2s + 1.2} u_1(s) + \frac{1}{2s + 1.2} u_2(s) \\
+					y_2(s) = \frac{1}{2s + 1.2} u_1(s) + \frac{s + 1.1}{2s + 1.2} u_2(s)
+				\end{aligned}
+			\end{equation}
+			
+			El arreglo de ganancia relativa queda determinada por la siguiente matriz
+				\begin{equation}
+					\begin{aligned}					
+						\varLambda = K .* {K^{-1}}^T = \begin{bmatrix}
+						1.3968 & -0.3968 \\
+						-0.3968 & 1.3968
+						\end{bmatrix} 
+					\end{aligned}
+				\end{equation}
+			
+			Nuevamente la recomendación dada por el problema parece ser la adecuada dado el arreglo de ganancia relativa parece coincidir con la escogencia de los 
+			emparejamientos. Es decir.
+			
+			\begin{equation}
+				\begin{aligned}
+					u_1(t) \longrightarrow y_1(t) \\
+					u_2(t) \longrightarrow y_2(t)
+				\end{aligned}
+			\end{equation}
+			
+			Así se estableció el siguiente esquema de control.
+			
+			\begin{figure}[ht]
+				\begin{center}
+					\includegraphics[width=14cm,height=8cm,keepaspectratio]{3bsystem}
+					\caption{Sistema a Lazo Abierto.\label{3bsystem}}
+				\end{center}
+			\end{figure}
+			
+			\begin{figure}[ht]
+				\begin{center}
+					\includegraphics[width=14cm,height=8cm,keepaspectratio]{3bsubsys}
+					\caption{Sistema a Lazo Abierto - Subsistema.\label{3bsubsys}}
+				\end{center}
+			\end{figure}
+		\newpage
+		Nuevamente la estrategia de control SISO para cada lazo de control ha sido controlador mediante controladores PI, los mismos poseen las siguientes funciones de transferencia
+		
+		\begin{equation}
+			\begin{aligned}
+				C_1(s) = 0.06 + \frac{16.15}{s} \\ 
+				C_2(s) = \frac{10}{s}
+			\end{aligned}
+		\end{equation}
+		
+		
+		Así el esquema a la lazo cerrado se presenta acontinuación.
+		
+			\begin{figure}[ht]
+				\begin{center}
+					\includegraphics[width=14cm,height=8cm,keepaspectratio]{3bcloseloop}
+					\caption{Sistema a Lazo Abierto - Subsistema.\label{3bcloseloop}}
+				\end{center}
+			\end{figure}
+		
+		\newpage
+		Dejando la siguiente respuesta al escalón
+		
+			\begin{figure}[ht]
+				\begin{center}
+					\includegraphics[width=14cm,height=7cm,keepaspectratio]{3bcloseloopresponse}
+					\caption{Respuesta al Escalón.\label{3bcloseloopresponse}}
+				\end{center}
+			\end{figure}
+		
+		Nuevamente la estrategia de control rindió sus frutos y el gráfica muestra que el control del sistema es efectivo en seguimiento y regulación.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%		 PROBLEM # 4			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+
+		\item 
+			Sea el sistema 
+			
+			\begin{equation}
+				G(s) = \begin{bmatrix}
+							\frac{2}{s^2 + 3s + 2} & \frac{k_{12}}{s+1} \\
+							\frac{k_{21}}{s^2 + 2s + 1} & \frac{6}{s^2 + 5s + 6}
+						\end{bmatrix}
+			\end{equation}		
+			
+			Analicemos el esquema de control planteado en el problema, en general el mismo puede ser representado por el siguiente diagrama de bloques
+			
+			
+			\begin{figure}[ht]
+				\begin{center}
+					\includegraphics[width=14cm,height=7cm,keepaspectratio]{4controlscheme}
+					\caption{Sistema de Control Base\label{4controlscheme}}
+				\end{center}
+			\end{figure}
+		
+			Es importante tener en cuenta que en los siguientes ítem se estará analizando la respuesta del sistema cuando el punto de operación del mismo va cambiando, para cada uno de los casos el sistema es el mismo, solo se verán modificados los parámetros internos del subsistema(Planta). Los cuales cambian dependiendo de cada caso.
+			
+			\textbf{Punto de Operación 1 ($ k_{12} = k_{21} = 0 $)}.
+			
+			Para esto se procedió a tomar los valores correspondientes de $k_{12}$ y $k_{21}$ iguales a $0$. Así el subsistema(Planta), queda dependiendo solo de los términos que relación la salida 1 con la entrada 1 y la salida 2 con la entrada 2. Es decir, solo los valores de la diagonal principal de la matriz función de transferencia.
+			
+			
+			\begin{figure}[ht]
+				\begin{center}
+					\includegraphics[width=14cm,height=7cm,keepaspectratio]{4asubsytem}
+					\caption{Sistema de Control Base\label{4asubsytem}}
+				\end{center}
+			\end{figure}
+		
+			\newpage
+			
+			En este caso el sistema esta plenamente desacoplado de forma natural, ya que los términos que relación las salidas y entradas cruzadas son nulos. Asi al evaluar el sistema ante entradas constantes si los controlares SISO están bien diseñados, se espera una buena respuesta. 
+			
+			\begin{figure}[ht]
+				\begin{center}
+					\includegraphics[width=14cm,height=7cm,keepaspectratio]{4aclresponse}
+					\caption{Respuesta al Escalón\label{4aclresponse}}
+				\end{center}
+			\end{figure}
+		
+			Como se aprecia en la figura la respuesta es relativamente rápida y en ambos casos el error de estado estacionario es nulo. 
+			
+			%%%%%%%%%%%%%%%%%%%
+			\textbf{Punto de Operación 2 ($ k_{12} = 0.1 $ y $ k_{21} = 0.1 $)}.
+			
+			Ahora planta comienza a responder ante las interacciones de que pudieran aparecer 
+			
+			
+			\begin{figure}[ht]
+				\begin{center}
+					\includegraphics[width=14cm,height=7cm,keepaspectratio]{4bsubsytem}
+					\caption{Sistema de Control Base\label{4bsubsytem}}
+				\end{center}
+			\end{figure}
+			
+			\newpage
+			
+			Se espera que el sistema, no este tan desacoplado entre sus salidas y entradas, lo que se traduce en interferencia entre las señales de control.
+						
+			\begin{figure}[ht]
+				\begin{center}
+					\includegraphics[width=14cm,height=7cm,keepaspectratio]{4bclresponse}
+					\caption{Respuesta al Escalón\label{4abclresponse}}
+				\end{center}
+			\end{figure}
+			
+			Como se aprecia en la figura la respuesta del sistema, no es del todo limpia, dado que en este caso las entradas se ven reflejadas en el sistema como perturbaciones.
+			
+			
+				%%%%%%%%
+				
+				\textbf{Punto de Operación 3 ($ k_{12} = -1 $ y $ k_{21} = 0.5 $)}.
+				
+				Igual que en el caso anterior, las interacciones entre los lazos de control son mayores, lo que replica en una respuesta mas pobre del sistema de control.
+				
+				\begin{figure}[ht]
+					\begin{center}
+						\includegraphics[width=14cm,height=7cm,keepaspectratio]{4csubsytem}
+						\caption{Sistema de Control Base\label{4csubsytem}}
+					\end{center}
+				\end{figure}
+								
+				La respuesta del sistema ante entradas constante es la siguiente
+				
+				\begin{figure}[ht]
+					\begin{center}
+						\includegraphics[width=12cm,height=6cm,keepaspectratio]{4cclresponse}
+						\caption{Respuesta al Escalón \label{4cclresponse.eps}}
+					\end{center}
+				\end{figure}
+			
+			
+				%%%%%%%%
+				\textbf{Punto de Operación 4 ($ k_{12} = -2 $ y $ k_{21} = -1 $)}.
+				
+				Finalmente el sistema cambia totalmente de punto de operación, 
+				
+				\begin{figure}[ht]
+					\begin{center}
+						\includegraphics[width=14cm,height=7cm,keepaspectratio]{4dsubsytem}
+						\caption{Sistema de Control Base\label{4dsubsytem}}
+					\end{center}
+				\end{figure}
+					
+				Se prevee que el esquema de control pierda efectividad en el sistema de control.
+				
+				\begin{figure}[ht]
+					\begin{center}
+						\includegraphics[width=12cm,height=6cm,keepaspectratio]{4dclresponse}
+						\caption{Respuesta al Escalón\label{4dclresponse.eps}}
+					\end{center}
+				\end{figure}
+			
+				Teniendo en cuenta la evolución del sistema y su predisposición a ser un sistema con muchas interacciones entre sus lazos de control, el diseñador no contemplo este aspecto, dado que en ultima instancia el sistema no logra estabilizarse, como se muestra en la figura.
+			\newpage
+						
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%		 PROBLEM # 5			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	
+		\item 	
+			Considere el sistema
+			
+				\begin{equation}
+					G(s) = \begin{bmatrix}
+								g_{11}(s) & g_{12}(s) & g_{13}(s) \\
+								g_{21}(s) & g_{22}(s) & g_{23}(s) \\
+								g_{31}(s) & g_{32}(s) & g_{33}(s) \\
+							\end{bmatrix}
+				\end{equation} 
+				
+				Analicemos el siguiente esquema de control donde se introduce una red de desacople que permita tener
+				
+				
+				\begin{sidewaysfigure}
+					\centering
+					\includegraphics[width=18cm,height=9cm,keepaspectratio]{5system}
+					\caption{Sistema de Control Base\label{5system}}
+				\end{sidewaysfigure}
+			
+				Realicemos un análisis análogo para el caso del sistema 2x2. Para lo cual, 
+				
+				\begin{itemize}
+					\item Supongamos que los lazos 1 y 3 no deben afectar a lazo 2. Esto nos deja las siguientes ecuaciones.
+						\begin{equation}
+							\begin{aligned}
+									d_{11} g_{21} u^*_{1} + d_{21} g_{22} u^*_{1} + d_{31} g_{23} u^*_{1}  = 0 \\
+									d_{13} g_{21} u^*_{3} + d_{23} g_{22} u^*_{3} + d_{33} g_{23} u^*_{3}  = 0
+							\end{aligned}
+						\end{equation}
+					
+					\item Supongamos que los lazos 2 y 3 no debe afectar el lazo 1, así
+						\begin{equation}
+							\begin{aligned}	
+								d_{12} g_{11} u^*_{2} + d_{22} g_{12} u^*_{2} + d_{32} g_{13} u^*_{2}  = 0 \\
+								d_{13} g_{11} u^*_{3} + d_{23} g_{12} u^*_{3} + d_{33} g_{13} u^*_{3}  = 0
+							\end{aligned}
+						\end{equation}
+						
+					\item Supongamos que los lazos 1 y 2 no debe afectar el lazo 3, así
+						\begin{equation}
+							\begin{aligned}	
+								d_{11} g_{31} u^*_{1} + d_{21} g_{32} u^*_{1} + d_{31} g_{33} u^*_{1}  = 0 \\
+								d_{12} g_{31} u^*_{2} + d_{22} g_{32} u^*_{2} + d_{32} g_{33} u^*_{2}  = 0
+							\end{aligned}
+						\end{equation}
+				\end{itemize}
+			
+				
+				Haciendo
+				
+				\begin{equation}
+					d_{11} = d_{22} = d_{33} = d_{21} = d_{13} = d_{21} = 1
+				\end{equation}	
+				
+				Podemos establecer
+				
+				\begin{equation}
+					\begin{aligned}
+						d_{31} = - \frac{g_{21} + g_{22}}{g_{23}} \\ 
+						d_{23} = - \frac{g_{21} + g_{23}}{g_{22}} \\ 
+						d_{32} = - \frac{g_{31} + g_{32}}{g_{33}}
+					\end{aligned}
+				\end{equation}
+				
+				Dadas las expresiones, se pudieran establecer otras ecuaciones de manera conveniente.
+				
+				
+				
+			
+	
+
+			
+	
+ 	\end{enumerate}		
+\end{document}
