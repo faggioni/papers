@@ -1,0 +1,302 @@
+\documentclass[12pt]{article}
+%OpenAny as a argunment on documentclass	, Avoid Chapters to start in odd pages
+\usepackage[latin1]{inputenc}
+\usepackage[spanish,es-noquoting]{babel}
+%\usepackage[dvips]{graphicx}
+\usepackage[eps]{graphicx,subcaption}
+\usepackage{titling}
+\usepackage{vmargin}
+\usepackage{url}
+\usepackage{textcomp}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+\usepackage{float}
+\usepackage[T1]{fontenc}
+\usepackage{epstopdf}
+\usepackage{apacite}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{multicol}
+\usepackage{bm}
+\usepackage{calc}
+\usepackage{everypage}
+\usepackage{adjustbox}
+\usepackage{multirow}
+\usepackage{lscape}
+\usepackage{makecell}
+\usepackage{rotating}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{pstricks-add}
+\usepackage{pstricks}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{arydshln} %Dash Matrices
+\usepackage{titlesec}
+\usepackage{mathrsfs} %Laplace Transform L
+\usepackage[toc,page]{appendix} %Apendix
+\usepackage{verse}
+%text in top of letters
+\usepackage{stackrel}
+\usepackage{subcaption} 
+%Symbols and Abbreviations Table
+\usepackage{enumitem}
+\newlist{abbrv}{itemize}{1}
+\setlist[abbrv,1]{label=,labelwidth=1in,align=parleft,itemsep=0.1\baselineskip,leftmargin=!}
+%Center Caption in Tables
+\usepackage[justification=centering]{caption}
+%Signatures
+\usepackage{tabularx}
+	
+\setpapersize{USletter}
+%Setting Margins
+\setmarginsrb{15mm}{15mm}{20mm}{20mm}{0pt}{0mm}{0pt}{0mm}
+
+%Interlineado
+\renewcommand{\baselinestretch}{1.5}
+
+%Sangria
+\usepackage{parskip}
+\setlength{\parindent}{0.5cm}
+
+\renewcommand{\headrulewidth}{0.5pt}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+%Max Column Size in Matrixes
+\setcounter{MaxMatrixCols}{20}
+
+\usepackage{blindtext}
+
+\title{Consideraciones óptimas en el Diseño de Controladores de dos grados de libertad mediante un enfoque polinómico.}
+\author{Miguel Faggioni \\ Departamento de Energetica y Automatizacion }
+\date{}
+\begin{document}	
+	\maketitle	
+	\section{Introducción}
+	
+	En la presente ponencia se establecen mecanismos de obtención de controladores de dos grados de libertad bajo técnicas de diseño óptimas haciendo uso de modelos matemáticos que emplean la información interna del sistema. Para esto se define una representación en espacio de estados haciendo uso exclusivamente de la información medible del sistema, esto es, entrada y salida. Dicha representación es el enlace que permite aplicar técnicas de control avanzadas a plantas que de otra manera serian tratadas con herramientas de análisis básicas. Se presenta una metodología de diseño, así como resultados obtenido de la aplicación de la misma a una planta real.
+	
+	\section{Objetivos}
+		\begin{itemize}
+			\item[\textbullet] Determinar modelo en variables de estado equivalente 
+			a la caracterización entrada-salida, que permita obtener propiedades estructurales en variables de estado.
+			
+			\item[\textbullet] Establecer vínculo entre el modelo en variables de estado 
+			y una topología de control de dos grados de libertad.
+			
+			\item[\textbullet] Diseñar Controlador que aproveche el vínculo establecido para trasladar el diseño por medio de LQR a una topología de dos grados de libertad.
+			
+			\item[\textbullet] Establecer una metodología de diseño que de respuesta al objetivo gene\-ral.
+			
+			\item[\textbullet] Validar la metodología propuesta mediante la realización de simulaciones empleando la plataforma Matlab $/$ Simulink, para sistemas de distinta naturaleza física (Eléctrica, Mecánica, Electromecánica, entre otros).			
+		\end{itemize} 
+
+	\section{Marco Teórico}
+		Una de las descripciones de sistemas mas utilizadas por su simplicidad es la función de transferencia, en general para sistemas lineales e independientes del tiempo puede ser descrita de la siguiente de manera.
+	
+		\begin{equation}
+			H(s) = \frac{Y(s)}{U(s)} = \frac{b_0 s^m + b_1 s^{m-1} + b_2 s^{m-2} + \dots + b_{m-1}s + b_m}{a_0 s^n + a_1 s^{n-1} + a_2 s^{n-2} + \dots + a_{n-1}s + a_n}
+		\end{equation}	
+
+		Uno de los grandes problemas de este tipo de modelo es que permite solamente evaluar sistema de una entrada, una salida comúnmente conocidos como SISO (Single-Input / Single-Output), esto representa un inconveniente importante, dado que no soporta sistemas multivariantes.
+		
+		Sin embargo, mediante el enfoque de variables de estado, se permite expresar tanto sistemas de una entrada, una salida. Así como sistemas multivariantes sin restricción alguna. En su forma mas sencillas queda expresa de la siguiente forma.
+		
+			\begin{equation}
+				\begin{aligned}
+				\mathbf{\dot{x(t)} = Ax(t) + Bu(t)} \\
+				\mathbf{y(t) = Cx(t) + Du(t)}
+				\end{aligned}
+			\end{equation}
+		
+		Con $\mathbf{u(t)} = \begin{bmatrix} u_1, \dots, u_m \end{bmatrix}^T$, el vector de entrada,  $\mathbf{y(t)} = \begin{bmatrix} y_1, \dots, y_p \end{bmatrix}^T$ el vector de salidas y $\mathbf{x(t)} = \begin{bmatrix} x_1, \dots, x_n \end{bmatrix}^T$ el vector de estados. Las matrices $\mathbf{A}$, $\mathbf{B}$, $\mathbf{C}$ y $\mathbf{D}$ poseen las dimensiones adecuadas, esto es, $\mathbf{A} \in \mathbb{R}^{nxn}$, $\mathbf{B} \in \mathbb{R}^{nxm}$, $\mathbf{C}^{pxn} \in \mathbb{R}$ y $\mathbf{D} \in \mathbb{R}^{pxm}$.
+		
+		\subsection{Controladores de 2 Grado de Libertad}
+		
+			En general, el esquema de dos grados de libertad puede ser resumido en el siguiente diagrama de bloques
+			
+			\begin{figure}[h]
+				\begin{center}
+					\includegraphics[width=10cm,height=5cm,keepaspectratio]{drafy2-fig2-2gdl}
+					\caption{Sistema de Control de Dos Grados de Libertad.}
+					\label{block diagram 2dof_schema}
+				\end{center}
+			\end{figure}	
+			\newpage
+			Es una topología de control que permite haciendo uso de dos controladores, regular y hacer seguimiento. Bajo esta metodología el objetivo reside en determinar controladores 
+			
+			\begin{equation}
+				\begin{gathered}
+					C_1(s) = \frac{T(s)}{L(s)} \\ 
+					C_2(s) = \frac{R(s)}{L(s)}
+				\end{gathered}
+			\end{equation}
+			Que satisfagan los requerimiento de diseño, existen diversos enfoques para este calculo, siendo Model Matching la técnica mas usada.
+		
+		\subsection{Formulación General del Problema de Control Óptimo}		
+		
+		Sea el sistema representado en espacio de estados
+	
+			\begin{equation}
+				\mathbf{\dot{x(t)} = Ax(t) + Bu(t)}
+			\end{equation}
+			
+		El problema se centra en determinar una matriz de ganancias $\mathbf{K}$, del vector de control 
+		
+		\begin{equation}\label{lqr control law}
+		\mathbf{u(t) =-Kx(t)}
+		\end{equation}
+		
+		Con el objetivo de minimizar el índice de desempeño
+		
+		\begin{equation}\label{lqr performance index}
+		\mathbf{J = \int_0^\infty [x^TQx + u^TRu] dt}
+		\end{equation}	
+		
+		Donde $\mathbf{Q}$ y $\mathbf{R}$ son matrices definidas positivas. Cualitativamente las matriz $\mathbf{Q}$ esta asociada a la importancia relativa del error y la matriz $\mathbf{R}$ al costo energético de la señal de control. Este problema es altamente conocido y ya existe una solución. La misma viene dada por la ecuación matricial de Ricatti.
+	
+		\section{Resultados de la Investigación}
+		
+		Como parte del trabajo investigativo se logro obtener un modelo equivalente en variables de estados de la topología de dos grados de libertad. Dicho modelo viene dado por la siguiente representación en espacio de estados.
+		
+		 \begin{equation}\label{state equation analog}
+		 \resizebox{.60 \textwidth}{!}{$
+		 \mathbf{\dot{x} = \begin{bmatrix}
+		 	0 & 1 & 0 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & 0 & \dots & 0\\
+		 	0 & 0 & 1 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & 0 & \dots & 0 \\
+		 	\vdots & \vdots & \vdots & \ddots &  & \vdots & \vdots & \vdots &  & \vdots & \vdots &  & \vdots\\
+		 	\vdots & \vdots & \vdots &  & \ddots & \vdots & \vdots & \vdots &  & \vdots & \vdots &  & \vdots\\
+		 	0 & 0 & 0 & 0 & \dots & 1 & 0 & 0 & \dots & 0 & 0 & \ \dots & 0\\
+		 	-a_n & -a_{n-1} & -a_{n-2} & -a_{n-3} & \dots & -a_1 & b_0 & b_1 & \dots & b_m & 0 & \dots & 0 \\
+		 	0 & 0 & 0 & 0 & \dots & 0 & 0 & 1 & \dots & 0 & 0 & \dots & 0 \\
+		 	0 & 0 & 0 & 0 & \dots & 0 & 0 & 0 & \ddots & 0 & 0 & \dots & 0 \\
+		 	0 & 0 & 0 & 0 & \dots & 0 & 0 & 0 & \dots & 1 & 0 & \dots & 0 \\
+		 	0 & 0 & 0 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & 1 & \dots & 0 \\
+		 	0 & 0 & 0 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & 0 & \ddots & 0 \\
+		 	0 & 0 & 0 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & 0 & \dots & 1\\
+		 	0 & 0 & 0 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & 0 & \dots & 0
+		 	\end{bmatrix} \begin{bmatrix}
+		 	y\\
+		 	\stackbin{.}{y}\\
+		 	\vdots \\
+		 	\vdots \\
+		 	\stackbin{(n-2)}{y}\\
+		 	\stackbin{(n-1)}{y}\\
+		 	u \\
+		 	\stackbin{.}{u}\\
+		 	\stackbin{..}{u}\\
+		 	\stackbin{...}{u}\\
+		 	\vdots\\
+		 	\vdots\\
+		 	\stackbin{(n_u - 1)}{u}
+		 	\end{bmatrix} + \begin{bmatrix}
+		 	0\\
+		 	0\\
+		 	0\\
+		 	0\\
+		 	0\\
+			\vdots \\
+		 	\vdots \\
+		 	\vdots \\
+		 	0\\
+		 	0\\
+		 	0\\
+		 	0\\
+		 	1
+		 	\end{bmatrix}} \stackbin{(n_u)}{u}
+			$}
+		 \end{equation}
+	
+		El vinculo se logro teniendo en consideración la siguiente ley de control		
+		\begin{equation}
+			\mathbf{ \stackbin{(n_u)}{u} } = \mathbf{ -Kx(t) + K_ry_r(t)}
+		\end{equation}		
+
+		Esto es,
+				
+		\begin{equation}
+		\resizebox{.60 \textwidth}{!}{$
+			u^{n_u} = - \begin{bmatrix}
+			k_{y_0} & k_{y_1} & \dots & k_{y_{n-1}} & k_{u_0} & k_{u_1} & \dots & k_{u_{n_u -1}}
+			\end{bmatrix} \begin{bmatrix}
+			y \\
+			\stackbin{.}{y} \\
+			\vdots \\ 
+			\stackbin{(n-1)}{y} \\
+			u \\
+			\stackbin{.}{u}\\
+			\vdots \\
+			\stackbin{(n_u-1)}{u}
+			\end{bmatrix} + \begin{bmatrix}
+			k_{y_{r_{0}}} & k_{y_{r_{1}}} & \dots & k_{y_{r_{n_r}}} 
+			\end{bmatrix} \begin{bmatrix}
+			y_r \\
+			\stackbin{.}{y_r} \\
+			\vdots \\ 
+			\stackbin{(n-1)}{y_r} \\
+			\end{bmatrix}
+			$}
+		\end{equation}
+		
+		Siendo $y_r$, la referencia del sistema. Teniendo en cuenta la ley de control establecida y la topología se estableció la relación teniendo en cuenta la función de transferencia de la topología de dos grados de libertad. Esto permitió hacer un símil y proceder al diseño mediante LQR y volcar la información obtenida a los polinomios correspondientes en el dominio $s$.
+			
+		\subsection{Metodología de Diseño}
+		
+		Teniendo el vinculo establecido, se decidió abordar el problema de una manera selectiva, esto es, tomando en consideración las entradas a la cual sera expuesta el sistema y diseñar para cada caso. La básicamente se centra en manipulaciones algebraicas del modelo obtenido teniendo en cuenta la referencia.
+
+	\section{Validación de le metodología de estudio.}
+	
+		Para validar la metodología se selecciono una planta clásica como lo es un sistema de tanques acoplados, dicha planta es un sistema de tanques ofrecido por la empresa Quanser como parte del material de apoyo para impartir clases de control en universidades. El modelo matemático de la planta viene dado por la siguiente función de transferencia (teniendo en cuenta la linealización de la planta por ser obtenida a partir de un modelo lineal).
+		
+		\begin{equation}
+			H(s) = \frac{0.0169}{s^2+0.1312s+0.0043}
+		\end{equation}
+									
+		\subsection{Simulaciones}
+		
+		En cada caso se obtuvieron resultados satisfactorios logrando regular a nivel de la respuesta transitoria y dar seguimiento a las señales de referencia. Como se muestra en las siguientes figuras.
+
+
+			\begin{figure}[h]
+				\begin{center}
+					\begin{subfigure}[b]{0.4\textwidth}
+						\begin{center}
+							\includegraphics[width=12cm,height=6cm,keepaspectratio]{tanks_ramp_sim_step_method_response}
+							\caption{Respuesta al Escalón \label{tanks_system_sim_step_method_response}}
+						\end{center}
+					\end{subfigure}
+					\begin{subfigure}[b]{0.4\textwidth}
+						\begin{center}
+							\includegraphics[width=12cm,height=6cm,keepaspectratio]{tanks_ramp_sim_ramp_method_response_ramp_ramp}
+							\caption{Respuesta a la Rampa \label{tanks_system_sim_ramp_response}}
+						\end{center}
+					\end{subfigure}
+				\end{center}
+			\end{figure}
+
+
+	\section{Conclusiones y Recomendaciones}
+
+		La metodología probó ser efectiva para la planta de estudio, asi mismo entre las características notables de este método, es que permite la utilización de técnicas de control asociadas a descripciones internas (Espacio de Estados) a descripciones externas (Función de Transferencia y Ecuación Diferencial), esto sin el uso de observadores de estados asociados, requerimiento común en la práctica al no contar con todos los estados para la retroalimentación. 
+		
+		El método propuesto gana importancia al establecer controladores óptimos para sistemas cuya representación es externa. Esto es, el cálculo de los polinomios asociados a los controlares que ofrecen una dinámica transitoria óptima. La metodología no solo resulta óptima a nivel transitorio, sino que ofrece robustez en el sentido que permite el rechazo a perturbaciones y garantiza una respuesta deseada ante imprecisiones en el modelado de la planta.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%		REFERENCES		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\pagestyle{empty}
+	\bibliographystyle{apacite}
+	\bibliography{biblio}
+	\nocite{*}
+
+\end{document}

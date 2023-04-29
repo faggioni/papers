@@ -1,0 +1,108 @@
+\documentclass[12pt]{book}
+%OpenAny as a argunment on documentclass	, Avoid Chapters to start in odd pages
+\usepackage[latin1]{inputenc}
+\usepackage[spanish,es-noquoting]{babel}
+\usepackage[eps]{graphicx}
+\usepackage{titling}
+\usepackage{vmargin}
+\usepackage{url}
+\usepackage{textcomp}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+\usepackage{float}
+\usepackage[T1]{fontenc}
+\usepackage{epstopdf}
+\usepackage{apacite}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{multicol}
+\usepackage{bm}
+\usepackage{calc}
+\usepackage{everypage}
+\usepackage{adjustbox}
+\usepackage{multirow}
+\usepackage{lscape}
+\usepackage{makecell}
+\usepackage{rotating}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{pstricks-add}
+\usepackage{pstricks}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{arydshln} %Dash Matrices
+\usepackage{titlesec}
+\usepackage{mathrsfs} %Laplace Transform L
+\usepackage[toc,page]{appendix} %Apendix
+\usepackage{verse}
+%text in top of letters
+\usepackage{stackrel}
+%Symbols and Abbreviations Table
+\usepackage{enumitem}
+\newlist{abbrv}{itemize}{1}
+\setlist[abbrv,1]{label=,labelwidth=1in,align=parleft,itemsep=0.1\baselineskip,leftmargin=!}
+%Footnote in Tabular
+\usepackage{tablefootnote}
+
+
+\setpapersize{USletter}
+%Setting Margins
+\setmarginsrb{35mm}{35mm}{35mm}{30mm}{0pt}{0mm}{0pt}{0mm}
+
+%Interlineado
+\renewcommand{\baselinestretch}{1.5}
+
+%Sangria
+\usepackage{parskip}
+\setlength{\parindent}{0.75cm}
+
+%columns Separation
+\setlength{\columnsep}{2cm}
+
+%Fancy Header Setup
+\rhead{}
+\lhead{}
+\chead{\bfseries \nouppercase{\leftmark}}
+
+%Footer's Margins
+\headsep = 30pt
+\footskip = 25pt
+\renewcommand{\headrulewidth}{0.5pt}
+
+
+%Set 
+\linespread{1.50}
+
+\begin{document}
+
+	\vspace{2cm}
+	\addcontentsline{toc}{chapter}{Resumen}
+	
+	\begin{center}
+		\textbf{Consideraciones óptimas en el Diseño de Controladores de dos grados de libertad mediante un enfoque polinómico}
+	\end{center}
+	
+	\vspace{1cm}
+	\thispagestyle{empty}
+	\begin{flushright} 
+		Ponente: Miguel Faggioni \\
+		Caracas, Octubre 2019
+	\end{flushright}
+	
+	\begin{center}
+		\textbf{RESUMEN}
+	\end{center}
+		Los controladores de dos grados de libertad han sido desarrollados dentro de las descripciones externas de los sistemas continuos y sus técnicas de diseño son limitadas a metodologías algebraicas asociadas a la localización de polos. A su vez, estrategias de diseño como el Regulador Óptimo Cuadrático hacen vida dentro del estudio de sistema de control cuya planta esta modelada bajo descripciones internas, en particular, espacios de estado. Estas ultimas abarcan un análisis mucho mas complejo pero a su vez permiten obtener un sistema de control mucho mas sofisticado.
+		
+		En la presente ponencia se establecen mecanismos de obtención de controladores de dos grados de libertad bajo técnicas de diseño óptimas haciendo uso de modelos matemáticos que emplean la información interna del sistema. Para esto se define una representación en espacio de estados haciendo uso exclusivamente de la información medible del sistema, esto es, entrada y salida. Dicha representación es el enlace que permite aplicar técnicas de control avanzadas a plantas que de otra manera serian tratadas con herramientas de análisis básicas.
+		
+		Esta propuesta permite obtener controladores descritos en el dominio frecuencial que heredan características optimas dentro de la dinámica transitoria propias del Regular Optimo Cuadrático, así mismo, considera las posibles perturbaciones a la que pueda estar expuesta el sistema de control, esto aplicando el principio del modelo interno.
+		
+		Se presentara la metodología de diseño, así como la verificación de su funcionamiento ante plantas con distinta naturaleza física, esto haciendo uso de simulación bajo un ambiente computacional.
+	 
+		\thispagestyle{empty}
+		\noindent \textbf{Palabras Claves}: LQR,  Controladores de dos Grados de Libertad, Control Robustos, Rechazo a Perturbaciones.
+\end{document}
