@@ -58,3 +58,5 @@ presentation/presentation\.nav
 *.bcf
 
 *.ps
+
+.idea
